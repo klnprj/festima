@@ -1,0 +1,28 @@
+<div class="container">
+
+  <div>
+    <acme-navbar creation-date="main.creationDate"></acme-navbar>
+  </div>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th class="col-md-3">Название</th>
+      <th class="col-md-3">Адрес</th>
+      <th class="col-md-3">Заказчик</th>
+      <th class="col-md-2">Проектная организация</th>
+      <th class="col-md-1">Менеджер</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="building in buildings track by $index">
+      <th scope="row"><a href="#/building/{{building.id}}">{{building.name}}</a></th>
+      <td>{{building.address}}</td>
+      <td>{{building.client}}</td>
+      <td>{{building.project}}</td>
+      <td>{{building.manager}}</td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
