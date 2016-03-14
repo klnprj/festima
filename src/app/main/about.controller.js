@@ -7,11 +7,7 @@
  * # AboutCtrl
  * Controller of the festimaApp
  */
-angular.module('test')
-  .controller('AboutCtrl', function ($scope, $http) {
+angular.module('festima')
+  .controller('AboutCtrl', function ($scope) {
 
-    // $http.get('api/products')
-    //   .success(function(data){
-    //     $scope.products=data;
-    //   });
   });

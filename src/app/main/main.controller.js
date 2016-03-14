@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the festimaApp
  */
-angular.module('test')
+angular.module('festima')
   .controller('MainController', function ($scope, $http, buildingService) {
     $scope.buildings = [];
 

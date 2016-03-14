@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('test')
+    .module('festima')
     .config(routeConfig);
 
   function routeConfig($routeProvider) {
@@ -18,7 +18,7 @@
         controllerAs: 'about'
       })
       .when('/building/:buildingId', {
-        templateUrl: 'app/main/building.html',
+        templateUrl: 'app/building/building.html',
         controller: 'BuildingCtrl',
         controllerAs: 'building'
       })

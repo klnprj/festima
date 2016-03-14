@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-      .module('test')
+      .module('festima')
       .service('webDevTec', webDevTec);
 
   /** @ngInject */

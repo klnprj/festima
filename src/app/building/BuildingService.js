@@ -1,4 +1,4 @@
-angular.module("test")
+angular.module('festima')
   .service("buildingService", function($http) {
 
     this.getBuilding = function(id) {

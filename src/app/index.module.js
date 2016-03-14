@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('test', ['ngMessages', 'ngRoute', 'ui.bootstrap', 'toastr']);
+    .module('festima', ['ngMessages', 'ngRoute', 'ui.bootstrap', 'toastr']);
 
 })();

@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('test')
+    .module('festima')
     .constant('malarkey', malarkey)
     .constant('moment', moment);
 

@@ -7,7 +7,7 @@
  * # BuildingCtrl
  * Controller of the festimaApp
  */
-angular.module('test')
+angular.module('festima')
   .controller('BuildingCtrl', function ($scope, $routeParams, $http, buildingService) {
     var id = $routeParams.buildingId;
 
