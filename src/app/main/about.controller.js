@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name festimaApp.controller:AboutCtrl
+ * @name festimaApp.controller:AboutController
  * @description
- * # AboutCtrl
+ * # AboutController
  * Controller of the festimaApp
  */
 angular.module('festima')
-  .controller('AboutCtrl', function ($scope) {
+  .controller('AboutController', function () {
 
   });

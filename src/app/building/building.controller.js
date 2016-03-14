@@ -8,15 +8,14 @@
  * Controller of the festimaApp
  */
 angular.module('festima')
-  .controller('BuildingCtrl', function ($scope, $routeParams, $http, buildingService) {
+  .controller('BuildingController', function ($routeParams, buildingService) {
     var id = $routeParams.buildingId;
+    var vm = this;
 
-    $scope.building = buildingService.getBuilding(id).then(
+    buildingService.getBuilding(id).then(
       function(response) {
-        $scope.building = response.data;
+        angular.extend(vm, response.data);
       },
-      function(response) {
-
-      }
+      null
     );
   });

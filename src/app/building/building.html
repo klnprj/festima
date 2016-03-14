@@ -1,11 +1,11 @@
 <div class="container">
-  <h1>{{building.name}}</h1>
+  <h1 ng-bind="building.name">&nbsp;</h1>
 
 <div class="row">
   <div class="col-md-8">
     <div class="jumbotron">
       <address>
-      <strong>{{building.name}}</strong><br>
+      <strong ng-bind="building.name">&nbsp;</strong><br>
         {{building.address}}
       </address>
       <p><a class="btn btn-lg btn-success" ng-href="#/">Отлично!<span class="glyphicon glyphicon-ok"></span></a></p>
@@ -15,9 +15,9 @@
   <div class="col-md-4">
     <dl class="dl-horizontal">
       <dt>Заказчик</dt>
-      <dd>{{building.client}}</dd>
+      <dd ng-bind="building.client">&nbsp;</dd>
       <dt>Проектная организация</dt>
-      <dd>{{building.project}}</dd>
+      <dd ng-bind="building.project">&nbsp;</dd>
       <dt>Генподрядчик</dt>
       <dd></dd>
       <dt>Субподрядчик</dt>
