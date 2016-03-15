@@ -1,0 +1,7 @@
+<pre>Model: {{selectedDealer | json}}</pre>
+
+<input type="text" ng-model="selectedDealer" placeholder="Выбрать дилера" uib-typeahead="dealer as dealer.name for dealer in dealerVm.list($viewValue)" typeahead-loading="dealerVm.loadingLocations" typeahead-no-results="dealerVm.noResults" class="form-control">
+<i ng-show="dealerVm.loadingLocations" class="glyphicon glyphicon-refresh"></i>
+<div ng-show="dealerVm.noResults">
+  <i class="glyphicon glyphicon-remove"></i> Не найдено
+</div>
