@@ -1,4 +1,33 @@
 <div class="well">
   <h3 ng-bind="dealer.name"></h3>
+
+  <table class="table table-striped table-condensed">
+    <thead>
+      <tr>
+        <th class="col-md-1">Дата</th>
+        <th class="col-md-2">Контакт</th>
+        <th class="col-md-1">Тип</th>
+        <th class="col-md-2">Спецификация</th>
+        <th class="col-md-1">Цена</th>
+        <th class="col-md-1">Сделка</th>
+        <th class="col-md-1">Статус</th>
+        <th class="col-md-1">Отгрузка</th>
+        <th class="col-md-2"></th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="position in positions">
+      <tr>
+        <th class="col-md-1" ng-bind="dateCreated">&nbsp;</th>
+        <th class="col-md-2" ng-bind="contactName">&nbsp;</th>
+        <th class="col-md-1" ng-bind="type">&nbsp;</th>
+        <th class="col-md-2" ng-bind="spec">&nbsp;</th>
+        <th class="col-md-1" ng-bind="grossPrice">&nbsp;</th>
+        <th class="col-md-1" ng-bind="total">&nbsp;</th>
+        <th class="col-md-1" ng-bind="status">&nbsp;</th>
+        <th class="col-md-1" ng-bind="dateShipped">&nbsp;</th>
+        <th class="col-md-2" ng-bind="">&nbsp;</th>
+      </tr>
+    </tbody>
+  </table>
 </div>
 

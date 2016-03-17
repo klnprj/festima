@@ -4,6 +4,7 @@ angular.module('festima')
       templateUrl: 'app/building/dealer.html',
       scope: {
         dealer: '=data'
-      }
+      },
+      controller: 'DealerController'
     }
 });
