@@ -1,33 +1,50 @@
-<div class="well">
-  <h3 ng-bind="dealer.name"></h3>
+<div>
+  <h3 ng-bind="vm.dealer.name"></h3>
 
-  <table class="table table-striped table-condensed">
-    <thead>
-      <tr>
-        <th class="col-md-1">Дата</th>
-        <th class="col-md-2">Контакт</th>
-        <th class="col-md-1">Тип</th>
-        <th class="col-md-2">Спецификация</th>
-        <th class="col-md-1">Цена</th>
-        <th class="col-md-1">Сделка</th>
-        <th class="col-md-1">Статус</th>
-        <th class="col-md-1">Отгрузка</th>
-        <th class="col-md-2"></th>
-      </tr>
-    </thead>
-    <tbody ng-repeat="position in positions">
-      <tr>
-        <th class="col-md-1" ng-bind="dateCreated">&nbsp;</th>
-        <th class="col-md-2" ng-bind="contactName">&nbsp;</th>
-        <th class="col-md-1" ng-bind="type">&nbsp;</th>
-        <th class="col-md-2" ng-bind="spec">&nbsp;</th>
-        <th class="col-md-1" ng-bind="grossPrice">&nbsp;</th>
-        <th class="col-md-1" ng-bind="total">&nbsp;</th>
-        <th class="col-md-1" ng-bind="status">&nbsp;</th>
-        <th class="col-md-1" ng-bind="dateShipped">&nbsp;</th>
-        <th class="col-md-2" ng-bind="">&nbsp;</th>
-      </tr>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-md-12">
+
+      <table class="table table-striped table-condensed table-vcenter">
+        <thead>
+        <tr>
+          <th class="col-md-1">Дата</th>
+          <th class="col-md-2">Контакт</th>
+          <th class="col-md-1">Тип</th>
+          <th class="col-md-2">Спецификация</th>
+          <th class="col-md-1">Цена</th>
+          <th class="col-md-1">Сделка</th>
+          <th class="col-md-1">Статус</th>
+          <th class="col-md-1">Отгрузка</th>
+          <th class="col-md-2"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--<es-position-add data="vm.newPosition" dealer="vm.dealer" refresh="vm.refreshPositions()"></es-position-add>-->
+        <tr ng-form class="table-bordered">
+          <td class="col-md-1"><input class="col-md-12" type="text" ng-model="vm.newPosition.dateCreated"></td>
+          <td class="col-md-2"><input class="col-md-12" type="text" ng-model="vm.newPosition.contactName"></td>
+          <td class="col-md-1"><input class="col-md-12" type="text" ng-model="vm.newPosition.type"></td>
+          <td class="col-md-2"><input class="col-md-12" type="text" ng-model="vm.newPosition.spec"></td>
+          <td class="col-md-1"><input class="col-md-12" type="text" ng-model="vm.newPosition.grossPrice"></td>
+          <td class="col-md-1"><input class="col-md-12" type="text" ng-model="vm.newPosition.total"></td>
+          <td class="col-md-1"><input class="col-md-12" type="text" ng-model="vm.newPosition.status"></td>
+          <td class="col-md-1"><input class="col-md-12" type="text" ng-model="vm.newPosition.dateShipped"></td>
+          <td class="col-md-2"><input class="col-md-12 btn btn-success" type="submit" value="Добавить" ng-click="vm.addNewPosition()"></td>
+        </tr>
+        <tr ng-repeat-start="position in vm.positions" ng-repeat-end>
+          <td class="col-md-1" ng-bind="position.dateCreated">&nbsp;</td>
+          <td class="col-md-2" ng-bind="position.contactName">&nbsp;</td>
+          <td class="col-md-1" ng-bind="position.type">&nbsp;</td>
+          <td class="col-md-2" ng-bind="position.spec">&nbsp;</td>
+          <td class="col-md-1" ng-bind="position.grossPrice">&nbsp;</td>
+          <td class="col-md-1" ng-bind="position.total">&nbsp;</td>
+          <td class="col-md-1" ng-bind="position.status">&nbsp;</td>
+          <td class="col-md-1" ng-bind="position.dateShipped">&nbsp;</td>
+          <td class="col-md-2" ng-bind="">&nbsp;</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
