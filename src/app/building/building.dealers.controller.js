@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('festima')
-  .controller('DealerListController', function (dealer) {
+  .controller('BuildingDealersController', function (dealer) {
     var vm = this;
 
     angular.extend(vm, {
@@ -11,7 +11,7 @@ angular.module('festima')
         });
       },
       // dealer: {},
-      addedDealers: [],
+      // addedDealers: [],
       refreshDealers: function (q) {
         vm.list(q).then(function (data) {
           vm.dealers = data;
@@ -30,6 +30,17 @@ angular.module('festima')
           }
         }
         vm.addedDealers.push(dealer);
+      },
+
+      saveDealers: function() {
+        for (var i=0; i<vm.addedDealers.length; i++) {
+          dealer.saveBuildingDealer(vm.buildingId, vm.addedDealers[i]).then(
+            function(response) {
+              // console.log('saved dealer: [buildingId:' + vm.buildingId + ', dealerId: ' + vm.addedDealers[i].id + ']');
+            },
+            null
+          );
+        }
       }
     });
   });

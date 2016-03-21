@@ -1,0 +1,40 @@
+<div class="container">
+  <h1 ng-bind="vm.building.name">&nbsp;</h1>
+
+  <div class="well">
+    <form ng-submit="vm.building.save()">
+      <div class="form-group">
+        <label for="name">Название</label>
+        <input type="text" class="form-control" ng-model="vm.building.name" id="name" placeholder="Название">
+      </div>
+      <div class="form-group">
+        <label for="address">Адрес</label>
+        <input type="text" class="form-control" ng-model="vm.building.address" id="address" placeholder="Адрес">
+      </div>
+      <div class="form-group">
+        <label for="client">Заказчик</label>
+        <input type="text" class="form-control" ng-model="vm.building.client" id="client" placeholder="Заказчик">
+      </div>
+      <div class="form-group">
+        <label for="project">Проектная организация</label>
+        <input type="text" class="form-control" ng-model="vm.building.project" id="project" placeholder="Проектная организация">
+      </div>
+      <div class="form-group">
+        <label for="manager">Менеджер</label>
+        <input type="text" class="form-control" ng-model="vm.building.manager" id="manager" placeholder="Менеджер">
+      </div>
+
+      <input type="submit" class="btn btn-success" value="Сохранить">
+      <a ng-href="#/building/show/{{vm.building.id}}">Отмена</a>
+    </form>
+
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Позиции</div>
+    <div class="panel-body">
+      <es-building-dealers added-dealers="vm.building.dealers" building-id="vm.building.id"></es-building-dealers>
+    </div>
+  </div>
+
+</div>

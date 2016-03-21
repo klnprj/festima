@@ -16,3 +16,7 @@
 table.table-vcenter tbody tr td {
   vertical-align: middle;
 }
+
+.glyphicon-chat:before {
+  content: "\e246";
+}

@@ -62,5 +62,17 @@
       "status": 1,
       "dateShipped": 1
     }
+  ],
+  "buildingDealers": [
+    {
+      "id": 1,
+      "buildingId": 1,
+      "dealerId": 1
+    },
+    {
+      "id": 2,
+      "buildingId": 2,
+      "dealerId": 2
+    }
   ]
 }

@@ -1,9 +1,14 @@
 angular.module('festima')
-  .directive('esDealerList', function() {
+  .directive('esBuildingDealerList', function() {
     return {
-      templateUrl: 'app/building/dealer-list.html',
+      templateUrl: 'app/building/building-dealer-list.html',
       scope: {
         dealers: '=data'
+      },
+      link: function($scope) {
+        $scope.save = function() {
+
+        }
       }
     };
 });

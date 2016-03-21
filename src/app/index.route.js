@@ -27,6 +27,11 @@
         controller: 'BuildingController',
         controllerAs: 'building'
       })
+      .when('/building/edit/:buildingId', {
+        templateUrl: 'app/building/building-edit.html',
+        controller: 'BuildingEditController',
+        controllerAs: 'vm'
+      })
       .when('/building/create', {
         templateUrl: 'app/building/building-create.html',
         controller: 'BuildingCreateController',
