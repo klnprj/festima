@@ -1,9 +1,8 @@
 angular.module('festima')
-  .directive('esBuildingDealers', function(dealer) {
+  .directive('esBuildingDealers', function() {
     return {
       scope: {
-        buildingId: '=',
-        addedDealers: '='
+        buildingId: '='
       },
       templateUrl: 'app/building/building-dealers.html',
       controllerAs: 'buildingDealersVm',

@@ -1,4 +1,11 @@
-<es-building-dealer-list data="buildingDealersVm.addedDealers"></es-building-dealer-list>
+
+<div ng-repeat="item in buildingDealersVm.buildingDealers">
+  <es-building-dealer building-dealer="item"></es-building-dealer>
+</div>
+
+<div ng-repeat="item in buildingDealersVm.unsavedBuildingDealers">
+  <es-building-dealer building-dealer="item"></es-building-dealer>
+</div>
 
 <div class="input-group">
   <ui-select ng-model="buildingDealersVm.dealer"

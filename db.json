@@ -52,7 +52,7 @@
   "positions": [
     {
       "id": 1,
-      "dealerId": 1,
+      "buildingDealerId": 1,
       "dateCreated": 1,
       "contactName": 1,
       "type": 1,

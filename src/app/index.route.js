@@ -25,7 +25,7 @@
       .when('/building/show/:buildingId', {
         templateUrl: 'app/building/building.html',
         controller: 'BuildingController',
-        controllerAs: 'building'
+        controllerAs: 'buildingVm'
       })
       .when('/building/edit/:buildingId', {
         templateUrl: 'app/building/building-edit.html',

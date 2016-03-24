@@ -15,14 +15,6 @@ angular.module('festima')
         }
 
         return $http.get('http://localhost:3000/api/dealers' + params);
-      },
-
-      listBuildingDealers: function(buildingId) {
-        return $http.get('http://localhost:3000/api/buildingDealers', {params: {buildingId: buildingId}});
-      },
-
-      saveBuildingDealer: function(buildingId, buildingDealer) {
-        return $http.post('http://localhost:3000/api/buildingDealers', {buildingId: buildingId, dealerId: buildingDealer.id});
       }
     });
 });
