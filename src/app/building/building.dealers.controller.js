@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('festima')
-  .controller('BuildingDealersController', function ($scope, dealer, buildingDealersManager) {
+  .controller('BuildingDealersController', function ($scope, dealers, buildingDealersManager) {
     var vm = this;
 
     vm.buildingDealers = [];
@@ -19,7 +19,7 @@ angular.module('festima')
 
     angular.extend(vm, {
       list: function (q) {
-        return dealer.list(q).then(function (response) {
+        return dealers.list(q).then(function (response) {
           return response.data;
         });
       },

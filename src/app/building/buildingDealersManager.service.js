@@ -1,5 +1,5 @@
 angular.module('festima')
-  .factory('buildingDealersManager', ['$http', '$q', 'BuildingDealer', 'dealer', function ($http, $q, BuildingDealer, dealer) {
+  .factory('buildingDealersManager', ['$http', '$q', 'BuildingDealer', 'dealers', function ($http, $q, BuildingDealer, dealers) {
 
     var buildingDealersManager = {
       _pool: {},
@@ -80,7 +80,7 @@ angular.module('festima')
               map[item.dealerId] = item;
             });
 
-            return dealer.listByIds(Object.keys(map)).then(
+            return dealers.listByIds(Object.keys(map)).then(
               function (response) {
                 var list = response.data;
 

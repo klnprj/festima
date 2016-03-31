@@ -52,6 +52,8 @@
   "positions": [
     {
       "id": 1,
+      "buildingId": 1,
+      "dealerId": 1,
       "buildingDealerId": 1,
       "dateCreated": 1,
       "contactName": 1,
@@ -61,6 +63,40 @@
       "total": 1,
       "status": 1,
       "dateShipped": 1
+    },
+    {
+      "id": 2,
+      "buildingId": 1,
+      "dealerId": 1,
+      "buildingDealerId": 1,
+      "dateCreated": 2,
+      "contactName": 2,
+      "type": 2,
+      "spec": 2,
+      "grossPrice": 2,
+      "total": 2,
+      "status": 2,
+      "dateShipped": 2
+    },
+    {
+      "id": 3,
+      "buildingId": 1,
+      "dealerId": 2,
+      "buildingDealerId": 2,
+      "dateCreated": 3,
+      "contactName": 3,
+      "type": 3,
+      "spec": 3,
+      "grossPrice": 3,
+      "total": 3,
+      "status": 3,
+      "dateShipped": 3
+    },
+    {
+      "buildingId": 1,
+      "dealerId": 1,
+      "grossPrice": 4,
+      "id": 4
     }
   ],
   "buildingDealers": [

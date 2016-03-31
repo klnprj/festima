@@ -1,12 +1,15 @@
 angular.module('festima')
   .directive('esBuildingDealer', function(positions) {
     return{
-      templateUrl: 'app/building/building-dealer.html',
+      templateUrl: 'app/building/positions/building-dealer.html',
       scope: {
-        buildingDealer: '='
+        buildingId: '=',
+        dealerId: '=',
+        dealerName: '=',
+        positions: '='
       },
       controller: 'BuildingDealerController',
-      controllerAs: 'vm',
+      controllerAs: 'dealerVm',
       bindToController: true
     }
 });
