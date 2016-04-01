@@ -3,29 +3,21 @@ angular.module('festima').factory('Building', ['$http', function($http) {
     if (data) {
       this.setData(data);
     }
-    // Some other initializations related to book
+    // some init
   };
   Building.prototype = {
     setData: function(data) {
       angular.extend(this, data);
     },
+    save: function() {
+      return $http.post('http://localhost:3000/api/buildings', this);
+    },
     delete: function() {
-      $http.delete('http://localhost:3000/api/buildings/' + id);
+      $http.delete('http://localhost:3000/api/buildings/' + this.id);
     },
     update: function() {
-      $http.put('http://localhost:3000/api/buildings/' + id, this);
+      $http.put('http://localhost:3000/api/buildings/' + this.id, this);
     },
-    // getImageUrl: function(width, height) {
-    //   return 'our/image/service/' + this.book.id + '/width/height';
-    // },
-    // isAvailable: function() {
-    //   if (!this.book.stores || this.book.stores.length === 0) {
-    //     return false;
-    //   }
-    //   return this.book.stores.some(function(store) {
-    //     return store.quantity > 0;
-    //   });
-    // }
   };
   return Building;
 }]);

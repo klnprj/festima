@@ -1,5 +1,5 @@
 angular.module('festima')
-  .factory('buildingsManager', ['$http', '$q', 'Building', 'buildingDealersManager', function($http, $q, Building, buildingDealersManager) {
+  .factory('buildingsManager', ['$http', '$q', 'Building', function($http, $q, Building) {
   var buildingsManager = {
     _pool: {},
     _retrieveInstance: function(id, data) {
@@ -25,14 +25,8 @@ angular.module('festima')
           var itemData = data;
           var item = scope._retrieveInstance(itemData.id, itemData);
 
-          buildingDealersManager.loadAllBuildingDealers(id).then(
-            function(buildingDealers) {
-              item.dealers = buildingDealers;
-            }
-          );
-
           deferred.resolve(item);
-          
+
         })
         .error(function() {
           deferred.reject();
@@ -45,10 +39,15 @@ angular.module('festima')
       if (item) {
         deferred.resolve(item);
       } else {
-        this._load(id, deferred);
+        if (id === undefined) {
+          deferred.resolve(this._retrieveInstance(null));
+        } else {
+          this._load(id, deferred);
+        }
       }
       return deferred.promise;
     },
+
     loadAllBuildings: function() {
       var deferred = $q.defer();
       var scope = this;
@@ -67,6 +66,7 @@ angular.module('festima')
         });
       return deferred.promise;
     },
+
     setBuilding: function(data) {
       var scope = this;
       var item = this._search(data.id);

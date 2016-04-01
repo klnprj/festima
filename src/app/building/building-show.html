@@ -1,0 +1,45 @@
+<div class="container">
+  <div class='page-header'>
+    <div class='btn-toolbar pull-right'>
+      <div class='btn-group'>
+        <a href="#/building/edit/{{buildingVm.building.id}}" class='btn btn-primary'>
+          <i class="fa fa-edit"></i> Редактировать
+        </a>
+      </div>
+    </div>
+    <h1 ng-bind="buildingVm.building.name">&nbsp;</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <dl class="dl-horizontal no-margin">
+        <dt>Заказчик</dt>
+        <dd ng-bind="buildingVm.building.client">&nbsp;</dd>
+        <dt>Проект</dt>
+        <dd ng-bind="buildingVm.building.project">&nbsp;</dd>
+      </dl>
+    </div>
+    <div class="col-md-6">
+      <dl class="dl-horizontal">
+        <dt>Генподрядчик</dt>
+        <dd></dd>
+        <dt>Субподрядчик</dt>
+        <dd></dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="jumbotron">
+        <address>
+          <strong ng-bind="buildingVm.building.name">&nbsp;</strong><br>
+          {{buildingVm.building.address}}
+        </address>
+        <p><a class="btn btn-lg btn-success" ng-href="#/building/list">Отлично!<span
+          class="glyphicon glyphicon-ok"></span></a></p>
+      </div>
+    </div>
+
+  </div>
+</div>

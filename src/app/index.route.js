@@ -23,8 +23,8 @@
         controllerAs: 'about'
       })
       .when('/building/show/:buildingId', {
-        templateUrl: 'app/building/building.html',
-        controller: 'BuildingController',
+        templateUrl: 'app/building/building-show.html',
+        controller: 'BuildingShowController',
         controllerAs: 'buildingVm'
       })
       .when('/building/edit/:buildingId', {
@@ -34,8 +34,8 @@
       })
       .when('/building/create', {
         templateUrl: 'app/building/building-create.html',
-        controller: 'BuildingCreateController',
-        controllerAs: 'building'
+        controller: 'BuildingEditController',
+        controllerAs: 'vm'
       })
       .otherwise({
         redirectTo: '/'

@@ -20,3 +20,7 @@ table.table-vcenter tbody tr td {
 .glyphicon-chat:before {
   content: "\e246";
 }
+
+.no-margin {
+  margin: 0;
+}
