@@ -4,7 +4,7 @@ angular.module('festima')
       templateUrl: 'app/building/positions/building-dealer.html',
       scope: {
         buildingId: '=',
-        model: '=',
+        building: '=',
         dealerId: '=',
         dealerName: '=',
         positions: '='

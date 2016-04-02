@@ -5,14 +5,15 @@ angular.module('festima')
     angular.extend(vm, {
 
       initNewPosition: function() {
+        var buildingId = vm.building.name;
         // return {buildingId: vm.buildingId, dealerId: vm.dealerId};
-        console.log(vm.model);
-        return {buildingId: vm.model.building.name, dealerId: vm.dealerId};
+        console.log(buildingId);
+        return {building: vm.building, dealerId: vm.dealerId};
       },
 
       refreshDealerPositions: function() {
         // positions.list1(vm.buildingId, vm.dealerId).then(function(response) {
-        positions.list1(vm.building.name, vm.dealerId).then(function(response) {
+        positions.list1(vm.building.id, vm.dealerId).then(function(response) {
           vm.positions = response.data;
         }, function(response) {
           console.log("couldn't load positions");

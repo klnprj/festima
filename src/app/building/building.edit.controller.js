@@ -42,6 +42,11 @@ angular.module('festima')
             for (var i = 0; i < dealerMap.positions.length; i++) {
               position = dealerMap.positions[i];
 
+              if (position.buildingId === undefined) {
+                position.buildingId = position.building.id;
+                delete position['building'];
+              }
+
               if (position.id === undefined) {
                 positions.create1(position).then(function (resp) {
                   position.id = resp.data.id;
@@ -68,7 +73,7 @@ angular.module('festima')
               vm.buildingId = response.data.id;
               vm.building = response.data;
               // vm.savePositions();
-              // $location.path('/building/show/' + vm.building.id);
+              $location.path('/building/show/' + vm.building.id);
             });
 
             return;
