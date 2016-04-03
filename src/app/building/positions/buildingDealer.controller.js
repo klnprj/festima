@@ -1,13 +1,11 @@
 angular.module('festima')
-  .controller('BuildingDealerController', function(positions) {
+  .controller('BuildingDealerController', function($uibModal, $log, positions) {
     var vm = this;
 
     angular.extend(vm, {
 
       initNewPosition: function() {
         var buildingId = vm.building.name;
-        // return {buildingId: vm.buildingId, dealerId: vm.dealerId};
-        console.log(buildingId);
         return {building: vm.building, dealerId: vm.dealerId};
       },
 
@@ -38,7 +36,29 @@ angular.module('festima')
 
       activePosition: function(item) {
           return item.removed === undefined;
-        }
+      },
+
+      openMessages: function (_position) {
+
+        var modalInstance = $uibModal.open({
+          animation: true,
+          templateUrl: 'app/building/positions/_messages-modal.html',
+          controller: 'PositionMessagesInstanceController',
+          size: 'lg',
+          resolve: {
+            position: function () {
+              return _position;
+            }
+          }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+          // $scope.selected = selectedItem;
+        }, function () {
+          $log.info('Modal dismissed at: ' + new Date());
+        });
+      }
+
     });
 
     vm.newPosition = vm.initNewPosition();
