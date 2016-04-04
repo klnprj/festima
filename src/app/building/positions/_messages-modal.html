@@ -4,15 +4,24 @@
     <!-- Modal content-->
     <!--<div class="modal-content">-->
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" ng-click="cancel()">&times;</button>
+        <button type="button" class="close" data-dismiss="modal" ng-click="messagesVm.cancel()">&times;</button>
         <h4 class="modal-title">Заметки по позиции</h4>
       </div>
       <div class="modal-body">
-        <p>Заметки</p>
+        <div ng-repeat="message in messagesVm.messages" class="media">
+          <div class="media-left"></div>
+          <div class="media-body">
+            <h4 class="media-heading">
+              <span ng-bind="message.author.name"></span>
+              <small>{{::message.dateCreated | date: 'dd.MM.yyyy HH:mm'}}</small>
+            </h4>
+            {{::message.text}}
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="ok()">OK</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="messagesVm.cancel()">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="messagesVm.ok()">OK</button>
       </div>
     <!--</div>-->
 

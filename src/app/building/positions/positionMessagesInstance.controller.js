@@ -1,11 +1,16 @@
-angular.module('festima').controller('PositionMessagesInstanceController', function ($scope, $uibModalInstance, position) {
+angular.module('festima')
+  .controller('PositionMessagesInstanceController', function ($scope, $uibModalInstance, position, messages) {
+    var vm = this;
 
-  $scope.ok = function () {
-    // $uibModalInstance.close($scope.selected.item);
-    $uibModalInstance.close(position);
-  };
+    vm.messages = messages;
 
-  $scope.cancel = function () {
-    $uibModalInstance.dismiss('cancel');
-  };
-});
+    vm.ok = function () {
+      // $uibModalInstance.close($scope.selected.item);
+      $uibModalInstance.close(position);
+    };
+
+    vm.cancel = function () {
+      $uibModalInstance.dismiss('cancel');
+    };
+  }
+);

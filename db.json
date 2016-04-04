@@ -99,16 +99,30 @@
       "id": 4
     }
   ],
-  "buildingDealers": [
+  "messages": [
     {
       "id": 1,
-      "buildingId": 1,
-      "dealerId": 1
+      "positionId": 1,
+      "authorId": 1,
+      "text": "Надо позвонить.",
+      "dateCreated": "2016-05-23T12:25:43.511Z"
     },
     {
       "id": 2,
-      "buildingId": 2,
-      "dealerId": 2
+      "positionId": 1,
+      "authorId": 2,
+      "text": "Позвонил.",
+      "dateCreated": "2015-05-24T10:47:12.511Z"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Владимир"
+    },
+    {
+      "id": 2,
+      "name": "Сергей"
     }
   ]
 }
