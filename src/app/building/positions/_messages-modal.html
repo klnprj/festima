@@ -8,7 +8,14 @@
         <h4 class="modal-title">Заметки по позиции</h4>
       </div>
       <div class="modal-body">
-        <div ng-repeat="message in messagesVm.messages" class="media">
+        <div class="form-group">
+          <div class="input-group">
+            <textarea class="form-control" row="3" placeholder="Новое сообщение" ng-model="messagesVm.newMessage.text"></textarea>
+            <span class="input-group-addon btn btn-primary input-lg" ng-click="messagesVm.addMessage(messagesVm.newMessage)">Добавить</span>
+          </div>
+        </div>
+
+        <div ng-repeat="message in messagesVm.messages | orderBy:'dateCreated':true " class="media">
           <div class="media-left"></div>
           <div class="media-body">
             <h4 class="media-heading">

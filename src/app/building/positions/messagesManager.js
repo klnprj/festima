@@ -55,6 +55,12 @@ angular.module('festima')
           .success(function (itemsArray) {
             var items = [];
             var item;
+
+            if (itemsArray.length == 0) {
+              deferred.resolve([]);
+              return;
+            }
+
             itemsArray.forEach(function (itemData) {
               usersManager.getUser(itemData.authorId).then(function(data) {
                 // delete itemData.authorId;

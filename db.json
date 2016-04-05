@@ -105,14 +105,14 @@
       "positionId": 1,
       "authorId": 1,
       "text": "Надо позвонить.",
-      "dateCreated": "2016-05-23T12:25:43.511Z"
+      "dateCreated": "2016-03-23T12:25:43+03:00"
     },
     {
       "id": 2,
       "positionId": 1,
       "authorId": 2,
       "text": "Позвонил.",
-      "dateCreated": "2015-05-24T10:47:12.511Z"
+      "dateCreated": "2016-03-24T10:47:12+03:00"
     }
   ],
   "users": [
