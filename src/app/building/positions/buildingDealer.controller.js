@@ -1,5 +1,5 @@
 angular.module('festima')
-  .controller('BuildingDealerController', function($uibModal, $log, positions, messages, messagesManager) {
+  .controller('BuildingDealerController', function($uibModal, $log, positions) {
     var vm = this;
 
     angular.extend(vm, {
@@ -36,37 +36,6 @@ angular.module('festima')
 
       activePosition: function(item) {
           return item.removed === undefined;
-      },
-
-      openMessages: function (_position) {
-        var _messages;
-        var modalInstance;
-
-        messagesManager.loadAllMessages(_position.id).then(function(data) {
-          _messages = data;
-
-          modalInstance = $uibModal.open({
-            animation: true,
-            templateUrl: 'app/building/positions/_messages-modal.html',
-            controller: 'PositionMessagesInstanceController',
-            controllerAs: 'messagesVm',
-            size: 'lg',
-            resolve: {
-              position: function () {
-                return _position;
-              },
-              messages: function() {
-                return _messages;
-              }
-            }
-          });
-
-          modalInstance.result.then(function (selectedItem) {
-            // $scope.selected = selectedItem;
-          }, function () {
-            $log.info('Modal dismissed at: ' + new Date());
-          });
-        });
       }
 
     });

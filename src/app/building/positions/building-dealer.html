@@ -48,9 +48,7 @@
         <td class="col-md-1 text-center" ng-bind="position.status">&nbsp;</td>
         <td class="col-md-1 text-center" ng-bind="position.dateShipped">&nbsp;</td>
         <td class="col-md-2 text-center">
-          <button class="btn btn-default" ng-click="dealerVm.openMessages(position)">
-            <span class="fa fa-comments"></span>
-          </button>
+          <messages-button position="position"></messages-button>
 
           <a class="btn text-warning">
             <i class="fa fa-pencil"></i>
