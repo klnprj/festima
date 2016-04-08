@@ -1,0 +1,29 @@
+<h2>Позиции</h2>
+
+<div ng-repeat="(dealerId, dealerMap) in dealersVm.service.buildingDealersMap">
+  <es-dealer-positions positions="dealerMap.positions" new-position="{building: dealersVm.building, dealerId: dealerId}"
+                      on-delete-position="dealersVm.removeDealerPosition(dealerId, position)"
+                      on-add-position="dealersVm.addDealerPosition(dealerId, position)">
+
+    <h4 ng-bind="dealerMap.name"></h4>
+  </es-dealer-positions>
+</div>
+
+<div class="input-group">
+  <ui-select ng-model="dealersVm.dealer"
+             theme="bootstrap"
+             ng-disabled="disabled"
+             reset-search-input="false">
+    <ui-select-match placeholder="Выбрать дилера...">{{$select.selected.name}}</ui-select-match>
+    <ui-select-choices repeat="dealer in dealersVm.service.dealers track by $index"
+                       refresh="dealersVm.service.refreshDealers($select.search)"
+                       refresh-delay="0">
+      <div ng-bind-html="dealersVm.dealer.name | highlight: $select.search"></div>
+    </ui-select-choices>
+  </ui-select>
+
+  <div class="input-group-btn">
+    <button class="btn btn-primary" ng-click="dealersVm.addDealer(dealersVm.dealer)" ng-disabled="!dealersVm.dealer">Добавить</button>
+  </div>
+</div>
+

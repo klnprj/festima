@@ -2,7 +2,9 @@
   <h1 ng-bind="vm.building.name">&nbsp;</h1>
 
   <div ng-include="'app/building/_form.html'"></div>
-  <div ng-include="'app/building/_positions.html'"></div>
+  <!--<div ng-include="'app/building/_positions.html'"></div>-->
+
+<es-building-dealers building-id="vm.buildingId" building="vm.building"></es-building-dealers>
 
   <hr>
 
