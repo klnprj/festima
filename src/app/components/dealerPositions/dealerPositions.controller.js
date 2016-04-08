@@ -1,5 +1,5 @@
 angular.module('festima')
-  .controller('BuildingDealerController', function() {
+  .controller('DealerPositionsController', function() {
     var vm = this;
 
     angular.extend(vm, {

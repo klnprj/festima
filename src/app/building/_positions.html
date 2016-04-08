@@ -1,12 +1,12 @@
 <h2>Позиции</h2>
 
 <div ng-repeat="(dealerId, dealerMap) in vm.buildingDealersMap">
-  <es-building-dealer positions="dealerMap.positions" new-position="{building: vm.building, dealerId: dealerId}"
+  <es-dealer-positions positions="dealerMap.positions" new-position="{building: vm.building, dealerId: dealerId}"
                       on-delete-position="vm.removeDealerPosition(dealerId, position)"
                       on-add-position="vm.addDealerPosition(dealerId, position)">
 
     <h4 ng-bind="dealerMap.name"></h4>
-  </es-building-dealer>
+  </es-dealer-positions>
 </div>
 
 <div class="input-group">

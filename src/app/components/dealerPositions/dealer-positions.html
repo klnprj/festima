@@ -19,19 +19,19 @@
       </thead>
       <tbody>
       <tr ng-form class="table-bordered">
-        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="dealerVm.inputPosition.dateCreated"></td>
-        <td class="col-md-2"><input class="col-md-12" type="text" ng-model="dealerVm.inputPosition.contactName"></td>
-        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="dealerVm.inputPosition.type"></td>
-        <td class="col-md-2"><input class="col-md-12" type="text" ng-model="dealerVm.inputPosition.spec"></td>
-        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="dealerVm.inputPosition.grossPrice"></td>
-        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="dealerVm.inputPosition.total"></td>
-        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="dealerVm.inputPosition.status"></td>
-        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="dealerVm.inputPosition.dateShipped"></td>
+        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="positionsVm.inputPosition.dateCreated"></td>
+        <td class="col-md-2"><input class="col-md-12" type="text" ng-model="positionsVm.inputPosition.contactName"></td>
+        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="positionsVm.inputPosition.type"></td>
+        <td class="col-md-2"><input class="col-md-12" type="text" ng-model="positionsVm.inputPosition.spec"></td>
+        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="positionsVm.inputPosition.grossPrice"></td>
+        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="positionsVm.inputPosition.total"></td>
+        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="positionsVm.inputPosition.status"></td>
+        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="positionsVm.inputPosition.dateShipped"></td>
         <td class="col-md-2">
-          <input class="col-md-12 btn btn-success" type="submit" value="Добавить" ng-click="dealerVm.addNewPosition()">
+          <input class="col-md-12 btn btn-success" type="submit" value="Добавить" ng-click="positionsVm.addNewPosition()">
         </td>
       </tr>
-      <tr ng-repeat-start="position in dealerVm.positions | filter:dealerVm.activePosition" ng-repeat-end>
+      <tr ng-repeat-start="position in positionsVm.positions | filter:positionsVm.activePosition" ng-repeat-end>
         <td class="col-md-1 text-center" ng-bind="position.dateCreated">&nbsp;</td>
         <td class="col-md-2 text-center" ng-bind="position.contactName">&nbsp;</td>
         <td class="col-md-1 text-center" ng-bind="position.type">&nbsp;</td>
@@ -47,7 +47,7 @@
             <i class="fa fa-pencil"></i>
           </a>
 
-          <a class="btn text-danger" ng-click="dealerVm.removePosition(position)">
+          <a class="btn text-danger" ng-click="positionsVm.removePosition(position)">
             <i class="fa fa-remove"></i>
           </a>
         </td>
