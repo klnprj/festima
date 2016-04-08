@@ -1,13 +1,6 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <!--<div class='btn-toolbar pull-right'>-->
-      <!--<div class='btn-group'>-->
-        <!--<a ng-href="#/building/create" class="btn btn-danger">-->
-          <!--Удалить дилера-->
-        <!--</a>-->
-      <!--</div>-->
-    <!--</div>-->
-    <h4 ng-bind="dealerVm.dealerName"></h4>
+    <ng-transclude></ng-transclude>
   </div>
   <div class="panel-body">
     <table class="table table-striped table-condensed table-vcenter">
@@ -26,14 +19,14 @@
       </thead>
       <tbody>
       <tr ng-form class="table-bordered">
-        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="dealerVm.newPosition.dateCreated"></td>
-        <td class="col-md-2"><input class="col-md-12" type="text" ng-model="dealerVm.newPosition.contactName"></td>
-        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="dealerVm.newPosition.type"></td>
-        <td class="col-md-2"><input class="col-md-12" type="text" ng-model="dealerVm.newPosition.spec"></td>
-        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="dealerVm.newPosition.grossPrice"></td>
-        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="dealerVm.newPosition.total"></td>
-        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="dealerVm.newPosition.status"></td>
-        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="dealerVm.newPosition.dateShipped"></td>
+        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="dealerVm.inputPosition.dateCreated"></td>
+        <td class="col-md-2"><input class="col-md-12" type="text" ng-model="dealerVm.inputPosition.contactName"></td>
+        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="dealerVm.inputPosition.type"></td>
+        <td class="col-md-2"><input class="col-md-12" type="text" ng-model="dealerVm.inputPosition.spec"></td>
+        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="dealerVm.inputPosition.grossPrice"></td>
+        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="dealerVm.inputPosition.total"></td>
+        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="dealerVm.inputPosition.status"></td>
+        <td class="col-md-1"><input class="col-md-12" type="text" ng-model="dealerVm.inputPosition.dateShipped"></td>
         <td class="col-md-2">
           <input class="col-md-12 btn btn-success" type="submit" value="Добавить" ng-click="dealerVm.addNewPosition()">
         </td>

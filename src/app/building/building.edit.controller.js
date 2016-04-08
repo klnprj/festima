@@ -118,6 +118,23 @@ angular.module('festima')
             });
           }
         },
+
+        addDealerPosition: function(dealerId, position) {
+          vm.buildingDealersMap[dealerId].positions.push(position);
+        },
+
+        removeDealerPosition: function(dealerId, position) {
+          var dealerMap = vm.buildingDealersMap[dealerId];
+
+          if (position.id === undefined) {
+            var index = dealerMap.positions.indexOf(position);
+            if(index !== -1) {
+              dealerMap.positions.splice(index, 1);
+            }
+          } else {
+            position.removed = true;
+          }
+        },
       });
 
       vm.refreshDealers();
