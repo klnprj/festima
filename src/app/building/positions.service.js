@@ -15,6 +15,9 @@ angular.module('festima')
       create1: function(position) {
         return $http.post('http://localhost:3000/api/positions', position);
       },
+      create2: function(positionData) {
+        return $http.post('http://localhost:3000/api/positions', positionData).then(function(resp) { return resp.data; });
+      },
       delete: function(positionId) {
         return $http.delete('http://localhost:3000/api/positions/' + positionId);
       }

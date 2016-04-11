@@ -1,18 +1,27 @@
-<!--<div class="container">-->
-  <h1 ng-bind="vm.building.name">&nbsp;</h1>
+<h1 ng-bind="vm.building.name">&nbsp;</h1>
 
-  <div ng-include="'app/building/_form.html'"></div>
-  <!--<div ng-include="'app/building/_positions.html'"></div>-->
+<div ng-include="'app/building/_form.html'"></div>
 
-<es-building-dealers building-id="vm.buildingId" building="vm.building"></es-building-dealers>
+<h2>Позиции</h2>
 
-  <hr>
+<div ng-repeat="(dealerId, dealerMap) in vm.dealersPositionsMap">
+  <es-dealer-positions positions="dealerMap.positions" new-position="{building: vm.building, dealerId: dealerId}"
+                       on-delete-position="vm.removeDealerPosition(dealerId, position)"
+                       on-add-position="vm.addDealerPosition(dealerId, position)">
 
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <button class="btn btn-lg btn-success" ng-click="vm.saveChanges()">Сохранить изменения</button>
-      <a ng-href="#/building/show/{{vm.building.id}}" class="btn">Отмена</a>
-    </div>
+    <h4 ng-bind="dealerMap.name"></h4>
+  </es-dealer-positions>
+</div>
+
+<es-add-dealer-button on-add-dealer="vm.addDealer(dealer)"
+                      on-check-added="vm.isAddedDealer(dealer)"></es-add-dealer-button>
+
+<hr>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <button class="btn btn-lg btn-success" ng-click="vm.saveChanges()">Сохранить изменения</button>
+    <a ng-href="#/building/show/{{vm.building.id}}" class="btn">Отмена</a>
   </div>
+</div>
 
-<!--</div>-->
