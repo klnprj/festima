@@ -3,11 +3,8 @@
 angular.module('festima')
   .service('dealers', function($http) {
     angular.extend(this, {
-      list: function(q) {
-        return $http.get('http://localhost:3000/api/dealers', {params: {q: q}});
-      },
-
-      list1: function(q) {
+      
+      findAllByQuery: function(q) {
         return $http.get('http://localhost:3000/api/dealers', {params: {q: q}}).then(function(resp) { return resp.data; });
       },
       

@@ -6,7 +6,7 @@ angular.module('festima')
       angular.extend(this, {
 
         getDealersPositionsMap: function(buildingId) {
-          return positions.list1(buildingId).then(function(response) {
+          return positions.listAllByBuilding(buildingId).then(function(response) {
             var dealerPositionsMap = {};
             var buildingPositions = response.data;
 
@@ -49,7 +49,7 @@ angular.module('festima')
             }
 
             if (angular.isUndefined(position.id)) {
-              positions.create2(position).then(function (savedPosition) {
+              positions.createPosition(position).then(function (savedPosition) {
                 position.id = savedPosition.id;
                 console.log('Saved position ' + position.id);
               });

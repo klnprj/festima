@@ -11,7 +11,7 @@ angular.module('festima')
     };
 
     vm.refreshDealers = function (q) {
-      dealers.list1().then(function (dealers) {
+      dealers.findAllByQuery().then(function (dealers) {
         vm.dealers = dealers;
       })
     };
