@@ -1,13 +1,11 @@
-<!--<div class="container">-->
-  <h1>Новый объект</h1>
+<h1>Новый объект</h1>
 
-  <div ng-include="'app/building/_form.html'"></div>
+<es-building-form building="vm.building"></es-building-form>
 
-  <hr>
+<hr>
 
-  <div>
-    <button class="btn btn-lg btn-success" ng-click="vm.saveChanges()">Создать</button>
-    <a ng-href="#/building/дшые" class="btn">Отмена</a>
-  </div>
+<div>
+  <button class="btn btn-lg btn-success" ng-click="vm.saveChanges()">Создать</button>
+  <a ng-href="#/building/list" class="btn">Отмена</a>
+</div>
 
-<!--</div>-->

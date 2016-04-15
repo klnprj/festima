@@ -1,19 +1,19 @@
 'use strict';
 
-angular
-  .module('festima')
-  .controller('BuildingCreateController', function($location, toastr, buildingService) {
+angular.module('festima')
+  .controller('BuildingCreateController', function($location, Building, toastr) {
     var vm = this;
 
-    angular.extend(vm, {
-      save: function() {
-        buildingService.save(vm.name, vm.address, vm.client, vm.project, vm.manager).then(
-          function() {
-            $location.path('/');
-            toastr.success('Новый объект "' + vm.name + '" добавлен!')
-          },
-          null
-        );
-      }
-    });
-});
+    vm.building = new Building();
+
+    vm.saveChanges = function () {
+      vm.building.save().then(function (building) {
+        vm.buildingId = building.id;
+        vm.building = building;
+        $location.path('/building/show/' + vm.building.id);
+      });
+
+      toastr.success('Новый объект "' + vm.building.name + '" добавлен!');
+    };
+  }
+);

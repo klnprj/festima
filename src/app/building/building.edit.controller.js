@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('festima')
   .controller('BuildingEditController', function ($routeParams, $location, toastr, buildingsManager, buildingDealersService) {
       var vm = this;
@@ -48,25 +50,14 @@ angular.module('festima')
       };
 
       vm.saveChanges = function () {
-        // save changes in building properties
-        if (vm.buildingId === undefined) {
-          vm.building.save().then(function (response) {
-            vm.buildingId = response.data.id;
-            vm.building = response.data;
-            $location.path('/building/show/' + vm.building.id);
-          });
-
-          return;
-        }
-
         vm.building.update();
 
         for (var dealerId in vm.dealersPositionsMap) {
           buildingDealersService.saveDealerPositions(dealerId, vm.dealersPositionsMap[dealerId].positions);
         }
-        
+
         $location.path('/building/show/' + vm.building.id);
       };
-    
+
     }
   );

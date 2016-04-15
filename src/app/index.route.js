@@ -34,7 +34,7 @@
       })
       .when('/building/create', {
         templateUrl: 'app/building/building-create.html',
-        controller: 'BuildingEditController',
+        controller: 'BuildingCreateController',
         controllerAs: 'vm'
       })
       .otherwise({

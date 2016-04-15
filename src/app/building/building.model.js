@@ -10,7 +10,9 @@ angular.module('festima').factory('Building', ['$http', function($http) {
       angular.extend(this, data);
     },
     save: function() {
-      return $http.post('http://localhost:3000/api/buildings', this);
+      return $http.post('http://localhost:3000/api/buildings', this).then(function(resp) {
+        return resp.data;
+      });
     },
     delete: function() {
       $http.delete('http://localhost:3000/api/buildings/' + this.id);
