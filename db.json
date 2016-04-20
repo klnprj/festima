@@ -37,19 +37,6 @@
       "manager": "Владимир",
       "name": "Лучи",
       "project": "Петров С.В."
-    },
-    {
-      "name": "test1",
-      "address": "test1",
-      "id": 5
-    },
-    {
-      "name": "test3",
-      "address": "test2",
-      "client": "test2",
-      "project": "test2",
-      "manager": "test2",
-      "id": 6
     }
   ],
   "dealers": [
@@ -104,18 +91,6 @@
       "total": 3,
       "status": 3,
       "dateShipped": 3
-    },
-    {
-      "buildingId": 1,
-      "dealerId": 1,
-      "grossPrice": 4,
-      "id": 4
-    },
-    {
-      "dealerId": 1,
-      "status": 12,
-      "buildingId": 6,
-      "id": 5
     }
   ],
   "messages": [
