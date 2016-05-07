@@ -31,6 +31,53 @@
           return deferred.promise;
         },
 
+        suggestions: function(q) {
+          var deferred = $q.defer();
+
+          dgis.ajax({
+            url: 'http://catalog.api.2gis.ru/2.0/suggest/list',
+            data: {
+              key: 'ruczoy1743',
+              output: 'json',
+              region_id: 32,
+              q: q
+            },
+            type: 'GET',
+            success: function(data) {
+              deferred.resolve(data.result.items);
+            },
+            error: function(error) {
+              console.log(error);
+              deferred.reject();
+            }
+          });
+
+          return deferred.promise;
+        },
+
+        getById: function(id) {
+          var deferred = $q.defer();
+
+          dgis.ajax({
+            url: 'http://catalog.api.2gis.ru/2.0/geo/get',
+            data: {
+              key: 'ruczoy1743',
+              id: id,
+              fields: 'items.geometry.centroid'
+            },
+            type: 'GET',
+            success: function(data) {
+              deferred.resolve(data.result.items[0]);
+            },
+            error: function(error) {
+              console.log(error);
+              deferred.reject();
+            }
+          });
+
+          return deferred.promise;
+        },
+
         searchAddress: function (q) {
           var point, lng, lat;
           var deferred = $q.defer();
@@ -73,7 +120,7 @@
               q: latLng[1] + ',' + latLng[0]
             },
             success: function (data) {
-              
+
               deferred.resolve(data.result[0]);
             },
             error: function (error) {
@@ -87,6 +134,12 @@
 
         getMarker: function(latLng) {
           return dgis.marker(latLng);
+        },
+
+        centroidToLatlng: function(wkt) {
+          var point = dgis.Wkt.toPoints(wkt);
+
+          return [point[1], point[0]];
         }
       });
     }

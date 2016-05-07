@@ -2,12 +2,7 @@
 
 <es-building-form building="vm.building"></es-building-form>
 
-<input type="text" ng-model="vm.address"/>
-<button class="btn btn-primary" ng-click="vm.searchAddress(vm.address)">
-  <i class="fa fa-search"></i>
-</button>
-
-<div id="map" style="width:500px; height:400px"></div>
+<es-building-address building="vm.building" on-address-selected="vm.onSelectAddress(address)"></es-building-address>
 
 <hr>
 
