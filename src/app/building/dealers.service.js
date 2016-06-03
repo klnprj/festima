@@ -1,15 +1,15 @@
 'use strict';
 
 angular.module('festima')
-  .service('dealers', function($http) {
+  .service('dealers', function($http, appConfig) {
     angular.extend(this, {
       
       findAllByQuery: function(q) {
-        return $http.get('http://localhost:3000/api/dealers', {params: {q: q}}).then(function(resp) { return resp.data; });
+        return $http.get(appConfig.apiUrl + '/dealers', {params: {q: q}}).then(function(resp) { return resp.data; });
       },
       
       listAll: function() {
-        return $http.get('http://localhost:3000/api/dealers').then(function(response) { return response.data; });
+        return $http.get(appConfig.apiUrl + '/dealers').then(function(response) { return response.data; });
       },
       
       mapAll: function() {
@@ -35,7 +35,7 @@ angular.module('festima')
           params += '&id=' + ids[i];
         }
 
-        return $http.get('http://localhost:3000/api/dealers' + params);
+        return $http.get(appConfig.apiUrl + '/dealers' + params);
       }
     });
 });

@@ -1,5 +1,5 @@
 angular.module('festima')
-  .factory('buildingsManager', ['$http', '$q', 'Building', function($http, $q, Building) {
+  .factory('buildingsManager', ['$http', '$q', 'appConfig', 'Building', function($http, $q, appConfig, Building) {
   var buildingsManager = {
     _pool: {},
     _retrieveInstance: function(id, data) {
@@ -20,7 +20,7 @@ angular.module('festima')
     _load: function(id, deferred) {
       var scope = this;
 
-      $http.get('http://localhost:3000/api/buildings/' + id)
+      $http.get(appConfig.apiUrl + '/buildings/' + id)
         .success(function(data) {
           var itemData = data;
           var item = scope._retrieveInstance(itemData.id, itemData);
@@ -51,7 +51,7 @@ angular.module('festima')
     loadAllBuildings: function() {
       var deferred = $q.defer();
       var scope = this;
-      $http.get('http://localhost:3000/api/buildings')
+      $http.get(appConfig.apiUrl + '/buildings')
         .success(function(itemsArray) {
           var items = [];
           itemsArray.forEach(function(itemData) {

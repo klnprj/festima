@@ -8,18 +8,11 @@
  * Controller of the festimaApp
  */
 angular.module('festima')
-  .controller('BuildingListController', function ($scope, buildingService, buildingsManager) {
+  .controller('BuildingListController', function ($scope, buildingsManager) {
     var vm = this;
     angular.extend(vm, {
       buildings: []
     });
-
-    // buildingService.list().then(
-    //   function(response) {
-    //     vm.buildings = response.data;
-    //   },
-    //   null
-    // );
 
     buildingsManager.loadAllBuildings().then(
       function(buildings) {

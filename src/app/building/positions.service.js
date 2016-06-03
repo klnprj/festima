@@ -1,16 +1,16 @@
 'use strict';
 
 angular.module('festima')
-  .service('positions', function($http) {
+  .service('positions', function($http, appConfig) {
     angular.extend(this, {
       listAllByBuilding: function(buildingId) {
-        return $http.get('http://localhost:3000/api/positions', {params: {buildingId: buildingId}});
+        return $http.get(appConfig.apiUrl + '/positions', {params: {buildingId: buildingId}});
       },
       createPosition: function(positionData) {
-        return $http.post('http://localhost:3000/api/positions', positionData).then(function(resp) { return resp.data; });
+        return $http.post(appConfig.apiUrl + '/positions', positionData).then(function(resp) { return resp.data; });
       },
       delete: function(positionId) {
-        return $http.delete('http://localhost:3000/api/positions/' + positionId);
+        return $http.delete(appConfig.apiUrl + '/positions/' + positionId);
       }
     });
   }

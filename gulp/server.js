@@ -60,7 +60,7 @@ browserSync.use(browserSyncSpa({
 
 gulp.task('serve', ['watch'], function () {
   browserSyncInit([path.join(conf.paths.tmp, '/serve'), conf.paths.src]);
-  jsonServer.start({baseUrl: '/api'});
+  // jsonServer.start({baseUrl: '/api'});
 });
 
 gulp.task('serve:dist', ['build'], function () {

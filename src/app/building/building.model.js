@@ -1,4 +1,5 @@
-angular.module('festima').factory('Building', ['$http', function($http) {
+angular.module('festima').factory('Building', ['$http', 'appConfig', function($http, appConfig) {
+  
   function Building(data) {
     if (data) {
       this.setData(data);
@@ -10,15 +11,15 @@ angular.module('festima').factory('Building', ['$http', function($http) {
       angular.extend(this, data);
     },
     save: function() {
-      return $http.post('http://localhost:3000/api/buildings', this).then(function(resp) {
+      return $http.post(appConfig.apiUrl + '/buildings', this).then(function(resp) {
         return resp.data;
       });
     },
     delete: function() {
-      $http.delete('http://localhost:3000/api/buildings/' + this.id);
+      $http.delete(appConfig.apiUrl + '/buildings/' + this.id);
     },
     update: function() {
-      $http.put('http://localhost:3000/api/buildings/' + this.id, this);
+      $http.put(appConfig.apiUrl + '/buildings/' + this.id, this);
     },
   };
   return Building;
