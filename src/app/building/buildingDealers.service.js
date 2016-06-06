@@ -14,7 +14,7 @@ angular.module('festima')
 
               var dealerId;
               for (var i = 0; i < buildingPositions.length; i++) {
-                dealerId = buildingPositions[i].dealerId;
+                dealerId = buildingPositions[i].dealer.id;
 
                 if (angular.isUndefined(dealerPositionsMap[dealerId])) {
                   dealerPositionsMap[dealerId] = {name: mapOfDealers[dealerId].name, positions: []};

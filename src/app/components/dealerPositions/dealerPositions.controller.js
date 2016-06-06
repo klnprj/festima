@@ -12,7 +12,7 @@ angular.module('festima')
       },
 
       removePosition: function(position) {
-        vm.onDeletePosition({dealerId: position.dealerId, position: position});
+        vm.onDeletePosition({dealerId: position.dealer.id, position: position});
       },
 
       activePosition: function(item) {
