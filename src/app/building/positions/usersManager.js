@@ -1,5 +1,5 @@
 angular.module('festima')
-  .factory('usersManager', ['$http', '$q', 'User', function ($http, $q, User) {
+  .factory('usersManager', ['$http', '$q', 'appConfig', 'User', function ($http, $q, appConfig, User) {
     var usersManager = {
       _pool: {},
       _retrieveInstance: function (id, data) {
@@ -20,7 +20,7 @@ angular.module('festima')
       _load: function (id, deferred) {
         var scope = this;
 
-        $http.get('http://localhost:3000/api/users/' + id)
+        $http.get(appConfig.apiUrl + '/users/' + id)
           .success(function (data) {
             var itemData = data;
             var item = scope._retrieveInstance(itemData.id, itemData);
@@ -47,7 +47,7 @@ angular.module('festima')
       loadAllUsers: function () {
         var deferred = $q.defer();
         var scope = this;
-        $http.get('http://localhost:3000/api/users')
+        $http.get(appConfig.apiUrl + '/users')
           .success(function (itemsArray) {
             var items = [];
             itemsArray.forEach(function (itemData) {

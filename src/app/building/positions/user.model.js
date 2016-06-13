@@ -1,5 +1,5 @@
 angular.module('festima')
-  .factory('User', ['$http', function ($http) {
+  .factory('User', ['$http', 'appConfig', function ($http, appConfig) {
       function User(data) {
         if (data) {
           this.setData(data);
@@ -12,13 +12,13 @@ angular.module('festima')
           angular.extend(this, data);
         },
         save: function () {
-          return $http.post('http://localhost:3000/api/users', this);
+          return $http.post(appConfig.apiUrl + '/users', this);
         },
         delete: function () {
-          $http.delete('http://localhost:3000/api/users/' + this.id);
+          $http.delete(appConfig.apiUrl + '/users/' + this.id);
         },
         update: function () {
-          $http.put('http://localhost:3000/api/users/' + this.id, this);
+          $http.put(appConfig.apiUrl + '/users/' + this.id, this);
         },
       };
       return User;

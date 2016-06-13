@@ -1,5 +1,5 @@
 angular.module('festima')
-  .factory('messagesManager', ['$http', '$q', 'Message', 'usersManager', function ($http, $q, Message, usersManager) {
+  .factory('messagesManager', ['$http', '$q', 'Message', 'usersManager', 'appConfig', function ($http, $q, Message, usersManager, appConfig) {
     var messagesManager = {
       _pool: {},
       _retrieveInstance: function (id, data) {
@@ -20,7 +20,7 @@ angular.module('festima')
       _load: function (id, deferred) {
         var scope = this;
 
-        $http.get('http://localhost:3000/api/messages/' + id)
+        $http.get(appConfig.apiUrl + '/messages/' + id)
           .success(function (data) {
             var itemData = data;
             var item;
@@ -51,7 +51,7 @@ angular.module('festima')
       loadAllMessages: function (positionId) {
         var deferred = $q.defer();
         var scope = this;
-        $http.get('http://localhost:3000/api/messages', {params: {positionId: positionId}})
+        $http.get(appConfig.apiUrl + '/messages', {params: {positionId: positionId}})
           .success(function (itemsArray) {
             var items = [];
             var item;

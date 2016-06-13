@@ -1,5 +1,5 @@
 angular.module('festima')
-  .factory('Message', ['$http', '$q', function ($http, $q) {
+  .factory('Message', ['$http', '$q', 'appConfig', function ($http, $q, appConfig) {
       function Message(data) {
         if (data) {
           this.setData(data);
@@ -16,7 +16,7 @@ angular.module('festima')
           var self = this;
 
           if (this.id === undefined) {
-            $http.post('http://localhost:3000/api/messages', this).then(
+            $http.post(appConfig.apiUrl + '/messages', this).then(
               function(response) {
                 angular.extend(self, response.data);
                 deferred.resolve(self.id)
@@ -33,10 +33,10 @@ angular.module('festima')
           return deferred.promise;
         },
         delete: function () {
-          $http.delete('http://localhost:3000/api/messages/' + this.id);
+          $http.delete(appConfig.apiUrl + '/messages/' + this.id);
         },
         update: function () {
-          $http.put('http://localhost:3000/api/messages/' + this.id, this);
+          $http.put(appConfig.apiUrl + '/messages/' + this.id, this);
         },
       };
       return Message;
