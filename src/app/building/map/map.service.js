@@ -140,6 +140,32 @@
           var point = dgis.Wkt.toPoints(wkt);
 
           return [point[1], point[0]];
+        },
+
+        search: function(q) {
+          var deferred = $q.defer();
+
+          dgis.ajax({
+            url: 'http://catalog.api.2gis.ru/2.0/catalog/branch/search',
+
+            data: {
+              key: 'ruewin2963',
+              q: q,
+              region_id: 32,
+              // fields: 'dym,request_type,items.adm_div,items.contact_groups,items.flags,items.address,items.rubrics,items.name_ex,items.point,items.external_content,items.org,items.group,filters,hash,search_attributes'
+              fields: 'items.address,items.name_ex,items.point,search_attributes'
+            },
+            success: function (data) {
+
+              deferred.resolve(data.result.items[0]);
+            },
+            error: function (error) {
+              console.log(error);
+              deferred.reject();
+            }
+          });
+
+          return deferred.promise;
         }
       });
     }
