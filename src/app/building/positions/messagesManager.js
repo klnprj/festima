@@ -25,7 +25,7 @@ angular.module('festima')
             var itemData = data;
             var item;
 
-            usersManager.getUser(itemData.authorId).then(function(data) {
+            usersManager.getUser(itemData.author.id).then(function(data) {
               // delete itemData.authorId;
               itemData.author = data;
               item = scope._retrieveInstance(itemData.id, itemData);
@@ -62,7 +62,7 @@ angular.module('festima')
             }
 
             itemsArray.forEach(function (itemData) {
-              usersManager.getUser(itemData.authorId).then(function(data) {
+              usersManager.getUser(itemData.author.id).then(function(data) {
                 // delete itemData.authorId;
                 itemData.author = data;
                 item = scope._retrieveInstance(itemData.id, itemData);
