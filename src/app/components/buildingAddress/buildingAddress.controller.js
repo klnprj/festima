@@ -52,7 +52,9 @@ angular.module('festima')
     };
 
     vm.onSelect = function(itemData, model, label) {
-      maps.getById(itemData.id).then(function(item) {
+      maps.search(itemData.hint.text).then(function(items) {
+        var item = items[0];
+        
         if (typeof vm.marker !== 'undefined') {
           vm.map.removeLayer(vm.marker);
         }
