@@ -2,62 +2,66 @@
 
 angular.module('festima')
   .controller('BuildingEditController', function ($routeParams, $location, toastr, buildingsManager, buildingDealersService) {
-      var vm = this;
+    var vm = this;
 
-      vm.buildingId = $routeParams.buildingId;
+    vm.buildingId = $routeParams.buildingId;
 
-      buildingsManager.getBuilding(vm.buildingId).then(
-        function (building) {
-          vm.building = building;
-        },
-        function () {
-          toastr.info('Объект не найден');
-          $location.url('/building/list');
+    buildingsManager.getBuilding(vm.buildingId).then(
+      function (building) {
+        vm.building = building;
+      },
+      function () {
+        toastr.info('Объект не найден');
+        $location.url('/building/list');
+      }
+    );
+
+    buildingDealersService.getDealersPositionsMap(vm.buildingId).then(function (mapOfDealersPositions) {
+      vm.dealersPositionsMap = mapOfDealersPositions;
+    });
+
+    vm.addDealerPosition = function (dealerId, position) {
+      vm.dealersPositionsMap[dealerId].positions.push(position);
+    };
+
+    vm.removeDealerPosition = function (dealerId, position) {
+      var dealerPositions = vm.dealersPositionsMap[dealerId].positions;
+
+      if (position.id === undefined) {
+        var index = dealerPositions.indexOf(position);
+        if (index !== -1) {
+          dealerPositions.splice(index, 1);
         }
-      );
+      } else {
+        position.removed = true;
+      }
+    };
 
-      buildingDealersService.getDealersPositionsMap(vm.buildingId).then(function (mapOfDealersPositions) {
-        vm.dealersPositionsMap = mapOfDealersPositions;
-      });
+    vm.addDealer = function (dealer) {
+      if (!vm.isAddedDealer(dealer)) {
+        vm.dealersPositionsMap[dealer.id] = {name: dealer.name, positions: []};
+      }
+    };
 
-      vm.addDealerPosition = function (dealerId, position) {
-        vm.dealersPositionsMap[dealerId].positions.push(position);
-      };
+    vm.isAddedDealer = function (dealer) {
+      var index = Object.keys(vm.dealersPositionsMap).indexOf(String(dealer.id));
 
-      vm.removeDealerPosition = function (dealerId, position) {
-        var dealerPositions = vm.dealersPositionsMap[dealerId].positions;
+      return index >= 0;
+    };
 
-        if (position.id === undefined) {
-          var index = dealerPositions.indexOf(position);
-          if (index !== -1) {
-            dealerPositions.splice(index, 1);
-          }
-        } else {
-          position.removed = true;
-        }
-      };
+    vm.saveChanges = function () {
+      vm.building.update();
 
-      vm.addDealer = function (dealer) {
-        if (!vm.isAddedDealer(dealer)) {
-          vm.dealersPositionsMap[dealer.id] = {name: dealer.name, positions: []};
-        }
-      };
+      for (var dealerId in vm.dealersPositionsMap) {
+        buildingDealersService.saveDealerPositions(dealerId, vm.dealersPositionsMap[dealerId].positions);
+      }
 
-      vm.isAddedDealer = function (dealer) {
-        var index = Object.keys(vm.dealersPositionsMap).indexOf(String(dealer.id));
+      $location.path('/building/show/' + vm.building.id);
+    };
 
-        return index >= 0;
-      };
-
-      vm.saveChanges = function () {
-        vm.building.update();
-
-        for (var dealerId in vm.dealersPositionsMap) {
-          buildingDealersService.saveDealerPositions(dealerId, vm.dealersPositionsMap[dealerId].positions);
-        }
-
-        $location.path('/building/show/' + vm.building.id);
-      };
-
-    }
-  );
+    vm.onSelectAddress = function(address) {
+      vm.building.address = address.full_name;
+      vm.building.location = address.geometry.centroid;
+    };
+  }
+);

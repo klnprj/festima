@@ -2,6 +2,8 @@
 
 <es-building-form building="vm.building"></es-building-form>
 
+<es-building-address ng-if="vm.building" building="vm.building" on-address-selected="vm.onSelectAddress(address)"></es-building-address>
+
 <h2>Позиции</h2>
 
 <div ng-repeat="(dealerId, dealerMap) in vm.dealersPositionsMap">

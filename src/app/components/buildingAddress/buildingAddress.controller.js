@@ -2,27 +2,33 @@ angular.module('festima')
   .controller('BuildingAddressController', function(maps) {
     var vm = this;
 
-    maps.initMap().then(function(map) {
-      vm.map = map;
+    var latLng;
 
-      vm.map.on('click', function (e) {
-        var latLng = [e.latlng.lat, e.latlng.lng];
-        console.log(latLng);
+    DG.then(function() {
+      latLng = maps.centroidToLatlng(vm.building.location);
 
-        maps.searchCoords(latLng).then(function (location) {
-          vm.location = location;
-          vm.address = location.name;
+      maps.initMap(latLng).then(function(map) {
+        vm.map = map;
 
-          if (typeof vm.marker !== 'undefined') {
-            vm.map.removeLayer(vm.marker);
-          }
+        vm.map.on('click', function (e) {
+          var latLng = [e.latlng.lat, e.latlng.lng];
+          console.log(latLng);
 
-          vm.marker = maps.getMarker(latLng);
-          var text = location.name + '.<br />';
+          maps.searchCoords(latLng).then(function (location) {
+            vm.location = location;
+            vm.address = location.name;
 
-          text += location.attributes.buildingname;
-          vm.marker.bindPopup(text);
-          vm.marker.addTo(vm.map);
+            if (typeof vm.marker !== 'undefined') {
+              vm.map.removeLayer(vm.marker);
+            }
+
+            vm.marker = maps.getMarker(latLng);
+            var text = location.name + '.<br />';
+
+            text += location.attributes.buildingname;
+            vm.marker.bindPopup(text);
+            vm.marker.addTo(vm.map);
+          });
         });
       });
     });
@@ -54,7 +60,7 @@ angular.module('festima')
     vm.onSelect = function(itemData, model, label) {
       maps.search(itemData.hint.text).then(function(items) {
         var item = items[0];
-        
+
         if (typeof vm.marker !== 'undefined') {
           vm.map.removeLayer(vm.marker);
         }
