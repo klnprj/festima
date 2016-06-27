@@ -4,8 +4,13 @@ angular.module('festima')
 
     var latLng;
 
+    vm.asyncSelected = vm.building.address;
+
     DG.then(function() {
-      latLng = maps.centroidToLatlng(vm.building.location);
+
+      if (!angular.isUndefined(vm.building.location)) {
+        latLng = maps.centroidToLatlng(vm.building.location);
+      }
 
       maps.initMap(latLng).then(function(map) {
         vm.map = map;
@@ -74,7 +79,7 @@ angular.module('festima')
         // центрируем карту в координаты маркера
         vm.map.panTo(latLng);
 
-        vm.asyncSelected = '';
+        vm.asyncSelected = item.full_name;
         vm.onAddressSelected({address: item});
       });
     };

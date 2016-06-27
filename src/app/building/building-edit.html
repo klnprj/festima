@@ -1,8 +1,8 @@
 <h1 ng-bind="vm.building.name">&nbsp;</h1>
 
-<es-building-form building="vm.building"></es-building-form>
-
-<es-building-address ng-if="vm.building" building="vm.building" on-address-selected="vm.onSelectAddress(address)"></es-building-address>
+<es-building-form building="vm.building">
+  <es-building-address building="vm.building" on-address-selected="vm.onSelectAddress(address)"></es-building-address>
+</es-building-form>
 
 <h2>Позиции</h2>
 

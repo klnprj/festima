@@ -4,5 +4,6 @@ angular.module('festima').component('esBuildingForm', {
     building: '<'
   },
   controller: 'BuildingFormController',
-  controllerAs: 'buildingFormVm'
+  controllerAs: 'buildingFormVm',
+  transclude: true
 });
