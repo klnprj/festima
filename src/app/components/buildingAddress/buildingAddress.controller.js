@@ -4,11 +4,13 @@ angular.module('festima')
 
     var latLng;
 
-    vm.asyncSelected = vm.building.address;
+    if (angular.isDefined(vm.building)) {
+      vm.asyncSelected = vm.building.address;
+    }
 
     DG.then(function() {
 
-      if (!angular.isUndefined(vm.building.location)) {
+      if (angular.isDefined(vm.building) && angular.isDefined(vm.building.location)) {
         latLng = maps.centroidToLatlng(vm.building.location);
       }
 

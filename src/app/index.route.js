@@ -37,6 +37,11 @@
         controller: 'BuildingCreateController',
         controllerAs: 'vm'
       })
+      .when('/address/list', {
+        templateUrl: 'app/address/address-list.html',
+        contoller: 'AddressListController',
+        controllerAs: 'vm'
+      })
       .otherwise({
         redirectTo: '/'
       });
