@@ -39,7 +39,7 @@
       })
       .when('/address/list', {
         templateUrl: 'app/address/address-list.html',
-        contoller: 'AddressListController',
+        controller: 'AddressListController',
         controllerAs: 'vm'
       })
       .otherwise({

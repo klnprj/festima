@@ -8,4 +8,8 @@
   <h1>Адреса</h1>
 </div>
 
-<es-building-address></es-building-address>
+<es-building-address on-address-selected="vm.onSelectAddress(address)"></es-building-address>
+
+<ul>
+  <li ng-repeat="building in vm.buildings">{{building.name}} ({{building.address}})</li>
+</ul>
