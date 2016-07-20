@@ -1,10 +1,10 @@
 (function(app) {
   'use strict';
 
-  app.controller('AddressListController', function(maps, addresses) {
+  app.controller('AddressListController', function(_, maps, addresses) {
     var vm = this;
 
-    vm.buildings = [];
+    // vm.buildings = [];
 
     vm.onSelectAddress = function(address) {
       console.log('Selected address', address);
