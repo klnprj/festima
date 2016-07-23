@@ -17,6 +17,7 @@ angular.module('festima')
     };
 
     vm.onSelectAddress = function(address) {
+      vm.addressObject = address;
       vm.building.address = address.full_name;
       vm.building.location = address.geometry.centroid;
     };

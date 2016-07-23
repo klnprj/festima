@@ -7,16 +7,7 @@
     // vm.buildings = [];
 
     vm.onSelectAddress = function(address) {
-      console.log('Selected address', address);
-
-      var latLng = maps.centroidToLatlng(address.geometry.centroid);
-      var buildings = addresses.listWithinRadius(latLng, 1000).then(
-        function(buildings) {
-          vm.buildings = buildings;
-        }
-      );
-
-      console.log(latLng);
+      vm.addressObject = address;
     };
   });
 

@@ -10,15 +10,4 @@
 
 <es-building-address on-address-selected="vm.onSelectAddress(address)"></es-building-address>
 
-<div ng-if="vm.buildings.length > 0">
-  <h2>Найдены объекты в радиусе 1 км</h2>
-  <div class="row">
-  </div>
-  <ul>
-    <li ng-repeat="building in vm.buildings">{{building.name}} ({{building.address}})</li>
-  </ul>
-</div>
-
-<div ng-if="vm.buildings.length == 0">
-  <h2>Ничего не найдено в радиусе 1 км</h2>
-</div>
+<es-buildings-nearby address="vm.addressObject"></es-buildings-nearby>
