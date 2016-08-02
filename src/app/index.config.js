@@ -18,4 +18,13 @@
     toastrConfig.progressBar = true;
   }
 
+  angular.module('festima', ['angular-oauth2'])
+    .config(['OAuthProvider', function(OAuthProvider) {
+      OAuthProvider.configure({
+        baseUrl: 'http://localhost:8080',
+        clientId: 'estima-client'
+        // clientSecret: 'CLIENT_SECRET' // optional
+      });
+    }]);
+
 })();
