@@ -3,7 +3,26 @@
 
   angular
     .module('festima')
-    .config(config);
+    .config(config)
+    .config(['OAuthProvider', function(OAuthProvider) {
+      OAuthProvider.configure({
+        grantPath: '/oauth/token',
+        revokePath: '/oauth/revoke',
+        baseUrl: 'http://localhost:8080',
+        clientId: 'estima-client',
+        options: {
+          secure: false
+        }
+      });
+    }])
+    .config(['OAuthTokenProvider', function(OAuthTokenProvider) {
+      OAuthTokenProvider.configure({
+        name: 'token',
+        options: {
+          secure: false
+        }
+      });
+    }]);
 
   /** @ngInject */
   function config($logProvider, toastrConfig) {
@@ -17,14 +36,5 @@
     toastrConfig.preventDuplicates = true;
     toastrConfig.progressBar = true;
   }
-
-  angular.module('festima', ['angular-oauth2'])
-    .config(['OAuthProvider', function(OAuthProvider) {
-      OAuthProvider.configure({
-        baseUrl: 'http://localhost:8080',
-        clientId: 'estima-client'
-        // clientSecret: 'CLIENT_SECRET' // optional
-      });
-    }]);
 
 })();

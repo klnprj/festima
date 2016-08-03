@@ -3,15 +3,7 @@
 
   angular
     .module('festima')
-    .run(runBlock);
-
-  /** @ngInject */
-  function runBlock($log) {
-
-    $log.debug('runBlock end');
-  }
-
-  angular.module('myApp', ['angular-oauth2'])
+    .run(runBlock)
     .run(['$rootScope', '$window', 'OAuth', function($rootScope, $window, OAuth) {
       $rootScope.$on('oauth:error', function(event, rejection) {
         // Ignore `invalid_grant` error - should be catched on `LoginController`.
@@ -28,5 +20,11 @@
         return $window.location.href = '/login?error_reason=' + rejection.data.error;
       });
     }]);
+
+  /** @ngInject */
+  function runBlock($log) {
+
+    $log.debug('runBlock end');
+  }
 
 })();
