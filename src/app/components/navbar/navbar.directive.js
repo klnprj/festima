@@ -21,7 +21,7 @@
     return directive;
 
     /** @ngInject */
-    function NavbarController($http, appConfig, moment, OAuth, OAuthToken) {
+    function NavbarController($http, httpq, appConfig, moment, OAuth, OAuthToken, spinnerService) {
       var vm = this;
       vm.isAuthenticated = OAuth.isAuthenticated();
 
@@ -31,11 +31,18 @@
       vm.login = function() {
         var user = {username: vm.email, password: vm.password, scope: 'read'};
         var options = {};
+
+        spinnerService.show("authSpinner");
+
         OAuth.getAccessToken(user, options).then(function(response) {
           vm.isAuthenticated = OAuth.isAuthenticated();
           $http.get(appConfig.apiUrl + '/users', {params: {email: vm.email}}).then(function(response) {
             vm.user = response.data[0];
           });
+        }).catch(function(e) {
+          console.error('Auth error: ', e);
+        }).finally(function() {
+          spinnerService.hide('authSpinner');
         });
       };
 

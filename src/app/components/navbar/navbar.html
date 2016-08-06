@@ -15,7 +15,6 @@
         <li><a ng-href="#/about">О системе</a></li>
       </ul>
 
-
       <ul class="nav navbar-nav navbar-right">
         <!--<li><p class="navbar-text">Already have an account?</p></li>-->
         <li ng-if="vm.isAuthenticated"><p class="navbar-text" ng-bind="vm.user.name"></p></li>
@@ -59,6 +58,7 @@
           </ul>
         </li>
       </ul>
+      <span class="nav navbar-nav navbar-right" style="padding-top: 10px;"><spinner name="authSpinner" img-src="assets/images/ajax-loader.gif"></spinner></span>
     </div>
   </div>
 </nav>

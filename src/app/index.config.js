@@ -22,7 +22,17 @@
           secure: false
         }
       });
-    }]);
+    }]).factory('httpq', function($http, $q) {
+    return {
+      get: function() {
+        var deferred = $q.defer();
+        $http.get.apply(null, arguments)
+          .success(deferred.resolve)
+          .error(deferred.resolve);
+        return deferred.promise;
+      }
+    }
+  });
 
   /** @ngInject */
   function config($logProvider, toastrConfig) {
