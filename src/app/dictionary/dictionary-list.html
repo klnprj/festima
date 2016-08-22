@@ -1,0 +1,25 @@
+<!--<div class="container-fluid">-->
+  <!--<div class="row" ng-repeat="dictionary in vm.dictionaries">-->
+    <!--<div class="col-md-4" ng-bind="dictionary.title"></div>-->
+    <!--<div class="col-md-8">hello</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+<div class='page-header'>
+  <h1>Справочники</h1>
+</div>
+
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+    <th class="col-md-4">Название</th>
+    <th class="col-md-8"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="dictionary in vm.dictionaries">
+    <td><a href="#/dictionaries/{{::dictionary.key}}" ng-bind="dictionary.title"></a></td>
+    <td>hello</td>
+  </tr>
+  </tbody>
+</table>

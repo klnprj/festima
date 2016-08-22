@@ -42,6 +42,16 @@
         controller: 'AddressListController',
         controllerAs: 'vm'
       })
+      .when('/dictionaries/list', {
+        templateUrl: 'app/dictionary/dictionary-list.html',
+        controller: 'DictionaryListController',
+        controllerAs: 'vm'
+      })
+      .when('/dictionaries/:key', {
+        templateUrl: 'app/dictionary/dictionary-show.html',
+        controller: 'DictionaryShowController',
+        controllerAs: 'vm'
+      })
       .otherwise({
         redirectTo: '/'
       });
