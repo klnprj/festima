@@ -22,17 +22,14 @@
           secure: false
         }
       });
-    }]).factory('httpq', function($http, $q) {
-    return {
-      get: function() {
-        var deferred = $q.defer();
-        $http.get.apply(null, arguments)
-          .success(deferred.resolve)
-          .error(deferred.resolve);
-        return deferred.promise;
-      }
-    }
-  });
+    }]).config(['$httpProvider', function($httpProvider) {
+      $httpProvider.interceptors.push([
+        '$injector',
+        function ($injector) {
+          return $injector.get('AuthInterceptor');
+        }
+      ]);
+    }]).factory('AuthInterceptor', authInterceptor);
 
   /** @ngInject */
   function config($logProvider, toastrConfig) {
@@ -45,6 +42,21 @@
     toastrConfig.positionClass = 'toast-top-right';
     toastrConfig.preventDuplicates = true;
     toastrConfig.progressBar = true;
+  }
+
+  function authInterceptor($q, $location) {
+    return {
+      response: function (response) {
+        // do something on success
+        return response;
+      },
+      responseError: function (response) {
+        if (response.status === 401) {
+          $location.url('/login');
+        }
+        return $q.reject(response);
+      }
+    };
   }
 
 })();
