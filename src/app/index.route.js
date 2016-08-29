@@ -3,63 +3,88 @@
 
   angular
     .module('festima')
-    .config(routeConfig);
+    .config(routerConfig);
 
-  function routeConfig($routeProvider) {
-    $routeProvider
-      .when('/login', {
-        templateUrl: 'app/login/login.html',
-        controller: 'LoginController',
-        controllerAs: 'vm'
+  /** @ngInject */
+  function routerConfig($stateProvider, $urlRouterProvider) {
+
+    $stateProvider
+      .state('private',{
+        url: '',
+        abstract: true,
+        views: {
+          app: {templateUrl: 'app/layouts/private-layout.html'}
+        }
       })
-      .when('/', {
-        templateUrl: 'app/main/main.html',
-        controller: 'MainController',
-        controllerAs: 'main'
+      .state("private.main", {
+        url: "/",
+        views: {
+          'container@private': { templateUrl: "app/main/main.html", controller: 'MainController', controllerAs: 'main' }
+        }
       })
-      .when('/building/list', {
-        templateUrl: 'app/building/building-list.html',
-        controller: 'BuildingListController',
-        controllerAs: 'vm'
+      .state("private.buildinglist", {
+        url: "/building/list",
+        views: {
+          'container@private': {templateUrl: 'app/building/building-list.html', controller: 'BuildingListController', controllerAs: 'vm'}
+        }
       })
-      .when('/about', {
-        templateUrl: 'app/main/about.html',
-        controller: 'AboutController',
-        controllerAs: 'about'
+      .state("private.buildingshow", {
+        url: "/building/show/:buildingId",
+        views: {
+          'container@private': { templateUrl: 'app/building/building-show.html', controller: 'BuildingShowController', controllerAs: 'buildingVm' }
+        }
       })
-      .when('/building/show/:buildingId', {
-        templateUrl: 'app/building/building-show.html',
-        controller: 'BuildingShowController',
-        controllerAs: 'buildingVm'
+      .state("private.buildingedit", {
+        url: "/building/edit/:buildingId",
+        views: {
+          'container@private': { templateUrl: 'app/building/building-edit.html', controller: 'BuildingEditController', controllerAs: 'vm' }
+        }
       })
-      .when('/building/edit/:buildingId', {
-        templateUrl: 'app/building/building-edit.html',
-        controller: 'BuildingEditController',
-        controllerAs: 'vm'
+      .state("private.buildingcreate", {
+        url: "/building/create",
+        views: {
+          'container@private': { templateUrl: 'app/building/building-create.html', controller: 'BuildingCreateController', controllerAs: 'vm' }
+        }
       })
-      .when('/building/create', {
-        templateUrl: 'app/building/building-create.html',
-        controller: 'BuildingCreateController',
-        controllerAs: 'vm'
+      .state("private.addresslist", {
+        url: "/address/list",
+        views: {
+          'container@private': { templateUrl: 'app/address/address-list.html', controller: 'AddressListController', controllerAs: 'vm' }
+        }
       })
-      .when('/address/list', {
-        templateUrl: 'app/address/address-list.html',
-        controller: 'AddressListController',
-        controllerAs: 'vm'
+      .state("private.dictionarieslist", {
+        url: "/dictionaries/list",
+        views: {
+          'container@private': { templateUrl: 'app/dictionary/dictionary-list.html', controller: 'DictionaryListController', controllerAs: 'vm' }
+        }
       })
-      .when('/dictionaries/list', {
-        templateUrl: 'app/dictionary/dictionary-list.html',
-        controller: 'DictionaryListController',
-        controllerAs: 'vm'
+      .state("private.dictionaryshow", {
+        url: "/dictionaries/:key",
+        views: {
+          'container@private': { templateUrl: 'app/dictionary/dictionary-show.html', controller: 'DictionaryShowController', controllerAs: 'vm' }
+        }
       })
-      .when('/dictionaries/:key', {
-        templateUrl: 'app/dictionary/dictionary-show.html',
-        controller: 'DictionaryShowController',
-        controllerAs: 'vm'
+      .state("public", {
+        url: '',
+        abstract: true,
+        views: {
+          app: {templateUrl: 'app/layouts/public-layout.html'}
+        }
       })
-      .otherwise({
-        redirectTo: '/'
+      .state("public.login", {
+        url: "/login",
+        views: {
+          'container@public': {templateUrl: "app/login/login.html", controller: "LoginController", controllerAs: 'vm'}
+        }
+      })
+      .state("public.about", {
+        url: "/about",
+        views: {
+          'container@public': {templateUrl: 'app/main/about.html', controller: 'AboutController', controllerAs: 'about'}
+        }
       });
+
+    $urlRouterProvider.otherwise('/');
   }
 
 })();
