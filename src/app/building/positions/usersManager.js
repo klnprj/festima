@@ -1,5 +1,6 @@
 angular.module('festima')
   .factory('usersManager', ['$http', '$q', 'appConfig', 'User', function ($http, $q, appConfig, User) {
+    var cachedPromises = {};
     var usersManager = {
       _pool: {},
       _retrieveInstance: function (id, data) {
@@ -14,34 +15,19 @@ angular.module('festima')
 
         return instance;
       },
+
       _search: function (id) {
         return this._pool[id];
       },
-      _load: function (id, deferred) {
-        var scope = this;
-
-        $http.get(appConfig.apiUrl + '/users/' + id)
-          .success(function (data) {
-            var itemData = data;
-            var item = scope._retrieveInstance(itemData.id, itemData);
-
-            deferred.resolve(item);
-
-          })
-          .error(function () {
-            deferred.reject();
-          });
-      },
 
       getUser: function (id) {
-        var deferred = $q.defer();
-        var item = this._search(id);
-        if (item) {
-          deferred.resolve(item);
-        } else {
-          this._load(id, deferred);
+        if (angular.isUndefined(cachedPromises[id])) {
+          cachedPromises[id] = $http.get(appConfig.apiUrl + '/users/' + id).then(function(response) {
+              return response.data;
+            })
         }
-        return deferred.promise;
+
+        return cachedPromises[id];
       },
 
       loadAllUsers: function () {

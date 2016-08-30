@@ -31,9 +31,6 @@ angular.module('festima')
             item = scope._retrieveInstance(itemData.id, itemData);
             deferred.resolve(item);
           });
-
-          deferred.resolve(item);
-
         })
         .error(function() {
           deferred.reject();
