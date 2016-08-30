@@ -16,10 +16,19 @@
           app: {templateUrl: 'app/layouts/private-layout.html'}
         }
       })
+      .state("private.logout", {
+        url: "/logout",
+        resolve: {
+          loggedout: function(session) { return session.logout(); }
+        }
+      })
       .state("private.main", {
         url: "/",
         views: {
           'container@private': { templateUrl: "app/main/main.html", controller: 'MainController', controllerAs: 'main' }
+        },
+        resolve: {
+          loggedin: function(session) { return session.checkLoggedIn(); }
         }
       })
       .state("private.buildinglist", {
@@ -75,6 +84,9 @@
         url: "/login",
         views: {
           'container@public': {templateUrl: "app/login/login.html", controller: "LoginController", controllerAs: 'vm'}
+        },
+        resolve: {
+          skipLoggedIn: function(session) { return session.skipLoggedIn(); }
         }
       })
       .state("public.about", {

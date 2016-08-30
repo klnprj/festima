@@ -23,11 +23,10 @@
     /** @ngInject */
     function NavbarController(moment, session) {
       var vm = this;
-      vm.isAuthenticated = session.isAuthenticated;
 
-      // session.profile().then(function(user) {
-      //   vm.user = user;
-      // });
+      session.profile().then(function(user) {
+        vm.user = user;
+      });
 
       // "vm.creation" is avaible by directive option "bindToController: true"
       vm.relativeDate = moment(vm.creationDate).fromNow();
