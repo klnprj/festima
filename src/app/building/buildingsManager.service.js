@@ -1,5 +1,5 @@
 angular.module('festima')
-  .factory('buildingsManager', ['$http', '$q', 'appConfig', 'Building', function($http, $q, appConfig, Building) {
+  .factory('buildingsManager', ['$http', '$q', 'appConfig', 'Building', 'usersManager', function($http, $q, appConfig, Building, usersManager) {
   var buildingsManager = {
     _pool: {},
     _retrieveInstance: function(id, data) {
@@ -23,7 +23,14 @@ angular.module('festima')
       $http.get(appConfig.apiUrl + '/buildings/' + id)
         .success(function(data) {
           var itemData = data;
-          var item = scope._retrieveInstance(itemData.id, itemData);
+          var item;
+
+          usersManager.getUser(itemData.author.id).then(function(data) {
+            // delete itemData.authorId;
+            itemData.author = data;
+            item = scope._retrieveInstance(itemData.id, itemData);
+            deferred.resolve(item);
+          });
 
           deferred.resolve(item);
 
@@ -54,12 +61,23 @@ angular.module('festima')
       $http.get(appConfig.apiUrl + '/buildings')
         .success(function(itemsArray) {
           var items = [];
-          itemsArray.forEach(function(itemData) {
-            var item = scope._retrieveInstance(itemData.id, itemData);
-            items.push(item);
-          });
+          var item;
 
-          deferred.resolve(items);
+            if (itemsArray.length == 0) {
+              deferred.resolve([]);
+              return;
+            }
+
+            itemsArray.forEach(function (itemData) {
+              usersManager.getUser(itemData.author.id).then(function (data) {
+                // delete itemData.authorId;
+                itemData.author = data;
+                item = scope._retrieveInstance(itemData.id, itemData);
+                items.push(item);
+              }).then(function () {
+                deferred.resolve(items);
+              });
+            });
         })
         .error(function() {
           deferred.reject();

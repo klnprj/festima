@@ -3,11 +3,15 @@
 
   app.service('session', function($http, $log, $q, $state, $rootScope, $timeout, $cookies, appConfig, OAuth, OAuthToken) {
     var currentUserPromise;
+    var userEmail;
     var userId;
 
     function fetchUser(email) {
       return $http.get(appConfig.apiUrl + '/users', {params: {email: email}}).then(function(response) {
-        return response.data[0];
+        var user = response.data[0];
+
+        userId = user.id;
+        return user;
       });
     }
 
@@ -22,8 +26,8 @@
         angular.extend(credentials, {scope: 'read'});
 
         return OAuth.getAccessToken(credentials, options).then(function(response) {
-          userId = credentials.username;
-          currentUserPromise = fetchUser(userId);
+          userEmail = credentials.username;
+          currentUserPromise = fetchUser(userEmail);
 
         }).catch(function(e) {
           $log.error('Auth error: ', e);
@@ -38,9 +42,13 @@
         });
       },
 
+      userId: function() {
+        return userId;
+      },
+
       profile: function() {
         if (!currentUserPromise) {
-          currentUserPromise = fetchUser(userId);
+          currentUserPromise = fetchUser(userEmail);
         }
         return currentUserPromise;
       },

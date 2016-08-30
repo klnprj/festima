@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('festima')
-  .controller('BuildingEditController', function ($routeParams, $location, toastr, buildingsManager, buildingDealersService) {
+  .controller('BuildingEditController', function ($stateParams, $location, toastr, buildingsManager, buildingDealersService) {
     var vm = this;
 
-    vm.buildingId = $routeParams.buildingId;
+    vm.buildingId = $stateParams.buildingId;
 
     buildingsManager.getBuilding(vm.buildingId).then(
       function (building) {

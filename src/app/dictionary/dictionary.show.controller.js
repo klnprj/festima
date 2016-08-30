@@ -1,11 +1,11 @@
 (function(app) {
   'use strict';
 
-  app.controller('DictionaryShowController', function($routeParams, dictionaries) {
+  app.controller('DictionaryShowController', function($stateParams, dictionaries) {
     var vm = this;
 
-    console.log("State params: ", $routeParams.key);
-    dictionaries.loadByKey($routeParams.key).then(function(dictionary) {
+    console.log("State params: ", $stateParams.key);
+    dictionaries.loadByKey($stateParams.key).then(function(dictionary) {
       vm.dictionary = dictionary;
     });
   });

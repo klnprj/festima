@@ -1,5 +1,5 @@
 angular.module('festima')
-  .controller('MessagesButtonController', function($uibModal, $log, moment, Message, messagesManager) {
+  .controller('MessagesButtonController', function($uibModal, $log, moment, Message, messagesManager, session) {
     var vm = this;
 
     vm.openMessages = function () {
@@ -37,7 +37,7 @@ angular.module('festima')
     };
 
     vm.addMessage = function(_message) {
-      var msg = new Message(angular.extend(_message, {authorId: 1, positionId: vm.position.id, dateCreated: moment().format()}));
+      var msg = new Message(angular.extend(_message, {authorId: session.userId(), positionId: vm.position.id, dateCreated: moment().format()}));
 
       msg.save().then(function(id) {
         // messagesManager.loadAllMessages(vm.position.id).then(function(data) {
