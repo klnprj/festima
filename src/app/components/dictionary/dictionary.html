@@ -1,6 +1,53 @@
 <div class="container-fluid">
-  <div class="row" ng-repeat="item in dictionaryVm.dictionary.items">
-    <div class="col-md-6" ng-bind="item.name"></div>
-    <div class="col-md-6">aloha</div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <form class="form-inline">
+        <div class="form-group">
+          <label class="sr-only" for="name">Название</label>
+          <input type="text" class="form-control" id="name" ng-model="dictionaryVm.newItem.name" placeholder="Название">
+        </div>
+        <div class="form-group">
+          <label class="sr-only" for="contact">Контактное лицо</label>
+          <input type="text" class="form-control" id="contact" ng-model="dictionaryVm.newItem.contact"
+                 placeholder="Контактное лицо">
+        </div>
+        <div class="form-group">
+          <label class="sr-only" for="contactPosition">Должность</label>
+          <input type="text" class="form-control" id="contactPosition"
+                 ng-model="dictionaryVm.newItem.contactPosition" placeholder="Должность">
+        </div>
+        <div class="form-group">
+          <label class="sr-only" for="phone">Телефон</label>
+          <input type="text" class="form-control" id="phone" ng-model="dictionaryVm.newItem.phone"
+                 placeholder="Телефон">
+        </div>
+
+        <button type="submit" class="btn btn-success pull-right" ng-click="dictionaryVm.add(dictionaryVm.newItem)">Добавить</button>
+      </form>
+    </div>
   </div>
+
+
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th class="col-md-3">Название</th>
+      <th class="col-md-3">Контактное лицо</th>
+      <th class="col-md-3">Должность</th>
+      <th class="col-md-3">Телефон</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in dictionaryVm.items">
+      <td class="col-md-3" ng-bind="item.name"></td>
+      <td class="col-md-3" ng-bind="item.contact"></td>
+      <td class="col-md-3" ng-bind="item.contactPosition"></td>
+      <td class="col-md-3" ng-bind="item.phone"></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <ul uib-pagination total-items="dictionaryVm.totalItems" items-per-page="vm.itemsPerPage" ng-model="dictionaryVm.currentPage" ng-change="dictionaryVm.pageChanged()"></ul>
+
 </div>
