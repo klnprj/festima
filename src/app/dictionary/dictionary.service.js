@@ -1,27 +1,39 @@
 (function(app) {
   'use strict';
 
-  app.service('dictionaries', function($q, $http) {
+  app.service('dictionaries', function($q, $http, appConfig) {
 
-    var dictionaries = {
-      customers: {title: 'Заказчики', key: 'customers', items: [{name: 'uno'}, {name: 'dos'}]}
-    };
+    var dictionaries = [
+      {title: 'Проектные организации', key: 'designers', items: []},
+      {title: 'Заказчики', key: 'customers', items: [{name: 'uno'}, {name: 'dos'}]}
+    ];
+
+    var dictionariesMap = _.groupBy(dictionaries, 'key');
 
     angular.extend(this, {
       listAll: function() {
-        return $q.when([{title: 'Заказчики', key: 'customers'}, {title: 'Проектные организации', key: 'designers'}]);
+        // return $q.when(dictionaries);
+        return $http.get(appConfig.apiUrl + '/dictionaries').then(function(response) {
+          return response.data;
+        });
       },
 
       loadByKey: function(key) {
-        return $q.when(dictionaries[key]);
+        return $q.when(dictionariesMap[key][0]);
       },
 
       itemsByKey: function(key, offset, max) {
-        return $q.when(dictionaries[key].items.slice(offset, offset + max));
+        var allItems = dictionariesMap[key][0].items;
+        var pageItems = angular.copy(allItems).slice(offset, offset + max);
+        return $q.when(pageItems);
+      },
+
+      countItemsByKey: function(key) {
+        return $q.when(dictionariesMap[key][0].items.length);
       },
 
       addItem: function(key, item) {
-        return $q.when(dictionaries[key].items.push(item));
+        return $q.when(dictionariesMap[key][0].items.push(item));
       }
     });
   });

@@ -15,12 +15,21 @@
     vm.items = [];
     vm.newItem = {};
     vm.currentPage = 1;
-    vm.totalItems = vm.items.length;
-    vm.itemsPerPage = 1;
+    vm.itemsPerPage = 3;
+
+    refreshItemsCount();
+
+    function refreshItemsCount() {
+      dictionaries.countItemsByKey(vm.dictionary.key).then(function(count) {
+        vm.totalItems = count;
+      });
+    }
 
     vm.add = function(item) {
       dictionaries.addItem(vm.dictionary.key, item);
       vm.newItem = {};
+      refreshItemsCount();
+      vm.pageChanged();  // update items
     };
 
     vm.pageChanged = function() {
