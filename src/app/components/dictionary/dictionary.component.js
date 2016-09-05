@@ -3,13 +3,14 @@
   app.component('esDictionary', {
     templateUrl: 'app/components/dictionary/dictionary.html',
     bindings: {
-      dictionary: '<'
+      // dictionary: '<',
+      key: '<'
     },
     controllerAs: 'dictionaryVm',
     controller: DictionaryComponentController
   });
 
-  function DictionaryComponentController(dictionaries) {
+  function DictionaryComponentController($q, dictionaries) {
     var vm = this;
 
     vm.items = [];
@@ -17,30 +18,24 @@
     vm.currentPage = 1;
     vm.itemsPerPage = 3;
 
-    refreshItemsCount();
-
-    function refreshItemsCount() {
-      dictionaries.countItemsByKey(vm.dictionary.key).then(function(count) {
-        vm.totalItems = count;
-      });
-    }
-
     vm.add = function(item) {
-      dictionaries.addItem(vm.dictionary.key, item);
-      vm.newItem = {};
-      refreshItemsCount();
-      vm.pageChanged();  // update items
+      dictionaries.addItem(vm.key, item).then(function(item) {
+        vm.newItem = {};
+        vm.pageChanged();  // update items
+      });
     };
 
     vm.pageChanged = function() {
-      dictionaries.itemsByKey(vm.dictionary.key, (vm.currentPage - 1) * vm.itemsPerPage, vm.itemsPerPage).then(function(items) {
-        vm.items = items;
+      var items = dictionaries.itemsByKey(vm.key, (vm.currentPage - 1) * vm.itemsPerPage, vm.itemsPerPage);
+      var count = dictionaries.countItemsByKey(vm.key);
+
+      $q.all({items: items, count: count}).then(function(result) {
+        vm.items = result.items;
+        vm.totalItems = result.count;
       });
-      console.log('Page changed to: ', vm.currentPage);
     };
 
     vm.pageChanged();
-    console.log('Dictionary: ', vm.dictionary);
   }
 
 } (angular.module('festima')));
