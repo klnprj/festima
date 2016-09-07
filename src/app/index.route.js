@@ -14,6 +14,9 @@
         abstract: true,
         views: {
           app: {templateUrl: 'app/layouts/private-layout.html'}
+        },
+        resolve: {
+          loggedin: function(session) { return session.checkLoggedIn(); }
         }
       })
       .state("private.logout", {
@@ -26,9 +29,6 @@
         url: "/",
         views: {
           'container@private': { templateUrl: "app/main/main.html", controller: 'MainController', controllerAs: 'main' }
-        },
-        resolve: {
-          loggedin: function(session) { return session.checkLoggedIn(); }
         }
       })
       .state("private.buildinglist", {
