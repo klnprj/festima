@@ -16,8 +16,8 @@
         });
       },
 
-      itemsByKey: function(key, offset, max) {
-        return $http.get(appConfig.apiUrl + '/dictionaries/' + key + '/items', {params: {offset: offset, max: max}}).then(function(response) {
+      itemsByKey: function(key, offset, max, q) {
+        return $http.get(appConfig.apiUrl + '/dictionaries/' + key + '/items', {params: {offset: offset, max: max, q: q}}).then(function(response) {
           return response.data;
         });
       },
@@ -30,6 +30,12 @@
 
       addItem: function(key, item) {
         return $http.post(appConfig.apiUrl + '/dictionaries/' + key + '/items', {data: item}).then(function(response) {
+          return response.data;
+        });
+      },
+
+      loadItem: function(id) {
+        return $http.get(appConfig.apiUrl + '/dictionaries/items/' + id).then(function(response) {
           return response.data;
         });
       }

@@ -25,8 +25,8 @@
     <tr ng-repeat="building in vm.buildings track by $index">
       <th scope="row"><a href="#/building/show/{{building.id}}">{{building.name}}</a></th>
       <td>{{building.address}}</td>
-      <td>{{building.client}}</td>
-      <td>{{building.project}}</td>
+      <td>{{building.client.title}}</td>
+      <td>{{building.project.title}}</td>
       <td>{{building.author.name}}</td>
     </tr>
   </tbody>

@@ -1,8 +1,7 @@
-<!--<div>-->
 <ui-select ng-model="vm.selected"
            theme="bootstrap"
            ng-disabled="false"
-           reset-search-input="false">
+           reset-search-input="true">
   <ui-select-match placeholder="Выбрать...">{{$select.selected.title}}</ui-select-match>
   <ui-select-choices repeat="item in vm.items track by $index"
                      refresh="vm.refreshItems($select.search)"
@@ -11,6 +10,3 @@
   </ui-select-choices>
 </ui-select>
 
-<span ng-bind="vm.key"></span>
-  <!--<div ng-transclude=""></div>-->
-<!--</div>-->
