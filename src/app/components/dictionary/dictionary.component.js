@@ -16,7 +16,7 @@
     vm.items = [];
     vm.newItem = {};
     vm.currentPage = 1;
-    vm.itemsPerPage = 3;
+    vm.itemsPerPage = 10;
 
     vm.add = function(item) {
       dictionaries.addItem(vm.key, item).then(function(item) {
