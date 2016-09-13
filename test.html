@@ -1,0 +1,16 @@
+<html ng-app="festima"><head><script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script><script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script><script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.2.4.js"></script></head><body><script type="text/javascript">
+  angular.module('festima', ['ngAnimate', 'ui.bootstrap']);
+  angular.module('festima')
+    .controller('MainCtrl', function ($scope) {
+      $scope.awesomeThings = [
+        'HTML5 Boilerplate',
+        'AngularJS',
+        'Karma'
+      ];
+      $scope.shows = ['alpha', 'beta', 'gamma', 'delta'];
+
+      $scope.alertify = function() {
+        alert('Hello!');
+      }
+    });
+</script><div ng-controller="MainCtrl"><h1 ng-click="alertify()">Hello!</h1><input type="text" ng-model="selected" uib-typeahead="show for show in shows | filter:$viewValue | limitTo:8" class="form-control"></div></body></html>
