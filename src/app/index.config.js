@@ -8,7 +8,8 @@
       OAuthProvider.configure({
         grantPath: '/oauth/token',
         revokePath: '/oauth/revoke',
-        baseUrl: 'http://localhost:8080',
+        // baseUrl: 'http://localhost:8080',
+        baseUrl: 'http://138.201.116.95:8080',
         clientId: 'estima-client',
         options: {
           secure: false
