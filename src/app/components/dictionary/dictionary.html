@@ -8,8 +8,8 @@
           <input type="text" class="form-control" id="title" ng-model="dictionaryVm.newItem.title" placeholder="Название">
         </div>
         <div class="form-group">
-          <label class="sr-only" for="contact">Контактное лицо</label>
-          <input type="text" class="form-control" id="contact" ng-model="dictionaryVm.newItem.contact"
+          <label class="sr-only" for="contactName">Контактное лицо</label>
+          <input type="text" class="form-control" id="contactName" ng-model="dictionaryVm.newItem.contactName"
                  placeholder="Контактное лицо">
         </div>
         <div class="form-group">
@@ -41,7 +41,7 @@
     <tbody>
     <tr ng-repeat="item in dictionaryVm.items">
       <td class="col-md-3" ng-bind="item.title"></td>
-      <td class="col-md-3" ng-bind="item.contact"></td>
+      <td class="col-md-3" ng-bind="item.contactName"></td>
       <td class="col-md-3" ng-bind="item.contactPosition"></td>
       <td class="col-md-3" ng-bind="item.phone"></td>
     </tr>
