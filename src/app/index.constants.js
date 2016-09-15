@@ -9,6 +9,7 @@
     .constant('_', window._)
     .constant('appConfig', {
       'apiUrl': 'http://138.201.116.95:8080/api'
+      // 'apiUrl': 'http://localhost:8080/api'
     });
 
 })();

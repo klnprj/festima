@@ -9,7 +9,7 @@ angular.module('festima')
       },
 
       listAll: function() {
-        return $http.get(appConfig.apiUrl + '/dictionaries/dealers/items').then(function(response) { return response.data; });
+        return $http.get(appConfig.apiUrl + '/dictionaries/dealers/items', {params: {max: 500}}).then(function(response) { return response.data; });
       },
 
       mapAll: function() {
