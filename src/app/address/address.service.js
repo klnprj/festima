@@ -1,24 +1,16 @@
 (function(app) {
   'use strict';
 
-  app.service('addresses', function($q, $http, appConfig) {
+  app.service('addresses', function($http, appConfig) {
 
     angular.extend(this, {
       listWithinRadius: function(latlng, radius) {
-        var deferred = $q.defer();
 
-        $http.get(appConfig.apiUrl + '/buildings', {params: {latlng: latlng, radius: radius}}).then(
+        return $http.get(appConfig.apiUrl + '/locations', {params: {latlng: latlng, radius: radius}}).then(
           function(response) {
-            console.log('Found addresses:', response.data);
-            deferred.resolve(response.data);
-          },
-          function() {
-            deferred.reject();
+            return response.data;
           }
         );
-        // deferred.resolve([{name: 'one'}, {name: 'two'}]);
-
-        return deferred.promise;
       }
 
     });

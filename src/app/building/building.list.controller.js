@@ -8,15 +8,19 @@
  * Controller of the festimaApp
  */
 angular.module('festima')
-  .controller('BuildingListController', function ($scope, buildingsManager) {
+  .controller('BuildingListController', function ($scope, buildings) {
     var vm = this;
-    angular.extend(vm, {
-      buildings: []
-    });
 
-    buildingsManager.loadAllBuildings().then(
-      function(buildings) {
-        vm.buildings = buildings;
-      }
-    )
+    vm.buildings = [];
+    vm.currentPage = 1;
+    vm.itemsPerPage = 10;
+
+    vm.pageChanged = function() {
+      buildings.list((vm.currentPage - 1) * vm.itemsPerPage, vm.itemsPerPage).then(function(result) {
+        vm.buildings = result.items;
+        vm.totalItems = result.total;
+      });
+    };
+
+    vm.pageChanged();
   });
