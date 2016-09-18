@@ -22,5 +22,9 @@ angular.module('festima')
       });
     };
 
+    vm.getBuildingDealers = function(building) {
+      return building.dealers.map(function(d) {return d.title;}).join(', ');
+    };
+
     vm.pageChanged();
   });
