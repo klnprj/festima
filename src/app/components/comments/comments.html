@@ -1,0 +1,17 @@
+<h2>Комментарии</h2>
+
+<div class="well">
+  <h4>Новый комментарий:</h4>
+  <form role="form">
+    <div class="form-group">
+      <textarea class="form-control" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+  </form>
+</div>
+
+<hr>
+
+<div ng-repeat="comment in commentsVm.comments">
+  <es-comment comment="comment"></es-comment>
+</div>

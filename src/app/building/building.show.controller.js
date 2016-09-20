@@ -5,6 +5,11 @@ angular.module('festima')
     var id = $stateParams.buildingId;
     var vm = this;
 
+    vm.comments = [
+      {author: {name: 'admin'}, date: 'August 25, 2014 at 9:30 PM', text: 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.'},
+      {author: {name: 'user'}, date: 'August 25, 2014 at 9:30 PM', text: 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.'}
+    ];
+
     buildingsManager.getBuilding(id).then(function(building) {
         vm.building = building;
 

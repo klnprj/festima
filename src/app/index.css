@@ -117,3 +117,9 @@ table.table-vcenter tbody tr td {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.page-header {
+  margin: 20px 0px;
+  padding-bottom: 0px;
+  /*border: none;*/
+}

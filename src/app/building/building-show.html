@@ -9,39 +9,34 @@
   <h1 ng-bind="buildingVm.building.name">&nbsp;</h1>
 </div>
 
-<div class="row">
-  <div class="col-md-6">
-    <dl class="dl-horizontal no-margin">
-      <dt>Заказчик</dt>
-      <dd ng-bind="buildingVm.building.client.title">&nbsp;</dd>
-      <dt>Проект</dt>
-      <dd ng-bind="buildingVm.building.project.title">&nbsp;</dd>
-      <dt>Менеджер</dt>
-      <dd ng-bind="buildingVm.building.author.name">&nbsp;</dd>
-    </dl>
+<!--<div class="well">-->
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      <div id="map" style="width:500px; height:400px"></div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <address ng-bind="buildingVm.building.address"></address>
+      <dl class="dl-horizontal no-margin pull-left">
+        <dt>Заказчик</dt>
+        <dd ng-bind="buildingVm.building.client.title">&nbsp;</dd>
+        <dt>Проект</dt>
+        <dd ng-bind="buildingVm.building.project.title">&nbsp;</dd>
+        <dt>Генподрядчик</dt>
+        <dd></dd>
+        <dt>Субподрядчик</dt>
+        <dd></dd>
+        <dt>Менеджер</dt>
+        <dd ng-bind="buildingVm.building.author.name">&nbsp;</dd>
+      </dl>
+    </div>
   </div>
-  <div class="col-md-6">
-    <dl class="dl-horizontal">
-      <dt>Генподрядчик</dt>
-      <dd></dd>
-      <dt>Субподрядчик</dt>
-      <dd></dd>
-    </dl>
-  </div>
-</div>
+<!--</div>-->
 
-<div class="jumbotron">
-  <address>
-    <strong ng-bind="buildingVm.building.name">&nbsp;</strong><br>
-    {{buildingVm.building.address}}
-  </address>
+<es-comments comments="buildingVm.comments"></es-comments>
 
-  <div id="map" style="width:500px; height:400px"></div>
-</div>
-
-<div class="panel panel-default">
-  <div class="panel-body">
-    <a class="btn btn-lg btn-success" ng-href="#/building/list">Отлично!<span
-      class="glyphicon glyphicon-ok"></span></a>
-  </div>
-</div>
+<!--<div class="panel panel-default">-->
+  <!--<div class="panel-body">-->
+    <!--<a class="btn btn-lg btn-success" ng-href="#/building/list">Отлично!<span-->
+      <!--class="glyphicon glyphicon-ok"></span></a>-->
+  <!--</div>-->
+<!--</div>-->
