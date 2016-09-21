@@ -1,12 +1,15 @@
-<h2>Комментарии</h2>
+<h2>
+  Комментарии
+  <small ng-bind="commentsVm.comments.length"></small>
+</h2>
 
 <div class="well">
   <h4>Новый комментарий:</h4>
   <form role="form">
     <div class="form-group">
-      <textarea class="form-control" rows="3"></textarea>
+      <textarea class="form-control" rows="3" ng-model="commentsVm.newComment.text"></textarea>
     </div>
-    <button type="submit" class="btn btn-primary">Добавить</button>
+    <button type="submit" class="btn btn-primary" ng-click="commentsVm.addNewComment()">Добавить</button>
   </form>
 </div>
 

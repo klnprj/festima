@@ -6,7 +6,7 @@
   <div class="media-body">
     <h4 class="media-heading">
       {{::commentVm.comment.author.name}}
-      <small ng-bind="commentVm.comment.date"></small>
+      <small ng-bind="commentVm.comment.dateCreated | date: 'dd.MM.yyyy HH:mm'"></small>
     </h4>
     {{::commentVm.comment.text}}
   </div>
