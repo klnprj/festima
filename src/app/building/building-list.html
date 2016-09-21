@@ -27,13 +27,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="building in vm.buildings track by $index">
+    <tr ng-repeat="building in vm.buildings track by building.id">
       <th scope="row"><a href="#/building/show/{{::building.id}}" ng-bind="building.name"></a></th>
-      <td>{{::building.address}}</td>
+      <td ng-bind="building.address"></td>
       <td>{{vm.getBuildingDealers(building)}}</td>
-      <td>{{::building.dateCreated | date : 'dd.MM.yyyy HH:mm'}}</td>
-      <td>{{::building.lastUpdated | date : 'dd.MM.yyyy HH:mm'}}</td>
-      <td>{{building.author.name}}</td>
+      <td ng-bind="building.dateCreated | date: 'dd.MM.yyyy HH:mm'"></td>
+      <td ng-bind="building.lastUpdated | date : 'dd.MM.yyyy HH:mm'"></td>
+      <td ng-bind="building.author.name"></td>
     </tr>
   </tbody>
 </table>
