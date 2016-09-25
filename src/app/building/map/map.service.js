@@ -8,24 +8,27 @@
       angular.extend(this, {
         dgis: dgis,
 
+        detailedZoom: 16,
+        overviewZoom: 9,
+
         initMap: function (latLng) {
           var deferred = $q.defer();
-          
+          var zoom = this.detailedZoom;
+
           if (angular.isUndefined(latLng)) {
-            latLng = [54.981, 82.891];
+            latLng = [55.752142, 37.617067];
+            zoom = this.overviewZoom;
           }
 
           DG.then(function () {
             dgis = DG;
             var map = dgis.map('map', {
               center: latLng,
-              zoom: 16,
+              zoom: zoom,
               geoclicker: true,
               showPhotos: false,
               showBooklet: false
             });
-
-            dgis.marker(latLng).addTo(map).bindPopup('Clicked!');
 
             deferred.resolve(map);
           }, function() {
@@ -144,6 +147,10 @@
           var point = DG.Wkt.toPoints(wkt);
 
           return [point[1], point[0]];
+        },
+
+        latLngToWkt: function(latLng) {
+          return "POINT(" + latLng[1] + " " + latLng[0] + ")";
         },
 
         search: function(q) {

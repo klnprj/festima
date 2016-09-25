@@ -2,20 +2,29 @@ angular.module('festima')
   .controller('BuildingAddressController', function(maps) {
     var vm = this;
 
-    var latLng;
+    var latLng0;
 
     if (angular.isDefined(vm.building)) {
-      vm.asyncSelected = vm.building.address;
+      setSelected(vm.building.address);
+    }
+
+    function setSelected(address) {
+      vm.asyncSelected = address;
     }
 
     DG.then(function() {
 
       if (angular.isDefined(vm.building) && angular.isDefined(vm.building.location)) {
-        latLng = maps.centroidToLatlng(vm.building.location);
+        latLng0 = maps.centroidToLatlng(vm.building.location);
       }
 
-      maps.initMap(latLng).then(function(map) {
+      maps.initMap(latLng0).then(function(map) {
         vm.map = map;
+
+        if (angular.isDefined(latLng0)) {
+          vm.marker = maps.getMarker(latLng0);
+          vm.marker.addTo(vm.map);
+        }
 
         vm.map.on('click', function (e) {
           var latLng = [e.latlng.lat, e.latlng.lng];
@@ -35,6 +44,20 @@ angular.module('festima')
             text += location.attributes.buildingname;
             vm.marker.bindPopup(text);
             vm.marker.addTo(vm.map);
+
+            var locationFullName = location.name;
+
+            var item = {geometry: {}};
+            item.full_name = locationFullName;
+            item.geometry.centroid = location.centroid;
+
+            if (_.isEmpty(location.attributes.number)) {
+              console.log('No building number!');
+              item.geometry.centroid = maps.latLngToWkt(latLng);
+            }
+
+            setSelected(locationFullName);
+            vm.onAddressSelected({address: item});
           });
         });
       });
@@ -80,8 +103,9 @@ angular.module('festima')
 
         // центрируем карту в координаты маркера
         vm.map.panTo(latLng);
+        vm.map.setZoom(maps.detailedZoom);
 
-        vm.asyncSelected = item.full_name;
+        setSelected(item.full_name);
         vm.onAddressSelected({address: item});
       });
     };
