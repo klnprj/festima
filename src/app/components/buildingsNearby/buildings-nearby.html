@@ -3,7 +3,11 @@
   <div class="row">
   </div>
   <ul>
-    <li ng-repeat="building in vm.buildings">{{building.name}} ({{building.address}})</li>
+    <li ng-repeat="building in vm.buildings">
+      <a href="#/building/show/{{::building.id}}">
+        {{building.name}} ({{building.address}})
+      </a>
+    </li>
   </ul>
 </div>
 
