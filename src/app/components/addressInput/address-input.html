@@ -1,0 +1,10 @@
+<input type="text" id="address" ng-model="addressInputVm.asyncSelected" placeholder="Адрес..." class="form-control"
+       ng-model-options="{ debounce: { default: 500, blur: 100 } }"
+       uib-typeahead="address.hint.text for address in addressInputVm.getLocation($viewValue)"
+       typeahead-loading="loadingLocations"
+       typeahead-no-results="noResults"
+       typeahead-on-select="addressInputVm.onSelect($item, $model, $label)">
+<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+<div ng-show="noResults">
+  <i class="glyphicon glyphicon-remove"></i> No Results Found
+</div>
