@@ -12,7 +12,7 @@
 <!--<body>-->
 <div class="container">
 
-  <form class="form-signin" name="vm.loginForm" ng-submit="vm.login(vm.loginForm.$valid)" novalidate>
+  <form class="form-signin" name="vm.loginForm" shake-that submit="vm.login(vm.loginForm.$valid)" novalidate>
     <h2 class="form-signin-heading">Вход в систему</h2>
 
     <div class="form-group" ng-class="{ 'has-error': vm.loginForm.email.$touched && vm.loginForm.email.$invalid }">
