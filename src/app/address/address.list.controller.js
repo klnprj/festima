@@ -1,7 +1,7 @@
 (function(app) {
   'use strict';
 
-  app.controller('AddressListController', function($q, _, maps, addresses) {
+  app.controller('AddressListController', function($q, $location, $rootScope, _, maps, addresses) {
     var vm = this;
 
     vm.buildings = [];
@@ -23,8 +23,17 @@
     function positionBuildingsOnMap(buildings, map) {
       buildings.forEach(function(building) {
         var latLng = maps.centroidToLatlng(building.location);
-        console.log("latlng: ", latLng);
-        DG.marker(latLng).addTo(map);
+
+        var marker = DG.marker(latLng, {
+          label: building.name
+        }).addTo(map);
+
+        marker['buildingId'] = building.id;
+        marker['buildingName'] = building.name;
+
+        marker.on('dblclick', function(e) {
+          $rootScope.$apply( function(){$location.path('/building/show/' + e.target.buildingId); } );
+        });
       })
     }
 
@@ -42,6 +51,8 @@
 
     vm.onSelectAddress = function(item) {
       var latLng = maps.centroidToLatlng(item.geometry.centroid);
+
+      vm.addressObject = item;
 
       vm.map.panTo(latLng);
       vm.map.setZoom(maps.detailedZoom);
