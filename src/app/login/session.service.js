@@ -31,6 +31,7 @@
 
         }).catch(function(e) {
           $log.error('Auth error: ', e);
+          return $q.reject(e);
         });
       },
 

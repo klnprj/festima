@@ -1,7 +1,7 @@
 (function(app) {
   'use strict';
 
-  app.controller('LoginController', function($http, $state, appConfig, OAuth, OAuthToken, spinnerService, session) {
+  app.controller('LoginController', function($http, $state, toastr, appConfig, OAuth, OAuthToken, spinnerService, session) {
     var vm = this;
 
     vm.login = function() {
@@ -9,8 +9,10 @@
 
       // spinnerService.show("authSpinner");
 
-      session.login(credentials).then(function() {
+      session.login(credentials).then(function(res) {
         $state.go('private.main');
+      }).catch(function(err) {
+        toastr.error("Неверная комбинация email/пароль!")
       }).finally(function() {
         // spinnerService.hide('authSpinner');
       });
