@@ -188,24 +188,7 @@ table.table-vcenter tbody tr td {
   }
 }
 
-.container {
-  width: 250px;
-  margin: 50px auto;
-  -webkit-perspective: 600px;
-  -ms-perspective: 600px;
-  perspective: 600px;
-}
-
-.box-shadow {
-  -webkit-box-shadow: 0 12px 30px darkgrey;
-  box-shadow: 0 12px 30px darkgrey;
-}
-
-.shake {
+.form-signin.ng-invalid {
   -webkit-animation: shake 400ms ease-in-out;
   animation: shake 400ms ease-in-out;
-}
-
-.message {
-  margin-top: 60px;
 }

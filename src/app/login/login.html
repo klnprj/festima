@@ -12,7 +12,7 @@
 <!--<body>-->
 <div class="container">
 
-  <form class="form-signin" name="vm.loginForm" shake-that submit="vm.login(vm.loginForm.$valid)" novalidate>
+  <form class="form-signin" name="vm.loginForm" ng-submit="vm.login(vm.loginForm.$valid)" novalidate>
     <h2 class="form-signin-heading">Вход в систему</h2>
 
     <div class="form-group" ng-class="{ 'has-error': vm.loginForm.email.$touched && vm.loginForm.email.$invalid }">
@@ -24,7 +24,12 @@
     <div class="form-group" ng-class="{ 'has-error': vm.loginForm.password.$touched && vm.loginForm.password.$invalid }">
       <label for="inputPassword" class="sr-only">Пароль</label>
       <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Пароль" required ng-model="vm.password" ng-click="$event.stopPropagation()">
-      <p ng-show="vm.loginForm.password.$invalid && vm.loginForm.password.$touched" class="help-block">Необходим пароль.</p>
+
+      <div class="help-block" ng-messages="vm.loginForm.password.$error" ng-if="vm.loginForm.password.$invalid && vm.loginForm.password.$touched">
+        <p ng-message="minlength">Your name is too short.</p>
+        <p ng-message="maxlength">Your name is too long.</p>
+        <p ng-message="required">Неверный пароль.</p>
+      </div>
     </div>
 
     <div class="form-group">
@@ -35,7 +40,7 @@
       </div>
     </div>
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="vm.loginForm.$invalid">Войти</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="!vm.loginForm.$submitted && vm.loginForm.$invalid">Войти</button>
   </form>
 
 </div> <!-- /container -->
