@@ -1,15 +1,10 @@
-'use strict';
+(function(app) {
+  'use strict';
 
-/**
- * @ngdoc function
- * @name festimaApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the festimaApp
- */
-angular.module('festima')
-  .controller('BuildingListController', function ($scope, buildings) {
+  app.controller('BuildingListController', function ($scope, buildings) {
     var vm = this;
+
+    vm.filtersCollapsed = true;
 
     vm.buildings = [];
     vm.currentPage = 1;
@@ -28,3 +23,20 @@ angular.module('festima')
 
     vm.pageChanged();
   });
+
+  app.directive('convertToNumber', function() {
+    return {
+      require: 'ngModel',
+      link: function(scope, element, attrs, ngModel) {
+        ngModel.$parsers.push(function(val) {
+          return parseInt(val, 10);
+        });
+        ngModel.$formatters.push(function(val) {
+          return '' + val;
+        });
+      }
+    };
+  });
+
+}(angular.module('festima')));
+

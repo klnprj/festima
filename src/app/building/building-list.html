@@ -6,6 +6,9 @@
 <!--</ol>-->
   <div class='page-header'>
     <div class='btn-toolbar pull-right'>
+      <a class="btn btn-default" ng-click="vm.filtersCollapsed = !vm.filtersCollapsed">
+        <i class="fa fa-cogs"></i>
+      </a>
       <div class='btn-group'>
         <a ng-href="#/building/create" class="btn btn-primary">
           <i class="fa fa-plus-square"></i> Добавить объект
@@ -14,6 +17,24 @@
     </div>
     <h1>Список объектов</h1>
   </div>
+
+<div uib-collapse="vm.filtersCollapsed">
+  <div class="well well-lg">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 form-inline">
+        <div class="form-group">
+          <label for="itemsNumber">На странице</label>
+          <select ng-model="vm.itemsPerPage" class="form-control" id="itemsNumber" convert-to-number ng-change="vm.pageChanged()">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <table class="table table-bordered table-striped">
   <thead>

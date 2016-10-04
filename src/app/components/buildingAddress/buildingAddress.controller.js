@@ -102,8 +102,8 @@ angular.module('festima')
         vm.map.addLayer(vm.marker);
 
         // центрируем карту в координаты маркера
-        vm.map.panTo(latLng);
         vm.map.setZoom(maps.detailedZoom);
+        vm.map.panTo(latLng);
 
         setSelected(item.full_name);
         vm.onAddressSelected({address: item});
