@@ -40,20 +40,20 @@
   <thead>
     <tr>
       <th class="col-md-3">Название</th>
-      <th class="col-md-3">Адрес</th>
-      <th class="col-md-3">Дилеры</th>
-      <th class="col-md-1">Позиция создана</th>
-      <th class="col-md-1">Позиция обновлена</th>
+      <th class="col-md-4">Адрес</th>
+      <th class="col-md-2">Дилеры</th>
+      <th class="col-md-1"><abbr title="Дата создания 1й позиции">Создано</abbr></th>
+      <th class="col-md-1"><abbr title="Дата обновления позиций">Обновлено</abbr></th>
       <th class="col-md-1">Менеджер</th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="building in vm.buildings track by building.id">
       <th scope="row"><a href="#/building/show/{{::building.id}}" ng-bind="building.name"></a></th>
-      <td ng-bind="building.address"></td>
+      <td><small ng-bind="building.address"></small></td>
       <td>{{vm.getBuildingDealers(building)}}</td>
-      <td ng-bind="building.dateCreated | date: 'dd.MM.yyyy HH:mm'"></td>
-      <td ng-bind="building.lastUpdated | date : 'dd.MM.yyyy HH:mm'"></td>
+      <td><small ng-bind="building.dateCreated | date: 'dd.MM.yyyy HH:mm'"></small></td>
+      <td><small ng-bind="building.lastUpdated | date : 'dd.MM.yyyy HH:mm'"></small></td>
       <td ng-bind="building.author.name"></td>
     </tr>
   </tbody>
