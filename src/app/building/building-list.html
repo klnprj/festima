@@ -6,9 +6,9 @@
 <!--</ol>-->
   <div class='page-header'>
     <div class='btn-toolbar pull-right'>
-      <a class="btn btn-default" ng-click="vm.filtersCollapsed = !vm.filtersCollapsed">
+      <button type="button" class="btn btn-default" uib-btn-checkbox ng-model="vm.filtersOpen">
         <i class="fa fa-cogs"></i>
-      </a>
+      </button>
       <div class='btn-group'>
         <a ng-href="#/building/create" class="btn btn-primary">
           <i class="fa fa-plus-square"></i> Добавить объект
@@ -18,7 +18,7 @@
     <h1>Список объектов</h1>
   </div>
 
-<div uib-collapse="vm.filtersCollapsed">
+<div uib-collapse="!vm.filtersOpen">
   <div class="well well-lg">
     <div class="row">
       <div class="col-sm-12 col-md-6 form-inline">

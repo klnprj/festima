@@ -4,7 +4,7 @@
   app.controller('BuildingListController', function ($scope, buildings) {
     var vm = this;
 
-    vm.filtersCollapsed = true;
+    vm.filtersOpen = false;
 
     vm.buildings = [];
     vm.currentPage = 1;
