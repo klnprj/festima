@@ -54,8 +54,8 @@
 
       vm.addressObject = item;
 
-      vm.map.panTo(latLng);
       vm.map.setZoom(maps.detailedZoom);
+      vm.map.panTo(latLng);
     };
   });
 
