@@ -15,7 +15,11 @@
         </a>
       </div>
     </div>
-    <h1>Список объектов</h1>
+    <h1 class="form-inline">
+      Список объектов
+      <small ng-bind="vm.totalItems"></small>
+      <small class="pull-right"><es-search on-search-changed="vm.search(q)"></es-search></small>
+    </h1>
   </div>
 
 <div uib-collapse="!vm.filtersOpen">
@@ -49,8 +53,8 @@
   </thead>
   <tbody>
     <tr ng-repeat="building in vm.buildings track by building.id">
-      <th scope="row"><a href="#/building/show/{{::building.id}}" ng-bind="building.name"></a></th>
-      <td><small ng-bind="building.address"></small></td>
+      <th scope="row"><a href="#/building/show/{{::building.id}}" style="font-weight: normal;" ng-bind-html="building.name | highlight: vm.q"></a></th>
+      <td><small ng-bind-html="building.address | highlight: vm.q"></small></td>
       <td>{{vm.getBuildingDealers(building)}}</td>
       <td><small ng-bind="building.dateCreated | date: 'dd.MM.yyyy HH:mm'"></small></td>
       <td><small ng-bind="building.lastUpdated | date : 'dd.MM.yyyy HH:mm'"></small></td>
