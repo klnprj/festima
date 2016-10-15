@@ -15,7 +15,7 @@ angular.module('festima')
     }
 
     function addNewComment(text) {
-      comments.createComment(id, {authorId: session.userId(), text: text}).then(function(newComment) {
+      comments.createComment(id, {text: text}).then(function(newComment) {
         toastr.success('Комментарий добавлен.');
         loadComments();
       });

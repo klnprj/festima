@@ -43,7 +43,7 @@
         });
       },
 
-      userId: function() {
+      getUserId: function() {
         return userId;
       },
 
