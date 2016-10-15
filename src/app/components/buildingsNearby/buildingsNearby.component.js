@@ -20,6 +20,9 @@
         latLng = maps.centroidToLatlng(address.geometry.centroid);
         addresses.listWithinRadius(latLng, 1000).then(
           function(buildings) {
+            if (!_.isEmpty(buildings)) {
+              toastr.error('Найдены объекты в радиусе 1 км!');
+            }
             vm.buildings = buildings;
           }
         );
