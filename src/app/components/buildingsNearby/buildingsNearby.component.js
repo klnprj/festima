@@ -10,7 +10,7 @@
     controller: BuildingsNearbyController
   });
 
-  function BuildingsNearbyController(maps, addresses) {
+  function BuildingsNearbyController(maps, addresses, toastr) {
     var vm = this;
 
     var findNearbyBuildings = function(address) {
