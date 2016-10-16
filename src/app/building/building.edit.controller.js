@@ -63,5 +63,16 @@ angular.module('festima')
       vm.building.address = address.full_name;
       vm.building.location = address.geometry.centroid;
     };
+
+    vm.contacts = [
+      {name: 'one', info: 'email: one@mail.ru'},
+      {name: 'two', info: 'email: two@mail.ru'}
+    ];
+
+    function onAddContact(newContact) {
+      vm.contacts.push({name: newContact.contactName, info: newContact.info});
+    }
+
+    vm.onAddContact = onAddContact;
   }
 );

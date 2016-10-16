@@ -6,6 +6,16 @@
   <es-building-address building="vm.building" on-address-selected="vm.onSelectAddress(address)"></es-building-address>
 </es-building-form>
 
+<h2>Контакты</h2>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <es-add-contact on-contact-added="vm.onAddContact(newContact)"></es-add-contact>
+  </div>
+  <div class="panel-body">
+    <es-building-contacts contacts="vm.contacts"></es-building-contacts>
+  </div>
+</div>
+
 <h2>Позиции</h2>
 
 <div ng-repeat="(dealerId, dealerMap) in vm.dealersPositionsMap">

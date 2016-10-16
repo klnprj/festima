@@ -1,0 +1,28 @@
+<form class="form-inline">
+  <div class="form-group">
+    <label class="sr-only" for="contactType">Тип контакта</label>
+    <select ng-model="addContactVm.newItem.contactType" class="form-control" id="contactType">
+      <option value="" disabled selected>Выбрать тип контакта...</option>
+      <option ng-repeat="option in addContactVm.contactTypes" value="{{::option.key}}">{{::option.name}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="contactName">Контакт</label>
+    <!--<es-dictionary-autocomplete key="{{addContactVm.newItem.contactType}}" selected="addContactVm.newItem.contact"></es-dictionary-autocomplete>-->
+
+    <select class="form-control" id="contactName" ng-model="addContactVm.newItem.contactId">
+      <option value="" disabled selected>Выбрать контакт...</option>
+      <option ng-repeat="option in addContactVm.contacts" value="{{::option.id}}">{{::option.title}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="contactInfo">Информация</label>
+    <input type="text" class="form-control" id="contactInfo" ng-model="addContactVm.newItem.info"
+           placeholder="Информация">
+  </div>
+
+  <button type="submit" class="btn btn-success pull-right" ng-click="addContactVm.addContact(addContactVm.newItem)"
+          ng-disabled="!addContactVm.newItem.contactId">Добавить
+  </button>
+</form>
+
