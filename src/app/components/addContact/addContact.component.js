@@ -16,6 +16,18 @@
     function initNewContact() {
       vm.newItem = {};
       vm.contacts = [];
+
+      Object.defineProperty(vm.newItem, 'contactType', {
+        get: function() {
+          return vm.newItem._contactType;
+        },
+        set: function(newValue) {
+          vm.newItem._contactType = newValue;
+          getContacts(newValue).then(function(contacts) {
+            vm.contacts = contacts;
+          });
+        }
+      });
     }
 
     function getContactTypes() {
@@ -42,18 +54,6 @@
       vm.onContactAdded({newContact: newContact});
       initNewContact();
     };
-
-    Object.defineProperty(vm.newItem, 'contactType', {
-      get: function() {
-        return vm.newItem._contactType;
-      },
-      set: function(newValue) {
-        vm.newItem._contactType = newValue;
-        getContacts(newValue).then(function(contacts) {
-          vm.contacts = contacts;
-        });
-      }
-    });
   }
 
 }(angular.module('festima')));

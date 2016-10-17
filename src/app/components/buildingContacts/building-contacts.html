@@ -1,4 +1,4 @@
-<div class="row" ng-repeat="contact in buildingContactsVm.contacts">
+<div class="row" ng-repeat="contact in buildingContactsVm.contacts | notRemoved:contact">
   <div class="col-sm-6">{{contact.contact.title}}</div>
   <div class="col-sm-4">{{contact.info}}</div>
   <div class="col-sm-2">

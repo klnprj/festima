@@ -70,22 +70,40 @@ angular.module('festima')
     vm.contacts = [];
 
     function addContact(newContact) {
-      vm.contacts.push({contact: {title: newContact.contactName}, info: newContact.info, buildingId: vm.buildingId, contactId: newContact.contactId});
+      vm.contacts.push({contact: {title: newContact.contactName}, info: newContact.info, building: {id: vm.buildingId}, contactId: newContact.contactId});
     }
 
     function removeContact(contact) {
-
+      if (contact.id === undefined) {
+        var index = vm.contacts.indexOf(contact);
+        if (index !== -1) {
+          vm.contacts.splice(index, 1);
+        }
+      } else {
+        contact.removed = true;
+      }
     }
 
     vm.addContact = addContact;
+    vm.removeContact = removeContact;
 
     function saveBuildingContacts(contactList) {
+      var contact;
+
       if (_.isEmpty(contactList)) {
         return;
       }
 
       for(var i=0; i<contactList.length; i++) {
-        contacts.saveContact(contactList[i]);
+        contact = contactList[i];
+
+        if (contact.removed === true) {
+          contacts.delete(contact);
+        }
+
+        if (contact.id === undefined) {
+          contacts.saveContact(contact);
+        }
       }
     }
   }
