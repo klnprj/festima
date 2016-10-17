@@ -9,7 +9,9 @@
 <h2>Контакты</h2>
 <div class="panel panel-default">
   <div class="panel-heading">
-    <es-add-contact on-contact-added="vm.onAddContact(newContact)"></es-add-contact>
+    <div class="row">
+      <es-add-contact on-contact-added="vm.addContact(newContact)"></es-add-contact>
+    </div>
   </div>
   <div class="panel-body">
     <es-building-contacts contacts="vm.contacts"></es-building-contacts>

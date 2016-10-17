@@ -1,4 +1,7 @@
 <div class="row" ng-repeat="contact in buildingContactsVm.contacts">
-  <div class="col-md-6">{{contact.name}}</div>
-  <div class="col-md-6">{{contact.info}}</div>
+  <div class="col-sm-6">{{contact.contact.title}}</div>
+  <div class="col-sm-4">{{contact.info}}</div>
+  <div class="col-sm-2">
+    <a class="btn text-danger" ng-click="buildingContactsVm.removeContact(contact)"><i class="fa fa-remove"></i></a>
+  </div>
 </div>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('festima')
-  .controller('BuildingEditController', function ($stateParams, $location, toastr, buildingsManager, buildingDealersService) {
+  .controller('BuildingEditController', function ($stateParams, $location, toastr, buildingsManager, buildingDealersService, contacts) {
     var vm = this;
 
     vm.buildingId = $stateParams.buildingId;
@@ -9,6 +9,7 @@ angular.module('festima')
     buildingsManager.getBuilding(vm.buildingId).then(
       function (building) {
         vm.building = building;
+        vm.contacts = vm.building.contacts;
       },
       function () {
         toastr.info('Объект не найден');
@@ -56,6 +57,8 @@ angular.module('festima')
         buildingDealersService.saveDealerPositions(dealerId, vm.dealersPositionsMap[dealerId].positions);
       }
 
+      saveBuildingContacts(vm.contacts);
+
       $location.path('/building/show/' + vm.building.id);
     };
 
@@ -64,15 +67,26 @@ angular.module('festima')
       vm.building.location = address.geometry.centroid;
     };
 
-    vm.contacts = [
-      {name: 'one', info: 'email: one@mail.ru'},
-      {name: 'two', info: 'email: two@mail.ru'}
-    ];
+    vm.contacts = [];
 
-    function onAddContact(newContact) {
-      vm.contacts.push({name: newContact.contactName, info: newContact.info});
+    function addContact(newContact) {
+      vm.contacts.push({contact: {title: newContact.contactName}, info: newContact.info, buildingId: vm.buildingId, contactId: newContact.contactId});
     }
 
-    vm.onAddContact = onAddContact;
+    function removeContact(contact) {
+
+    }
+
+    vm.addContact = addContact;
+
+    function saveBuildingContacts(contactList) {
+      if (_.isEmpty(contactList)) {
+        return;
+      }
+
+      for(var i=0; i<contactList.length; i++) {
+        contacts.saveContact(contactList[i]);
+      }
+    }
   }
 );
