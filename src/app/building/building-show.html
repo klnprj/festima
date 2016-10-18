@@ -21,13 +21,15 @@
         <dd ng-bind="buildingVm.building.client.title">&nbsp;</dd>
         <dt>Проект</dt>
         <dd ng-bind="buildingVm.building.project.title">&nbsp;</dd>
-        <dt>Генподрядчик</dt>
-        <dd></dd>
-        <dt>Субподрядчик</dt>
-        <dd></dd>
         <dt>Менеджер</dt>
         <dd ng-bind="buildingVm.building.author.name">&nbsp;</dd>
+
+        <dt ng-bind="contact.contact.dictionary.name" ng-repeat-start="contact in buildingVm.contacts track by contact.id">&nbsp;</dt>
+        <dd ng-bind="contact.contact.name">&nbsp;</dd>
+        <dt>&nbsp;</dt>
+        <dd ng-bind="contact.info" ng-repeat-end></dd>
       </dl>
+
     </div>
   </div>
 <!--</div>-->

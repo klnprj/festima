@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('festima')
-  .controller('BuildingShowController', function ($stateParams, toastr, buildingsManager, maps, comments, session) {
+  .controller('BuildingShowController', function ($stateParams, toastr, buildingsManager, buildings, maps, comments, contacts) {
     var id = $stateParams.buildingId;
     var vm = this;
 
+    vm.contacts = [];
     vm.comments = [];
     loadComments();
 
@@ -23,10 +24,11 @@ angular.module('festima')
 
     vm.addComment = addNewComment;
 
-    buildingsManager.getBuilding(id).then(function(building) {
-        vm.building = building;
+    buildings.get(id).then(function (building) {
+      vm.building = building;
+      vm.contacts = vm.building.contacts;
 
-        DG.then(function () {
+      DG.then(function () {
           var map, point, lat, lng, marker;
 
           var latLng = maps.centroidToLatlng(vm.building.location);

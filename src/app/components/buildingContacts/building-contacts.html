@@ -1,7 +1,13 @@
-<div class="row" ng-repeat="contact in buildingContactsVm.contacts | notRemoved:contact">
-  <div class="col-sm-6">{{contact.contact.title}}</div>
-  <div class="col-sm-4">{{contact.info}}</div>
-  <div class="col-sm-2">
-    <a class="btn text-danger" ng-click="buildingContactsVm.removeContact(contact)"><i class="fa fa-remove"></i></a>
-  </div>
-</div>
+<table class="table table-striped table-condensed table-vcenter">
+  <tbody>
+  <tr ng-repeat-start="contact in buildingContactsVm.contacts | notRemoved:contact" ng-repeat-end>
+    <td class="col-md-4 text-center" ng-bind="contact.contact.title">&nbsp;</td>
+    <td class="col-md-6 text-center" ng-bind="contact.info">&nbsp;</td>
+    <td class="col-md-2 text-center">
+      <a class="btn text-danger" ng-click="buildingContactsVm.removeContact(contact)">
+        <i class="fa fa-remove"></i>
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
