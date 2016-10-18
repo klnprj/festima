@@ -49,8 +49,8 @@
     });
 
     vm.addContact = function(newContact) {
+      newContact.typeName = _.find(vm.contactTypes, function(type) { return type.key == newContact.contactType; }).name;
       newContact.contactName = _.find(vm.contacts, function(contact) { return contact.id == newContact.contactId; }).title;
-      console.log("New contact: ", newContact);
       vm.onContactAdded({newContact: newContact});
       initNewContact();
     };

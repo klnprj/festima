@@ -13,6 +13,13 @@
         return $http.get(appConfig.apiUrl + '/buildings/' + id).then(function(response) {
           return response.data;
         });
+      },
+
+      update: function(building) {
+        building.contacts = []; // do not resave
+        return $http.put(appConfig.apiUrl + '/buildings/' + building.id, building).then(function(response) {
+          return response.data;
+        });
       }
     });
   }]);

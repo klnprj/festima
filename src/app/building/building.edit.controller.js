@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('festima')
-  .controller('BuildingEditController', function ($stateParams, $location, toastr, buildingsManager, buildingDealersService, contacts) {
+  .controller('BuildingEditController', function ($stateParams, $location, $q, toastr, buildingsManager, buildings, buildingDealersService, contacts) {
     var vm = this;
 
     vm.buildingId = $stateParams.buildingId;
 
-    buildingsManager.getBuilding(vm.buildingId).then(
+    buildings.get(vm.buildingId).then(
       function (building) {
         vm.building = building;
         vm.contacts = vm.building.contacts;
@@ -51,15 +51,13 @@ angular.module('festima')
     };
 
     vm.saveChanges = function () {
-      vm.building.update();
+      $q.all([buildings.update(vm.building), updateBuildingContacts(vm.contacts)]).then(function(response) {
+        $location.path('/building/show/' + vm.building.id);
+      });
 
       for (var dealerId in vm.dealersPositionsMap) {
         buildingDealersService.saveDealerPositions(dealerId, vm.dealersPositionsMap[dealerId].positions);
       }
-
-      saveBuildingContacts(vm.contacts);
-
-      $location.path('/building/show/' + vm.building.id);
     };
 
     vm.onSelectAddress = function(address) {
@@ -70,7 +68,7 @@ angular.module('festima')
     vm.contacts = [];
 
     function addContact(newContact) {
-      vm.contacts.push({contact: {title: newContact.contactName}, info: newContact.info, building: {id: vm.buildingId}, contactId: newContact.contactId});
+      vm.contacts.push({contact: {title: newContact.contactName, dictionary: {name: newContact.typeName}}, info: newContact.info, building: {id: vm.buildingId}, contactId: newContact.contactId});
     }
 
     function removeContact(contact) {
@@ -87,24 +85,27 @@ angular.module('festima')
     vm.addContact = addContact;
     vm.removeContact = removeContact;
 
-    function saveBuildingContacts(contactList) {
+    function updateBuildingContacts(contactList) {
       var contact;
+      var promises = [];
 
       if (_.isEmpty(contactList)) {
-        return;
+        return $q.when(null);
       }
 
       for(var i=0; i<contactList.length; i++) {
         contact = contactList[i];
 
         if (contact.removed === true) {
-          contacts.delete(contact);
+          promises.push(contacts.delete(contact));
         }
 
         if (contact.id === undefined) {
-          contacts.saveContact(contact);
+          promises.push(contacts.saveContact(contact));
         }
       }
+
+      return $q.all(promises);
     }
   }
 );
