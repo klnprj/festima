@@ -1,21 +1,31 @@
 (function(app) {
   'use strict';
 
-  app.controller('BuildingListController', function ($scope, buildings) {
+  app.controller('BuildingListController', function ($scope, buildings, users) {
     var vm = this;
 
     vm.filtersOpen = false;
 
     vm.buildings = [];
+    vm.users = [];
     vm.currentPage = 1;
     vm.itemsPerPage = 10;
+    vm.filter = {};
+
+    function loadUsers() {
+      users.list().then(function(usersList) {
+        vm.users = usersList;
+      });
+    }
 
     function loadBuildings(q) {
-      buildings.list((vm.currentPage - 1) * vm.itemsPerPage, vm.itemsPerPage, q).then(function(result) {
+      buildings.list((vm.currentPage - 1) * vm.itemsPerPage, vm.itemsPerPage, q, vm.filter.authorId).then(function(result) {
         vm.buildings = result.items;
         vm.totalItems = result.total;
       });
     }
+
+    loadUsers();
 
     vm.pageChanged = function() {
       loadBuildings();

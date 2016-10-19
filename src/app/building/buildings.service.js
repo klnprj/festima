@@ -3,8 +3,8 @@
 
   app.service('buildings', ['$http', 'appConfig', function($http, appConfig) {
     angular.extend(this, {
-      list: function(offset, limit, q) {
-        return $http.get(appConfig.apiUrl + '/buildings', {params: {offset: offset, max: limit, q: q}}).then(function(resp) {
+      list: function(offset, limit, q, authorId) {
+        return $http.get(appConfig.apiUrl + '/buildings', {params: {offset: offset, max: limit, q: q, authorId: authorId}}).then(function(resp) {
           return resp.data;
         });
       },

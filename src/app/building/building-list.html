@@ -36,6 +36,16 @@
           </select>
         </div>
       </div>
+
+      <div class="col-sm-12 col-md-6 form-inline">
+        <div class="form-group">
+          <label for="managerFilter">Менеджер</label>
+          <select id="managerFilter" class="form-control" ng-model="vm.filter.authorId" ng-change="vm.pageChanged()"
+                  ng-options="user.id as user.name for user in vm.users track by user.id">
+            <option value="">-</option>
+          </select>
+        </div>
+      </div>
     </div>
   </div>
 </div>
