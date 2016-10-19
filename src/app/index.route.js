@@ -41,12 +41,18 @@
         url: "/building/show/:buildingId",
         views: {
           'container@private': { templateUrl: 'app/building/building-show.html', controller: 'BuildingShowController', controllerAs: 'buildingVm' }
-        }
+        },
+        resolve: {
+          building: loadBuilding
+        },
       })
       .state("private.buildingedit", {
         url: "/building/edit/:buildingId",
         views: {
           'container@private': { templateUrl: 'app/building/building-edit.html', controller: 'BuildingEditController', controllerAs: 'vm' }
+        },
+        resolve: {
+          building: loadBuilding
         }
       })
       .state("private.buildingcreate", {
@@ -95,6 +101,15 @@
           'container@public': {templateUrl: 'app/main/about.html', controller: 'AboutController', controllerAs: 'about'}
         }
       });
+
+    function loadBuilding(buildings, $stateParams, $state, $rootScope, toastr) {
+      // $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+      //   event.preventDefault();
+      //   toastr.error('Объект не найден');
+      //   $state.go('private.buildinglist');
+      // });
+      return buildings.get($stateParams.buildingId);
+    }
 
     $urlRouterProvider.otherwise('/');
   }
