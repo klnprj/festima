@@ -40,7 +40,7 @@ angular.module('festima')
 
     vm.addDealer = function (dealer) {
       if (!vm.isAddedDealer(dealer)) {
-        vm.dealersPositionsMap[dealer.id] = {name: dealer.name, positions: []};
+        vm.dealersPositionsMap[dealer.id] = {name: dealer.title, positions: []};
       }
     };
 
