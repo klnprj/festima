@@ -9,7 +9,7 @@
     vm.buildings = [];
     vm.users = [];
     vm.currentPage = 1;
-    vm.itemsPerPage = 10;
+    vm.itemsPerPage = 100;
     vm.filter = {};
 
     function loadUsers() {
