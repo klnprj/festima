@@ -192,3 +192,25 @@ table.table-vcenter tbody tr td {
   -webkit-animation: shake 400ms ease-in-out;
   animation: shake 400ms ease-in-out;
 }
+
+.row-no-margins-paddings div.form-group {
+  margin: 0;
+  padding-right: 0px;
+}
+
+.table-noborder {
+  border: 0;
+  margin-bottom: 0;
+}
+.table-noborder > thead > tr > th,
+.table-noborder > tbody > tr > th,
+.table-noborder > tfoot > tr > th,
+.table-noborder > thead > tr > td,
+.table-noborder > tbody > tr > td,
+.table-noborder > tfoot > tr > td {
+  border: 0;
+}
+.table-noborder > thead > tr > th,
+.table-noborder > thead > tr > td {
+  border-bottom-width: 0px;
+}
