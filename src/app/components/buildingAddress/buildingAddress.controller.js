@@ -1,8 +1,6 @@
 angular.module('festima')
-  .controller('BuildingAddressController', function(maps) {
+  .controller('BuildingAddressController', function($q, maps) {
     var vm = this;
-
-    var latLng0;
 
     if (angular.isDefined(vm.building)) {
       setSelected(vm.building.address);
@@ -12,56 +10,94 @@ angular.module('festima')
       vm.asyncSelected = address;
     }
 
-    DG.then(function() {
+    var _building = vm.building;
+    Object.defineProperty(vm, 'building', {
+      get: function() {
+        return _building;
+      },
+      set: function(building) {
+        _building = building;
+        loadMap(building);
+      }
+    });
 
-      if (angular.isDefined(vm.building) && angular.isDefined(vm.building.location)) {
-        latLng0 = maps.centroidToLatlng(vm.building.location);
+    function displayLocation(latLng0) {
+
+      if (angular.isDefined(latLng0)) {
+        maps.getMarkerPromise(latLng0).then(function(marker) {
+          vm.marker = marker;
+          vm.marker.addTo(vm.map);
+        });
       }
 
-      maps.initMap(latLng0).then(function(map) {
-        vm.map = map;
+      vm.map.on('click', function (e) {
+        var latLng = [e.latlng.lat, e.latlng.lng];
+        console.log(latLng);
 
-        if (angular.isDefined(latLng0)) {
-          vm.marker = maps.getMarker(latLng0);
-          vm.marker.addTo(vm.map);
-        }
+        maps.searchCoords(latLng).then(function (location) {
+          vm.location = location;
+          vm.address = location.name;
 
-        vm.map.on('click', function (e) {
-          var latLng = [e.latlng.lat, e.latlng.lng];
-          console.log(latLng);
+          if (typeof vm.marker !== 'undefined') {
+            vm.map.removeLayer(vm.marker);
+          }
 
-          maps.searchCoords(latLng).then(function (location) {
-            vm.location = location;
-            vm.address = location.name;
-
-            if (typeof vm.marker !== 'undefined') {
-              vm.map.removeLayer(vm.marker);
-            }
-
-            vm.marker = maps.getMarker(latLng);
+          maps.getMarkerPromise(latLng).then(function(marker) {
+            vm.marker = marker;
             var text = location.name + '.<br />';
 
             text += location.attributes.buildingname;
             vm.marker.bindPopup(text);
             vm.marker.addTo(vm.map);
-
-            var locationFullName = location.name;
-
-            var item = {geometry: {}};
-            item.full_name = locationFullName;
-            item.geometry.centroid = location.centroid;
-
-            if (_.isEmpty(location.attributes.number)) {
-              console.log('No building number!');
-              item.geometry.centroid = maps.latLngToWkt(latLng);
-            }
-
-            setSelected(locationFullName);
-            vm.onAddressSelected({address: item});
           });
+
+          var locationFullName = location.name;
+
+          var item = {geometry: {}};
+          item.full_name = locationFullName;
+          item.geometry.centroid = location.centroid;
+
+          if (_.isEmpty(location.attributes.number)) {
+            console.log('No building number!');
+            item.geometry.centroid = maps.latLngToWkt(latLng);
+          }
+
+          setSelected(locationFullName);
+          vm.onAddressSelected({address: item});
         });
       });
-    });
+    }
+
+    function loadMap(building) {
+
+      maps.initDgisContainer().then(function(container) {
+        var latLng;
+
+        if (angular.isDefined(building) && angular.isDefined(building.location)) {
+          latLng = container.dgis.estima.centroidToLatlng(building.location);
+        }
+
+        var mapConfig = container.dgis.estima.configMap(latLng);
+
+        if (angular.isUndefined(vm.map)) {
+          vm.map = container.dgis.map('map', mapConfig);
+        } else {
+          var elem = vm.map.getContainer();
+          var elemParent = elem.parentNode;
+          var newElem = elem.cloneNode(false);
+          elemParent.replaceChild(newElem, elem);
+          vm.map = container.dgis.map(newElem, mapConfig);
+        }
+
+        displayLocation(latLng);
+      });
+    }
+
+    function initializeMap() {
+      loadMap(vm.building);
+    }
+
+    initializeMap();
 
     vm.searchAddress = function(q) {
       maps.searchAddress(q).then(function(latLng){

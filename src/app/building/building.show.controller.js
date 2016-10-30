@@ -28,20 +28,14 @@ angular.module('festima')
       vm.building = building;
       vm.contacts = vm.building.contacts;
 
-      DG.then(function () {
-          var map, point, lat, lng, marker;
+      maps.initDgisContainer().then(function (container) {
+        var latLng = container.dgis.estima.centroidToLatlng(vm.building.location);
+        var map = container.dgis.map('map', {
+          center: latLng,
+          zoom: 16
+        });
 
-          var latLng = maps.centroidToLatlng(vm.building.location);
-          lat = latLng[0];
-          lng = latLng[1];
-
-          map = DG.map('map', {
-            center: latLng,
-            zoom: 16
-          });
-
-          DG.marker(latLng).addTo(map).bindPopup('Вы кликнули по мне!');
-
+        container.dgis.marker(latLng).addTo(map).bindPopup('Вы кликнули по мне!');
 
 
           // DG.ajax({

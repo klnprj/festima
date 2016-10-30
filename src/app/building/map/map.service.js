@@ -1,18 +1,12 @@
-'use strict';
+(function (app) {
+  'use strict';
 
-(function() {
-  angular.module('festima')
-    .service('maps', function($q) {
+  app.service('maps', function ($q) {
       var dgis;
 
-      angular.extend(this, {
-        dgis: dgis,
+      function estimaModule(dgis) {
 
-        detailedZoom: 16,
-        overviewZoom: 9,
-
-        initMap: function (latLng) {
-          var deferred = $q.defer();
+        function configMap(latLng) {
           var zoom = this.detailedZoom;
 
           if (angular.isUndefined(latLng)) {
@@ -20,9 +14,63 @@
             zoom = this.overviewZoom;
           }
 
+          return {
+            center: latLng,
+            zoom: zoom,
+            geoclicker: true,
+            showPhotos: false,
+            showBooklet: false
+          };
+        }
+
+        function centroidToLatlng(wkt) {
+          var point = dgis.Wkt.toPoints(wkt);
+          return [point[1], point[0]];
+        }
+
+        return {
+          detailedZoom: 16,
+          overviewZoom: 9,
+          configMap: configMap,
+          centroidToLatlng: centroidToLatlng
+        };
+      }
+
+      function initDgisContainer() {
+        var deferred = $q.defer();
+
+        if (DG.ready === false) {
           DG.then(function () {
-            dgis = DG;
-            var map = dgis.map('map', {
+
+            DG.estima = estimaModule(DG);
+
+            deferred.resolve({dgis: DG});
+          });
+        } else {
+          deferred.resolve({dgis: DG});
+        }
+
+        return deferred.promise;
+      }
+
+      angular.extend(this, {
+
+        detailedZoom: 16,
+        overviewZoom: 9,
+
+        initDgisContainer: initDgisContainer,
+
+        initMap: function (latLng) {
+          var zoom = this.detailedZoom;
+
+          if (angular.isUndefined(latLng)) {
+            latLng = [55.752142, 37.617067];
+            zoom = this.overviewZoom;
+          }
+
+          return initDgisContainer().then(function (container) {
+            dgis = container.dgis;
+            var map = container.dgis.map('map', {
               center: latLng,
               zoom: zoom,
               geoclicker: true,
@@ -30,15 +78,11 @@
               showBooklet: false
             });
 
-            deferred.resolve(map);
-          }, function() {
-            deferred.reject();
-          });
-
-          return deferred.promise;
+            return map;
+          })
         },
 
-        suggestions: function(q) {
+        suggestions: function (q) {
           var deferred = $q.defer();
 
           dgis.ajax({
@@ -50,10 +94,10 @@
               q: q
             },
             type: 'GET',
-            success: function(data) {
+            success: function (data) {
               deferred.resolve(data.result.items);
             },
-            error: function(error) {
+            error: function (error) {
               console.log(error);
               deferred.reject();
             }
@@ -62,7 +106,7 @@
           return deferred.promise;
         },
 
-        getById: function(id) {
+        getById: function (id) {
           var deferred = $q.defer();
 
           dgis.ajax({
@@ -73,10 +117,10 @@
               fields: 'items.geometry.centroid'
             },
             type: 'GET',
-            success: function(data) {
+            success: function (data) {
               deferred.resolve(data.result.items[0]);
             },
-            error: function(error) {
+            error: function (error) {
               console.log(error);
               deferred.reject();
             }
@@ -139,21 +183,25 @@
           return deferred.promise;
         },
 
-        getMarker: function(latLng) {
+        getMarker: function (latLng) {
           return dgis.marker(latLng);
         },
-
-        centroidToLatlng: function(wkt) {
-          var point = DG.Wkt.toPoints(wkt);
+        getMarkerPromise: function (latLng) {
+          return initDgisContainer().then(function (container) {
+            return container.dgis.marker(latLng);
+          });
+        },
+        centroidToLatlng: function (wkt) {
+          var point = dgis.Wkt.toPoints(wkt);
 
           return [point[1], point[0]];
         },
 
-        latLngToWkt: function(latLng) {
+        latLngToWkt: function (latLng) {
           return "POINT(" + latLng[1] + " " + latLng[0] + ")";
         },
 
-        search: function(q) {
+        search: function (q) {
           var deferred = $q.defer();
 
           dgis.ajax({
@@ -180,4 +228,4 @@
       });
     }
   );
-})();
+}(angular.module('festima')));
