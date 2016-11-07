@@ -1,21 +1,13 @@
 'use strict';
 
 angular.module('festima')
-  .controller('BuildingEditController', function ($stateParams, $location, $q, toastr, buildingsManager, buildings, buildingDealersService, contacts) {
+  .controller('BuildingEditController', function ($stateParams, $location, $q, toastr, buildingsManager, buildings, buildingDealersService, contacts, building) {
     var vm = this;
 
     vm.buildingId = $stateParams.buildingId;
 
-    buildings.get(vm.buildingId).then(
-      function (building) {
-        vm.building = building;
-        vm.contacts = vm.building.contacts;
-      },
-      function () {
-        toastr.info('Объект не найден');
-        $location.url('/building/list');
-      }
-    );
+    vm.building = building;
+    vm.contacts = vm.building.contacts;
 
     buildingDealersService.getDealersPositionsMap(vm.buildingId).then(function (mapOfDealersPositions) {
       vm.dealersPositionsMap = mapOfDealersPositions;

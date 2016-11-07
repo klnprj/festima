@@ -192,7 +192,7 @@
           });
         },
         centroidToLatlng: function (wkt) {
-          var point = dgis.Wkt.toPoints(wkt);
+          var point = DG.Wkt.toPoints(wkt);
 
           return [point[1], point[0]];
         },

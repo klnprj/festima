@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('festima')
-  .controller('BuildingShowController', function ($stateParams, toastr, buildingsManager, buildings, maps, comments, contacts) {
+  .controller('BuildingShowController', function ($stateParams, toastr, buildingsManager, buildings, maps, comments, contacts, building) {
     var id = $stateParams.buildingId;
     var vm = this;
 
@@ -24,18 +24,32 @@ angular.module('festima')
 
     vm.addComment = addNewComment;
 
-    buildings.get(id).then(function (building) {
+    // buildings.get(id).then(function (building) {
       vm.building = building;
       vm.contacts = vm.building.contacts;
 
-      maps.initDgisContainer().then(function (container) {
-        var latLng = container.dgis.estima.centroidToLatlng(vm.building.location);
-        var map = container.dgis.map('map', {
+      DG.then(function () {
+        var map, point, lat, lng, marker;
+
+        var latLng = maps.centroidToLatlng(vm.building.location);
+        lat = latLng[0];
+        lng = latLng[1];
+
+        map = DG.map('map', {
           center: latLng,
           zoom: 16
         });
 
-        container.dgis.marker(latLng).addTo(map).bindPopup('Вы кликнули по мне!');
+        DG.marker(latLng).addTo(map).bindPopup('Вы кликнули по мне!');
+
+      // maps.initDgisContainer().then(function (container) {
+      //   var latLng = container.dgis.estima.centroidToLatlng(vm.building.location);
+      //   var map = container.dgis.map('map', {
+      //     center: latLng,
+      //     zoom: 16
+      //   });
+      //
+      //   container.dgis.marker(latLng).addTo(map).bindPopup('Вы кликнули по мне!');
 
 
           // DG.ajax({
@@ -70,7 +84,7 @@ angular.module('festima')
           //   }
           // });
         });
-      }
-    );
+    //   }
+    // );
   }
 );
