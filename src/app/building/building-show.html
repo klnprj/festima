@@ -17,10 +17,8 @@
     <div class="col-sm-12 col-md-6">
       <address ng-bind="buildingVm.building.address"></address>
       <dl class="dl-horizontal no-margin pull-left">
-        <dt>Заказчик</dt>
-        <dd ng-bind="buildingVm.building.client.title">&nbsp;</dd>
-        <dt>Проект</dt>
-        <dd ng-bind="buildingVm.building.project.title">&nbsp;</dd>
+        <dt>Статус</dt>
+        <dd><es-building-status status-code="buildingVm.building.status"></es-building-status></dd>
         <dt>Менеджер</dt>
         <dd ng-bind="buildingVm.building.author.name">&nbsp;</dd>
 

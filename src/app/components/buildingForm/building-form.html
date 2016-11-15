@@ -6,6 +6,12 @@
         <input type="text" class="form-control" ng-model="buildingFormVm.building.name" id="name" placeholder="Название">
       </div>
       <div class="form-group">
+        <label for="name">Статус</label>
+        <select class="form-control" ng-model="buildingFormVm.building.status"
+                ng-init="buildingFormVm.building.status = buildingFormVm.building.status || buildingFormVm.statuses[0].code"
+                ng-options="status.code as status.label for status in buildingFormVm.statuses"></select>
+      </div>
+      <div class="form-group">
         <label for="description">Примечание</label>
         <textarea class="form-control" rows="5" ng-model="buildingFormVm.building.description" id="description" placeholder="Примечание"></textarea>
       </div>

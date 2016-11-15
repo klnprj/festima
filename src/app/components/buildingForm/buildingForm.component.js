@@ -11,8 +11,10 @@
     transclude: true
   });
 
-  function BuildingFormController() {
+  function BuildingFormController(statuses) {
     var vm = this;
+
+    vm.statuses = statuses.list();
   }
 
 }(angular.module('festima')));
