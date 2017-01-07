@@ -1,16 +1,18 @@
 <div class='page-header'>
-  <!--<div class="input-group">-->
-    <!--<input type="text" class="form-control" placeholder="Search for...">-->
-      <!--<span class="input-group-btn">-->
-        <!--<button class="btn btn-default" type="button">Go!</button>-->
-      <!--</span>-->
-  <!--</div>-->
-  <h1>Адреса</h1>
+  <div class='btn-toolbar pull-right'>
+    <button type="button" class="btn btn-default" uib-btn-checkbox ng-model="vm.filtersOpen">
+      <i class="fa fa-cogs"></i>
+    </button>
+  </div>
+  <h1 class="form-inline">
+    Адреса
+    <small class="pull-right"><es-address-input on-address-selected="vm.onSelectAddress(address)"></es-address-input></small>
+  </h1>
 </div>
 
-<es-address-input on-address-selected="vm.onSelectAddress(address)"></es-address-input>
-
-<br>
+<div uib-collapse="!vm.filtersOpen">
+  <es-building-filter-panel on-apply-filters="vm.onApplyFilters(criteria, filters)"></es-building-filter-panel>
+</div>
 
 <div id="map" style="width:100%; height:500px;"></div>
 

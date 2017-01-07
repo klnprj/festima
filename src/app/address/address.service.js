@@ -6,13 +6,16 @@
     angular.extend(this, {
       listWithinRadius: function(latlng, radius) {
 
-        return $http.get(appConfig.apiUrl + '/locations', {params: {latlng: latlng, radius: radius}}).then(
+        return this.searchAddresses({latlng: latlng, radius: radius}, {});
+      },
+
+      searchAddresses: function(location, filters) {
+        return $http.get(appConfig.apiUrl + '/locations', {params: {latlng: location.latlng, radius: location.radius, authorId: filters.authorId, status: filters.status, q: filters.q}}).then(
           function(response) {
             return response.data;
           }
         );
       }
-
     });
   });
 }) (angular.module('festima'));

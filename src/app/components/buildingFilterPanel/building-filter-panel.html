@@ -1,0 +1,36 @@
+<div class="well well-lg">
+  <div class="row">
+    <div class="col-sm-12 col-md-5">
+      <dl class="dl-horizontal">
+        <dt>
+          <label for="managerFilter">Менеджер</label>
+        </dt>
+        <dd>
+          <select id="managerFilter" class="form-control" ng-model="filterPanelVm.filters.authorId" ng-change="filterPanelVm.applyFilters()"
+                  ng-options="user.id as user.name for user in filterPanelVm.users track by user.id">
+            <option value="">-</option>
+          </select>
+        </dd>
+
+        <dt><label for="statusFilter">Статус</label></dt>
+        <dd>
+          <select id="statusFilter" class="form-control" ng-model="filterPanelVm.filters.status" ng-change="filterPanelVm.applyFilters()" multiple>
+            <option ng-repeat="status in filterPanelVm.statuses track by status.code" value="{{::status.code}}">{{::status.label}}</option>
+          </select>
+        </dd>
+      </dl>
+    </div>
+
+    <!--<div class="col-sm-12 col-md-5">-->
+      <!--<dl class="dl-horizontal">-->
+        <!--<dt><label for="itemsNumber">На странице</label></dt>-->
+        <!--<dd>-->
+          <!--<select ng-model="vm.itemsPerPage" class="form-control" id="itemsNumber" convert-to-number-->
+                  <!--ng-change="vm.pageChanged()">-->
+            <!--<option ng-repeat="num in vm.itemsPerPageValues" value="{{::num}}">{{::num}}</option>-->
+          <!--</select>-->
+        <!--</dd>-->
+      <!--</dl>-->
+    <!--</div>-->
+  </div>
+</div>

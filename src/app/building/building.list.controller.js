@@ -7,41 +7,27 @@
     vm.filtersOpen = false;
 
     vm.buildings = [];
-    vm.users = [];
-    vm.statuses = [];
     vm.itemsPerPageValues = [50, 100, 200];
     vm.currentPage = 1;
     vm.itemsPerPage = 100;
-    vm.filter = {status: ['ACTIVE']};
 
-    function loadUsers() {
-      users.list().then(function(usersList) {
-        vm.users = usersList;
-      });
-    }
+    vm.pageChanged = function() {
+      applyFilters({currentPage: vm.currentPage, itemsPerPage: vm.itemsPerPage}, {});
+    };
 
-    function loadStatuses() {
-      vm.statuses = statuses.list();
-    }
-
-    function loadBuildings(q) {
-      buildings.list((vm.currentPage - 1) * vm.itemsPerPage, vm.itemsPerPage, q, vm.filter.authorId, vm.filter.status).then(function(result) {
+    function applyFilters(criteria, filters) {
+      buildings.list((criteria.currentPage - 1) * criteria.itemsPerPage, criteria.itemsPerPage, filters.q, filters.authorId, filters.status).then(function(result) {
         vm.buildings = result.items;
         vm.totalItems = result.total;
       });
     }
 
-    loadUsers();
-    loadStatuses();
-
-    vm.pageChanged = function() {
-      loadBuildings();
-    };
+    vm.onApplyFilters = applyFilters;
 
     vm.search = function(q) {
       vm.q = q;
       console.log("Searched for: ", q);
-      loadBuildings(q);
+      applyFilters({currentPage: vm.currentPage, itemsPerPage: vm.itemsPerPage}, {q: q});
     };
 
     vm.getBuildingDealers = function(building) {
