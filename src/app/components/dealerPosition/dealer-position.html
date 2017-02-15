@@ -1,0 +1,76 @@
+<!--<div class="row" ng-repeat-start="position in positionsVm.positions | filter:positionsVm.activePosition" ng-repeat-end>-->
+<div class="row" ng-if="!positionVm.editFlag">
+  <div class="col-xs-2" ng-bind="positionVm.position.contactName">&nbsp;</div>
+  <div class="col-xs-1" ng-bind="positionVm.position.type">&nbsp;</div>
+  <div class="col-xs-2" ng-bind="positionVm.position.spec">&nbsp;</div>
+  <div class="col-xs-1" ng-bind="positionVm.position.quantity">&nbsp;</div>
+  <div class="col-xs-1" ng-bind="positionVm.position.grossPrice">&nbsp;</div>
+  <div class="col-xs-1" ng-bind="positionVm.position.dealerPrice">&nbsp;</div>
+  <div class="col-xs-1" ng-bind="(positionVm.position.dealerPrice * positionVm.position.quantity) || '?'">&nbsp;</div>
+  <div class="col-xs-1" ng-bind="positionVm.position.status">&nbsp;</div>
+  <div class="col-xs-1" ng-bind="positionVm.position.dateShipped">&nbsp;</div>
+  <div class="col-xs-1">
+
+    <a class="btn text-warning" ng-click="positionVm.edit()">
+      <i class="fa fa-pencil"></i>
+    </a>
+
+    <a class="btn text-danger" ng-click="positionVm.removePosition(position)">
+      <i class="fa fa-remove"></i>
+    </a>
+  </div>
+</div>
+
+<div class="row" ng-if="positionVm.editFlag">
+  <div class="col-sm-2 form-group">
+    <!--<label for="contactInfo">Контакт</label>-->
+    <input class="form-control col-sm-12" type="text" ng-model="positionVm.position.contactName">
+  </div>
+  <div class="col-sm-1 form-group">
+    <!--<label for="">Тип</label>-->
+    <select class="form-control" ng-model="positionVm.position.type"
+            ng-options="type as type for type in positionVm.types"></select>
+  </div>
+  <div class="col-sm-2 form-group">
+    <!--<label for="">Спецификация</label>-->
+    <input class="form-control col-sm-12" type="text" ng-model="positionVm.position.spec">
+  </div>
+  <div class="col-sm-1 form-group">
+    <!--<label for="">Количество</label>-->
+    <input type="number" class="form-control" ng-model="positionVm.position.quantity"/>
+  </div>
+  <div class="col-sm-1 form-group">
+    <!--<label for=""><abbr title="Цена на объекте">Цена 1</abbr></label>-->
+    <input class="form-control col-sm-12" type="number" ng-model="positionVm.position.grossPrice">
+  </div>
+  <div class="col-sm-1 form-group">
+    <!--<label for=""><abbr title="Цена входящая для дилера">Цена 2</abbr></label>-->
+    <input class="form-control" type="number" ng-model="positionVm.position.dealerPrice">
+  </div>
+  <div class="col-sm-1 form-group">
+    <!--<label for="">Сумма</label>-->
+    <!--<input class="form-control col-sm-12" type="text" ng-model="positionsVm.position.total">-->
+    <span class="form-control" disabled ng-bind="(positionVm.position.dealerPrice * positionVm.position.quantity) || '?'"></span>
+  </div>
+  <div class="col-sm-1 form-group">
+    <!--<label for="">Статус</label>-->
+    <!--<select class="form-control" ng-model="positionsVm.position.status"-->
+    <!--ng-options="status.code as status.code for status in positionsVm.statuses track by status.code"></select>-->
+    <select class="form-control" ng-model="positionVm.position.status"
+            ng-options="status as status for status in positionVm.statuses"></select>
+  </div>
+  <div class="col-sm-1 form-group">
+    <!--<label for="">Отгрузка</label>-->
+  </div>
+
+  <div class="col-xs-1">
+
+    <a class="btn text-success" ng-click="positionVm.save()">
+      <i class="fa fa-check"></i>
+    </a>
+
+    <a class="btn text-danger" ng-click="positionVm.cancel()">
+      <i class="fa fa-ban"></i>
+    </a>
+  </div>
+</div>

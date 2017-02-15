@@ -42,6 +42,10 @@
 
       activePosition: function(item) {
         return item.removed === undefined;
+      },
+
+      editPosition: function(position) {
+
       }
 
     });

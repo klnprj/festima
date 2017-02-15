@@ -1,0 +1,19 @@
+<div class="col-xs-2" ng-bind="positionEditVm.position.contactName">&nbsp;</div>
+<div class="col-xs-1" ng-bind="positionEditVm.position.type">&nbsp;</div>
+<div class="col-xs-2" ng-bind="positionEditVm.position.spec">&nbsp;</div>
+<div class="col-xs-1" ng-bind="positionEditVm.position.quantity">&nbsp;</div>
+<div class="col-xs-1" ng-bind="positionEditVm.position.grossPrice">&nbsp;</div>
+<div class="col-xs-1" ng-bind="positionEditVm.position.dealerPrice">&nbsp;</div>
+<div class="col-xs-1" ng-bind="(positionEditVm.position.dealerPrice * positionEditVm.position.quantity) || '?'">&nbsp;</div>
+<div class="col-xs-1" ng-bind="positionEditVm.position.status">&nbsp;</div>
+<div class="col-xs-1" ng-bind="positionEditVm.position.dateShipped">&nbsp;</div>
+<div class="col-xs-1">
+
+  <a class="btn text-warning" ng-click="positionEditVm.edit()">
+    <i class="fa fa-pencil"></i>
+  </a>
+
+  <a class="btn text-danger" ng-click="positionsVm.removePosition(position)">
+    <i class="fa fa-remove"></i>
+  </a>
+</div>

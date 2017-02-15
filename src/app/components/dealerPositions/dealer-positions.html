@@ -1,125 +1,154 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <ng-transclude></ng-transclude>
+
     <!--<div class="row row-no-margins-paddings">-->
-      <!--<div class="col-sm-2 form-group">-->
-        <!--<label for="contactInfo">Контакт</label>-->
-        <!--<input class="form-control col-sm-12" type="text" ng-model="positionsVm.inputPosition.contactName">-->
-      <!--</div>-->
-      <!--<div class="col-sm-1 form-group">-->
-        <!--<label for="">Тип</label>-->
-        <!--<select class="form-control" ng-model="positionsVm.inputPosition.type"-->
-                <!--ng-options="type as type for type in positionsVm.types"></select>-->
-      <!--</div>-->
-      <!--<div class="col-sm-2 form-group">-->
-        <!--<label for="">Спецификация</label>-->
-        <!--<input class="form-control col-sm-12" type="text" ng-model="positionsVm.inputPosition.spec">-->
-      <!--</div>-->
-      <!--<div class="col-sm-1 form-group">-->
-        <!--<label for="">Количество</label>-->
-        <!--<input type="number" class="form-control" ng-model="positionsVm.inputPosition.quantity"/>-->
-      <!--</div>-->
-      <!--<div class="col-sm-1 form-group">-->
-        <!--<label for=""><abbr title="Цена на объекте">Цена 1</abbr></label>-->
-        <!--<input class="form-control col-sm-12" type="text" ng-model="positionsVm.inputPosition.grossPrice">-->
-      <!--</div>-->
-      <!--<div class="col-sm-1 form-group">-->
-        <!--<label for=""><abbr title="Цена входящая для дилера">Цена 2</abbr></label>-->
-        <!--<input class="form-control" type="text" ng-model="positionsVm.inputPosition.dealerPrice">-->
-      <!--</div>-->
-      <!--<div class="col-sm-1 form-group">-->
-        <!--<label for="">Сумма</label>-->
-        <!--&lt;!&ndash;<input class="form-control col-sm-12" type="text" ng-model="positionsVm.inputPosition.total">&ndash;&gt;-->
-        <!--<span class="form-control" disabled ng-bind="(positionsVm.inputPosition.dealerPrice * positionsVm.inputPosition.quantity) || '?'"></span>-->
-      <!--</div>-->
-      <!--<div class="col-sm-1 form-group">-->
-        <!--<label for="">Статус</label>-->
+    <div class="row">
+      <div class="col-sm-2 form-group">
+        <label for="contactInfo">Контакт</label>
+        <input class="form-control col-sm-12" type="text" ng-model="positionsVm.inputPosition.contactName">
+      </div>
+      <div class="col-sm-1 form-group">
+        <label for="">Тип</label>
+        <select class="form-control" ng-model="positionsVm.inputPosition.type"
+                ng-options="type as type for type in positionsVm.types"></select>
+      </div>
+      <div class="col-sm-2 form-group">
+        <label for="">Спецификация</label>
+        <input class="form-control col-sm-12" type="text" ng-model="positionsVm.inputPosition.spec">
+      </div>
+      <div class="col-sm-1 form-group">
+        <label for="">Количество</label>
+        <input type="number" class="form-control" ng-model="positionsVm.inputPosition.quantity"/>
+      </div>
+      <div class="col-sm-1 form-group">
+        <label for=""><abbr title="Цена на объекте">Цена 1</abbr></label>
+        <input class="form-control col-sm-12" type="number" ng-model="positionsVm.inputPosition.grossPrice">
+      </div>
+      <div class="col-sm-1 form-group">
+        <label for=""><abbr title="Цена входящая для дилера">Цена 2</abbr></label>
+        <input class="form-control" type="number" ng-model="positionsVm.inputPosition.dealerPrice">
+      </div>
+      <div class="col-sm-1 form-group">
+        <label for="">Сумма</label>
+        <!--<input class="form-control col-sm-12" type="text" ng-model="positionsVm.inputPosition.total">-->
+        <span class="form-control" disabled ng-bind="(positionsVm.inputPosition.dealerPrice * positionsVm.inputPosition.quantity) || '?'"></span>
+      </div>
+      <div class="col-sm-1 form-group">
+        <label for="">Статус</label>
         <!--<select class="form-control" ng-model="positionsVm.inputPosition.status"-->
                 <!--ng-options="status.code as status.code for status in positionsVm.statuses track by status.code"></select>-->
-      <!--</div>-->
-      <!--<div class="col-sm-1 form-group">-->
-        <!--<label for="">Отгрузка</label>-->
-      <!--</div>-->
-      <!--<div class="col-sm-1 form-group">-->
-        <!--<label>&nbsp;</label>-->
-        <!--<a class="btn btn-success form-control" type="submit" value="Добавить" ng-click="positionsVm.addNewPosition()">Добавить</a>-->
-      <!--</div>-->
-    <!--</div>-->
-    <table class="table table-condensed table-vcenter table-noborder">
-      <thead>
-      <tr class="tr-noborder">
-        <th class="col-md-2 text-center">Контакт</th>
-        <th class="col-md-1 text-center">Тип</th>
-        <th class="col-md-2 text-center">Спецификация</th>
-        <th class="col-md-1 text-center">Количество</th>
-        <th class="col-md-1 text-center"><abbr title="Цена на объекте">Цена 1</abbr></th>
-        <th class="col-md-1 text-center"><abbr title="Цена входящая для дилера">Цена 2</abbr></th>
-        <th class="col-md-1 text-center">Сумма</th>
-        <th class="col-md-1 text-center">Статус</th>
-        <th class="col-md-1 text-center">Отгрузка</th>
-        <th class="col-md-1 text-center"></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr ng-form>
-        <td class="col-md-2"><input class="form-control" type="text" ng-model="positionsVm.inputPosition.contactName"></td>
-        <td class="col-md-1">
-          <select class="form-control" ng-model="positionsVm.inputPosition.type"
-                  ng-options="type as type for type in positionsVm.types"></select>
-        </td>
-        <td class="col-md-2">
-          <input class="form-control" type="text" ng-model="positionsVm.inputPosition.spec">
-        </td>
-        <td class="col-sm-1">
-          <input type="number" class="form-control" ng-model="positionsVm.inputPosition.quantity"/>
-        </td>
-        <td class="col-md-1"><input class="form-control" type="number" ng-model="positionsVm.inputPosition.grossPrice"></td>
-        <td class="col-md-1"><input class="form-control" type="number" ng-model="positionsVm.inputPosition.dealerPrice"></td>
-        <td class="col-md-1">
-          <span class="form-control" disabled ng-bind="(positionsVm.inputPosition.dealerPrice * positionsVm.inputPosition.quantity) || '?'"></span>
-        </td>
-        <td class="col-md-1">
-          <select class="form-control" ng-model="positionsVm.inputPosition.status"
-                  ng-options="status as status for status in positionsVm.statuses"></select>
-                  <!--ng-options="status.code as status.code for status in positionsVm.statuses track by status.code"></select>-->
-        </td>
-        <td class="col-md-1">
-          <!--<input class="col-md-12" type="text" ng-model="positionsVm.inputPosition.dateShipped">-->
-        </td>
-        <td class="col-md-1">
-          <input class="form-control btn btn-success" type="submit" value="Добавить" ng-click="positionsVm.addNewPosition()">
-        </td>
-      </tr>
-      </tbody>
-    </table>
+        <select class="form-control" ng-model="positionsVm.inputPosition.status"
+                ng-options="status as status for status in positionsVm.statuses"></select>
+      </div>
+      <div class="col-sm-1 form-group">
+        <label for="">Отгрузка</label>
+      </div>
+      <div class="col-sm-1 form-group">
+        <label>&nbsp;</label>
+        <a class="btn btn-success form-control" ng-click="positionsVm.addNewPosition()">Добавить</a>
+      </div>
+    </div>
+
+    <!--<table class="table table-condensed table-vcenter table-noborder">-->
+      <!--<thead>-->
+      <!--<tr class="tr-noborder">-->
+        <!--<th class="col-md-2 text-center">Контакт</th>-->
+        <!--<th class="col-md-1 text-center">Тип</th>-->
+        <!--<th class="col-md-2 text-center">Спецификация</th>-->
+        <!--<th class="col-md-1 text-center">Количество</th>-->
+        <!--<th class="col-md-1 text-center"><abbr title="Цена на объекте">Цена 1</abbr></th>-->
+        <!--<th class="col-md-1 text-center"><abbr title="Цена входящая для дилера">Цена 2</abbr></th>-->
+        <!--<th class="col-md-1 text-center">Сумма</th>-->
+        <!--<th class="col-md-1 text-center">Статус</th>-->
+        <!--<th class="col-md-1 text-center">Отгрузка</th>-->
+        <!--<th class="col-md-1 text-center"></th>-->
+      <!--</tr>-->
+      <!--</thead>-->
+      <!--<tbody>-->
+      <!--<tr ng-form>-->
+        <!--<td class="col-md-2"><input class="form-control" type="text" ng-model="positionsVm.inputPosition.contactName"></td>-->
+        <!--<td class="col-md-1">-->
+          <!--<select class="form-control" ng-model="positionsVm.inputPosition.type"-->
+                  <!--ng-options="type as type for type in positionsVm.types"></select>-->
+        <!--</td>-->
+        <!--<td class="col-md-2">-->
+          <!--<input class="form-control" type="text" ng-model="positionsVm.inputPosition.spec">-->
+        <!--</td>-->
+        <!--<td class="col-sm-1">-->
+          <!--<input type="number" class="form-control" ng-model="positionsVm.inputPosition.quantity"/>-->
+        <!--</td>-->
+        <!--<td class="col-md-1"><input class="form-control" type="number" ng-model="positionsVm.inputPosition.grossPrice"></td>-->
+        <!--<td class="col-md-1"><input class="form-control" type="number" ng-model="positionsVm.inputPosition.dealerPrice"></td>-->
+        <!--<td class="col-md-1">-->
+          <!--<span class="form-control" disabled ng-bind="(positionsVm.inputPosition.dealerPrice * positionsVm.inputPosition.quantity) || '?'"></span>-->
+        <!--</td>-->
+        <!--<td class="col-md-1">-->
+          <!--<select class="form-control" ng-model="positionsVm.inputPosition.status"-->
+                  <!--ng-options="status as status for status in positionsVm.statuses"></select>-->
+                  <!--&lt;!&ndash;ng-options="status.code as status.code for status in positionsVm.statuses track by status.code"></select>&ndash;&gt;-->
+        <!--</td>-->
+        <!--<td class="col-md-1">-->
+          <!--&lt;!&ndash;<input class="col-md-12" type="text" ng-model="positionsVm.inputPosition.dateShipped">&ndash;&gt;-->
+        <!--</td>-->
+        <!--<td class="col-md-1">-->
+          <!--<input class="form-control btn btn-success" type="submit" value="Добавить" ng-click="positionsVm.addNewPosition()">-->
+        <!--</td>-->
+      <!--</tr>-->
+      <!--</tbody>-->
+    <!--</table>-->
   </div>
   <div class="panel-body">
-    <table class="table table-striped table-condensed table-vcenter">
-      <tbody>
-      <tr ng-repeat-start="position in positionsVm.positions | filter:positionsVm.activePosition" ng-repeat-end>
-        <td class="col-md-2 text-center" ng-bind="position.contactName">&nbsp;</td>
-        <td class="col-md-1 text-center" ng-bind="position.type">&nbsp;</td>
-        <td class="col-md-2 text-center" ng-bind="position.spec">&nbsp;</td>
-        <td class="col-md-1 text-center" ng-bind="position.quantity">&nbsp;</td>
-        <td class="col-md-1 text-center" ng-bind="position.grossPrice">&nbsp;</td>
-        <td class="col-md-1 text-center" ng-bind="position.dealerPrice">&nbsp;</td>
-        <td class="col-md-1 text-center" ng-bind="(position.dealerPrice * position.quantity) || '?'">&nbsp;</td>
-        <td class="col-md-1 text-center" ng-bind="position.status">&nbsp;</td>
-        <td class="col-md-1 text-center" ng-bind="position.dateShipped">&nbsp;</td>
-        <td class="col-md-1 text-center">
-          <!--<messages-button position="position"></messages-button>-->
+    <!--<table class="table table-striped table-condensed table-vcenter">-->
+      <!--<tbody>-->
+      <!--<tr ng-repeat-start="position in positionsVm.positions | filter:positionsVm.activePosition" ng-repeat-end>-->
+        <!--<td class="col-md-2 text-center" ng-bind="position.contactName">&nbsp;</td>-->
+        <!--<td class="col-md-1 text-center" ng-bind="position.type">&nbsp;</td>-->
+        <!--<td class="col-md-2 text-center" ng-bind="position.spec">&nbsp;</td>-->
+        <!--<td class="col-md-1 text-center" ng-bind="position.quantity">&nbsp;</td>-->
+        <!--<td class="col-md-1 text-center" ng-bind="position.grossPrice">&nbsp;</td>-->
+        <!--<td class="col-md-1 text-center" ng-bind="position.dealerPrice">&nbsp;</td>-->
+        <!--<td class="col-md-1 text-center" ng-bind="(position.dealerPrice * position.quantity) || '?'">&nbsp;</td>-->
+        <!--<td class="col-md-1 text-center" ng-bind="position.status">&nbsp;</td>-->
+        <!--<td class="col-md-1 text-center" ng-bind="position.dateShipped">&nbsp;</td>-->
+        <!--<td class="col-md-1 text-center">-->
+          <!--&lt;!&ndash;<messages-button position="position"></messages-button>&ndash;&gt;-->
 
-          <a class="btn text-warning">
-            <i class="fa fa-pencil"></i>
-          </a>
+          <!--<a class="btn text-warning" ng-click="">-->
+            <!--<i class="fa fa-pencil"></i>-->
+          <!--</a>-->
 
-          <a class="btn text-danger" ng-click="positionsVm.removePosition(position)">
-            <i class="fa fa-remove"></i>
-          </a>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+          <!--<a class="btn text-danger" ng-click="positionsVm.removePosition(position)">-->
+            <!--<i class="fa fa-remove"></i>-->
+          <!--</a>-->
+        <!--</td>-->
+      <!--</tr>-->
+      <!--</tbody>-->
+    <!--</table>-->
+
+    <!--<div class="row" ng-repeat-start="position in positionsVm.positions | filter:positionsVm.activePosition" ng-repeat-end>-->
+      <!--<div class="col-xs-2" ng-bind="position.contactName">&nbsp;</div>-->
+      <!--<div class="col-xs-1" ng-bind="position.type">&nbsp;</div>-->
+      <!--<div class="col-xs-2" ng-bind="position.spec">&nbsp;</div>-->
+      <!--<div class="col-xs-1" ng-bind="position.quantity">&nbsp;</div>-->
+      <!--<div class="col-xs-1" ng-bind="position.grossPrice">&nbsp;</div>-->
+      <!--<div class="col-xs-1" ng-bind="position.dealerPrice">&nbsp;</div>-->
+      <!--<div class="col-xs-1" ng-bind="(position.dealerPrice * position.quantity) || '?'">&nbsp;</div>-->
+      <!--<div class="col-xs-1" ng-bind="position.status">&nbsp;</div>-->
+      <!--<div class="col-xs-1" ng-bind="position.dateShipped">&nbsp;</div>-->
+      <!--<div class="col-xs-1">-->
+
+        <!--<a class="btn text-warning" ng-click="">-->
+          <!--<i class="fa fa-pencil"></i>-->
+        <!--</a>-->
+
+        <!--<a class="btn text-danger" ng-click="positionsVm.removePosition(position)">-->
+          <!--<i class="fa fa-remove"></i>-->
+        <!--</a>-->
+      <!--</div>-->
+    <!--</div>-->
+    <es-dealer-position position="position" ng-repeat-start="position in positionsVm.positions | filter:positionsVm.activePosition" ng-repeat-end></es-dealer-position>
+
   </div>
 </div>
 
