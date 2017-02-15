@@ -88,7 +88,7 @@
           dgis.ajax({
             url: 'http://catalog.api.2gis.ru/2.0/suggest/list',
             data: {
-              key: 'ruczoy1743',
+              key: 'rutnpt3272',
               output: 'json',
               region_id: 32,
               q: q
@@ -112,7 +112,7 @@
           dgis.ajax({
             url: 'http://catalog.api.2gis.ru/2.0/geo/get',
             data: {
-              key: 'ruczoy1743',
+              key: 'rutnpt3272',
               id: id,
               fields: 'items.geometry.centroid'
             },
@@ -136,7 +136,7 @@
           dgis.ajax({
             url: 'http://catalog.api.2gis.ru/geo/search',
             data: {
-              key: 'ruczoy1743',
+              key: 'rutnpt3272',
               version: 1.3,
               q: q
             },
@@ -166,7 +166,7 @@
           dgis.ajax({
             url: 'http://catalog.api.2gis.ru/geo/search',
             data: {
-              key: 'ruczoy1743',
+              key: 'rutnpt3272',
               version: 1.3,
               q: latLng[1] + ',' + latLng[0]
             },
