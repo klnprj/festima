@@ -10,7 +10,8 @@
       },
 
       searchAddresses: function(location, filters) {
-        return $http.get(appConfig.apiUrl + '/locations', {params: {latlng: location.latlng, radius: location.radius, authorId: filters.authorId, status: filters.status, q: filters.q}}).then(
+        return $http.get(appConfig.apiUrl + '/locations', {params: {latlng: location.latlng, radius: location.radius,
+          authorId: filters.authorId, status: filters.status, 'from.lastUpdated': filters.lastUpdatedFrom, q: filters.q}}).then(
           function(response) {
             return response.data;
           }
