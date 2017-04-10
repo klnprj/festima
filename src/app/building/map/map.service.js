@@ -1,7 +1,7 @@
 (function (app) {
   'use strict';
 
-  app.service('maps', function ($q) {
+  app.service('maps', ['$q', 'appConfig', function ($q, appConfig) {
       var dgis;
 
       function estimaModule(dgis) {
@@ -88,7 +88,7 @@
           dgis.ajax({
             url: 'http://catalog.api.2gis.ru/2.0/suggest/list',
             data: {
-              key: 'ruczoy1743',
+              key: appConfig.key2gis,
               output: 'json',
               region_id: 32,
               q: q
@@ -112,7 +112,7 @@
           dgis.ajax({
             url: 'http://catalog.api.2gis.ru/2.0/geo/get',
             data: {
-              key: 'ruczoy1743',
+              key: appConfig.key2gis,
               id: id,
               fields: 'items.geometry.centroid'
             },
@@ -136,7 +136,7 @@
           dgis.ajax({
             url: 'http://catalog.api.2gis.ru/geo/search',
             data: {
-              key: 'ruczoy1743',
+              key: appConfig.key2gis,
               version: 1.3,
               q: q
             },
@@ -166,7 +166,7 @@
           dgis.ajax({
             url: 'http://catalog.api.2gis.ru/geo/search',
             data: {
-              key: 'ruczoy1743',
+              key: appConfig.key2gis,
               version: 1.3,
               q: latLng[1] + ',' + latLng[0]
             },
@@ -208,7 +208,7 @@
             url: 'http://catalog.api.2gis.ru/2.0/geo/search',
 
             data: {
-              key: 'ruewin2963',
+              key: appConfig.key2gis,
               q: q,
               region_id: 32,
               fields: 'hash,search_attributes,items.address,items.adm_div,items.geometry.centroid,items.geometry.selection,items.geometry.style,items.floors,items.group'
@@ -226,6 +226,6 @@
           return deferred.promise;
         }
       });
-    }
+    }]
   );
 }(angular.module('festima')));
