@@ -34,15 +34,6 @@ angular.module('festima')
           for (var i = 0; i < positionsList.length; i++) {
             position = positionsList[i];
 
-            if (position.removed === true) {
-              positions.delete(position.id).then(function () {
-                var index = positionsList.map(function (e) {
-                  return e.id;
-                }).indexOf(position.id);
-                positionsList.splice(index, 1);
-              });
-            }
-
             if (angular.isUndefined(position.buildingId)) {
               position.buildingId = position.building.id;
               delete position['building'];
@@ -52,6 +43,22 @@ angular.module('festima')
               positions.createPosition(position).then(function (savedPosition) {
                 position.id = savedPosition.id;
                 console.log('Saved position ' + position.id);
+              });
+            }
+
+            if (position.edited === true) {
+              positions.update(position).then(function() {
+
+                console.log('Updated position ' + position.id);
+              });
+            }
+
+            if (position.removed === true) {
+              positions.delete(position.id).then(function () {
+                var index = positionsList.map(function (e) {
+                  return e.id;
+                }).indexOf(position.id);
+                positionsList.splice(index, 1);
               });
             }
 

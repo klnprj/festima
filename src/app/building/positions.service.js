@@ -11,6 +11,9 @@ angular.module('festima')
       },
       delete: function(positionId) {
         return $http.delete(appConfig.apiUrl + '/positions/' + positionId);
+      },
+      update: function(position) {
+        return $http.put(appConfig.apiUrl + '/positions/' + position.id, position);
       }
     });
   }

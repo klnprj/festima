@@ -147,7 +147,10 @@
         <!--</a>-->
       <!--</div>-->
     <!--</div>-->
-    <es-dealer-position position="position" types="positionsVm.types" statuses="positionsVm.statuses"
+    <es-dealer-position position="position"
+                        types="positionsVm.types"
+                        statuses="positionsVm.statuses"
+                        on-remove-position="positionsVm.removePosition(position)"
                         ng-repeat-start="position in positionsVm.positions | filter:positionsVm.activePosition" ng-repeat-end>
     </es-dealer-position>
 

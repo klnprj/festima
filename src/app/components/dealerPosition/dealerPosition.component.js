@@ -6,7 +6,8 @@
     bindings: {
       position: '<',
       types: '<',
-      statuses: '<'
+      statuses: '<',
+      onRemovePosition: '&'
      },
     controllerAs: 'positionVm',
     controller: DealerPosition
@@ -24,11 +25,16 @@
 
     vm.save = function() {
       vm.editFlag = false;
+      vm.position.edited = true;
     };
 
     vm.cancel = function() {
       vm.editFlag = false;
-    }
+    };
+
+    vm.remove = function() {
+      vm.onRemovePosition({position: vm.position});
+    };
   }
 
 }(angular.module('festima')));
