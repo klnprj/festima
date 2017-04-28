@@ -21,8 +21,16 @@
       </dl>
     </div>
 
-    <!--<div class="col-sm-12 col-md-5">-->
-      <!--<dl class="dl-horizontal">-->
+    <div class="col-sm-12 col-md-5">
+      <dl class="dl-horizontal">
+        <dt><label for="lastUpdatedFromFilter">Обновлен после</label></dt>
+        <dd>
+          <input type="date" id="lastUpdatedFromFilter" name="lastUpdatedFrom" ng-model="filterPanelVm.filters.lastUpdatedFrom"
+                 placeholder="yyyy-MM-dd" min="2015-01-01" ng-change="filterPanelVm.applyFilters()"/>
+          <div role="alert">
+            <span class="error" ng-show="lastUpdatedFrom.$error.date">Некорректная дата!</span>
+          </div>
+        </dd>
         <!--<dt><label for="itemsNumber">На странице</label></dt>-->
         <!--<dd>-->
           <!--<select ng-model="vm.itemsPerPage" class="form-control" id="itemsNumber" convert-to-number-->
@@ -30,7 +38,7 @@
             <!--<option ng-repeat="num in vm.itemsPerPageValues" value="{{::num}}">{{::num}}</option>-->
           <!--</select>-->
         <!--</dd>-->
-      <!--</dl>-->
-    <!--</div>-->
+      </dl>
+    </div>
   </div>
 </div>
