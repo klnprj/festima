@@ -41,7 +41,7 @@
   </div>
   <div class="col-sm-1 form-group">
     <!--<label for=""><abbr title="Цена на объекте">Цена 1</abbr></label>-->
-    <input class="form-control col-sm-12" type="number" ng-model="positionVm.position.grossPrice">
+    <input class="form-control col-sm-12" ng-if="positionVm.position.grossPrice" type="text" ng-model="positionVm.position.grossPrice">
   </div>
   <div class="col-sm-1 form-group">
     <!--<label for=""><abbr title="Цена входящая для дилера">Цена 2</abbr></label>-->

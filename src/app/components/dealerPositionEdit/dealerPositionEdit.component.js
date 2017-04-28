@@ -15,4 +15,4 @@
     var vm = this;
   }
 
-}(angular.module('app')));
+}(angular.module('festima')));

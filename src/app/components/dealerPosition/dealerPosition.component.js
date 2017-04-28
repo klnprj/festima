@@ -4,7 +4,9 @@
   app.component('esDealerPosition', {
     templateUrl: 'app/components/dealerPosition/dealer-position.html',
     bindings: {
-      position: '<'
+      position: '<',
+      types: '<',
+      statuses: '<'
      },
     controllerAs: 'positionVm',
     controller: DealerPosition
