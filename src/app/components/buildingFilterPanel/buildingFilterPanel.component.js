@@ -10,11 +10,12 @@
     controller: BuildingFilterPanel
   });
 
-  function BuildingFilterPanel(users, statuses) {
+  function BuildingFilterPanel(users, statuses, dealers) {
     var vm = this;
 
     vm.users = [];
     vm.statuses = [];
+    vm.dealers = [];
     vm.itemsPerPageValues = [50, 100, 200];
     vm.filters = {status: []};
     // vm.filters = {status: ['ACTIVE']};
@@ -32,8 +33,15 @@
       vm.statuses = statuses.list();
     }
 
+    function loadDealers() {
+      dealers.listAll().then(function(dealersList) {
+        vm.dealers = dealersList;
+      });
+    }
+
     loadUsers();
     loadStatuses();
+    loadDealers();
 
     vm.applyFilters = function() {
       vm.onApplyFilters({criteria: vm.criteria, filters: vm.filters});

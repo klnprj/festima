@@ -16,7 +16,7 @@
     };
 
     function applyFilters(criteria, filters) {
-      buildings.list((criteria.currentPage - 1) * criteria.itemsPerPage, criteria.itemsPerPage, filters.q, filters.authorId, filters.status, filters.lastUpdatedFrom).then(function(result) {
+      buildings.list((criteria.currentPage - 1) * criteria.itemsPerPage, criteria.itemsPerPage, filters.q, filters.authorId, filters.status, filters.lastUpdatedFrom, filters.dealerId).then(function(result) {
         vm.buildings = result.items;
         vm.totalItems = result.total;
       });

@@ -31,6 +31,17 @@
             <span class="error" ng-show="lastUpdatedFrom.$error.date">Некорректная дата!</span>
           </div>
         </dd>
+
+        <dt>
+          <label for="dealerFilter">Дилер</label>
+        </dt>
+        <dd>
+          <select id="dealerFilter" class="form-control" ng-model="filterPanelVm.filters.dealerId" ng-change="filterPanelVm.applyFilters()"
+                  ng-options="dealer.id as dealer.title for dealer in filterPanelVm.dealers track by dealer.id">
+            <option value="">-</option>
+          </select>
+        </dd>
+
         <!--<dt><label for="itemsNumber">На странице</label></dt>-->
         <!--<dd>-->
           <!--<select ng-model="vm.itemsPerPage" class="form-control" id="itemsNumber" convert-to-number-->
